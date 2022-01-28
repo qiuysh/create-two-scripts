@@ -1,0 +1,58 @@
+/** @format */
+
+.yux-header {
+  padding: 0 1.5rem;
+  background: #fff;
+  box-shadow: 0 0 3px #ccc;
+
+  .trigger,
+  .message,
+  .logout {
+    .anticon {
+      color: #666;
+    }
+  }
+
+  .message {
+    display: inline-block;
+    width: 3rem !important;
+
+    .anticon {
+      margin-right: 0;
+      font-size: 1.2rem;
+      vertical-align: -6px;
+    }
+  }
+
+  .logout {
+    width: 3rem;
+  }
+
+  .yux-usebar {
+    width: 18.75rem;
+    height: inherit;
+    border: 0;
+    background: transparent;
+
+    .ant-menu-item {
+      margin: 0;
+      padding-right: 0;
+      height: inherit;
+      line-height: inherit;
+      float: right;
+
+      .use-item {
+        display: block;
+        width: 100%;
+        height: inherit;
+        float: right;
+        text-align: center;
+      }
+
+      &.ant-menu-item-selected,
+      &:active {
+        background-color: transparent;
+      }
+    }
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "name": "wolin-script",
+  "version": "1.0.0-alpha.1",
+  "description": "一个简易的前端脚手架工具",
+  "bin": {
+    "wolin": "bin/wolin.js"
+  },
+  "scripts": {
+    "publish": "npm publish",
+    "unpublish": "npm unpublish --force wolin-script",
+    "release": "standard-version",
+    "eslint:test": "eslint ./**/* --ext .js,.ts",
+    "lint:fix": "eslint ./**/* --fix --ext .js,.ts",
+    "prettier": "prettier --write ./**/*"
+  },
+  "author": "wulin",
+  "license": "MIT",
+  "publishConfig": {
+    "registry": "http://registry.npm.com"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "lint-staged": {
+    "lib/**/*.{js,ts}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "config/**/*.{js,ts}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "util/**/*.{js,ts}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  },
+  "dependencies": {
+    "chalk": "^4.1.0",
+    "child_process": "^1.0.2",
+    "colors": "^1.4.0",
+    "commander": "^7.0.0",
+    "fs-extra": "^10.0.0",
+    "glob": "^7.1.7",
+    "handlebars": "^4.7.7",
+    "inquirer": "^7.3.3",
+    "ora": "^5.3.0",
+    "shelljs": "^0.8.4",
+    "webpack": "^5.50.0",
+    "webpack-cli": "^4.7.2",
+    "webpack-dev-server": "^3.11.2",
+    "webpack-merge": "^5.8.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^6.6.0",
+    "eslint-config-prettier": "^6.6.0",
+    "eslint-config-wolin": "git+https://github.com/qiuysh/eslint-config-wolin.git",
+    "eslint-import-resolver-webpack": "^0.13.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "husky": "^4.3.8",
+    "lint-staged": "^10.5.3",
+    "prettier": "^2.2.1",
+    "standard-version": "^9.1.0"
+  }
+}
