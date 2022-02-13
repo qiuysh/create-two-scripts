@@ -1,97 +1,78 @@
-const { mergeWithCustomize, unique } = require('webpack-merge');
-const paths = require('./defaultPaths');
+/** @format */
 
-/**
- * 合并 plugin 操作，
- * @param  {array} uniques plugin 名单，在这名单内的插件会过滤掉，不会出现两份，以用户的配置为准。
- * @return {array}
- */
-const pluginsUnique = pluginsName =>
-  unique(
-    'plugins',
-    pluginsName,
-    plugin => plugin.constructor && plugin.constructor.name
-  );
-
-const ENV_PROD = 'production';
-const ENV_DEV = 'development';
+const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
+const getplugins = require("./plugins");
+const getLoaders = require("./loaders");
+const paths = require("./defaultPaths");
 
 module.exports = function (program) {
-  
-  // const tsRule = [
-  //   {
-  //     test: /\.(ts|tsx)$/,
-  //     exclude: /node_modules/,
-  //     loader: HAPPY_PACK,
-  //     options: {
-  //       id: 'happy-babel-ts',
-  //     },
-  //   },
-  // ];
+  // cli options
+  const { ts } = program,
+    // user webpack config
+    appUserConf = paths.getUserConf(),
+    entry = {
+      app: `${paths.appSrc}/index`,
+      ...appUserConf.entry,
+    },
+    output = {
+      path: paths.appDist,
+      filename: "js/[name].[chunkhash:8].js",
+      publicPath: "/",
+    },
+    loaders = getLoaders(program),
+    plugins = getplugins(program),
+    extensions = [
+      ".js",
+      ".ts",
+      ".jsx",
+      ".tsx",
+      ".css",
+      ".less",
+      ".json",
+      ".html",
+    ],
+    /**
+     * default webpack configs
+     */
+    defaultConf = {
+      context: paths.appDirectory,
+      entry,
+      output,
+      module: {
+        rules: loaders,
+      },
+      plugins,
+      resolve: {
+        modules: [paths.appModules, "node_modules"],
+        extensions,
+        plugins: [],
+      },
+      performance: {
+        // 打包性能配置
+        hints: false, // 关闭性能提示
+      },
+      stats: {
+        errorDetails: true,
+      },
+      optimization: {},
+      externals: {},
+      node: false,
+      target: "web",
+      cache: {
+        type: "filesystem",
+      },
+    };
 
-  const defaultEntry = {
-    app: paths.appSrc + 'index.tsx'
+  if (ts) {
+    // support ts paths link to webpack resolve alias
+    const option = {
+        configFile: paths.appTsConfig,
+        extensions,
+      },
+      { resolve } = defaultConf,
+      tsconfigPaths = new TsconfigPathsPlugin(option);
+    resolve.plugins.push(tsconfigPaths);
   }
 
-  const defaultOutput = {
-    path: paths.appDist,
-    filename: 'js/[name].[hash:6].js',
-    publicPath: '/',
-  };
-
-  const extensions = [
-    '.js',
-    '.jsx',
-    '.ts',
-    '.tsx',
-    '.css',
-    '.scss',
-    '.less',
-    '.json',
-    '.html',
-  ]
-
- 
-  /**
-   * default webpack configs
-   */
-  const defaultWebpackConfig = {
-    mode: process.env.NODE_ENV === ENV_DEV ? ENV_DEV : ENV_PROD,
-    context: paths.appDirectory,
-    entry: defaultEntry,
-    output: defaultOutput,
-    resolve: {
-      modules: [paths.appModules, 'node_modules'],
-      extensions,
-      plugins: program.ts
-        ? [
-          new TsconfigPathsPlugin({
-            configFile: paths.appTsConfig,
-            extensions: ['.ts', '.tsx', '.js', '.jsx'],
-          }),
-        ]
-        : [],
-    },
-    module: {
-      // rules: tsRule,
-    },
-    performance: {
-      //打包性能配置
-      hints: false, // 关闭性能提示
-    },
-    plugins: tsPlugin,
-    optimization: {},
-    node: false,
-  };
-
-  //TODO: 用户自定义的plugins覆盖相应的default配置
-  const finalWebpackConfig = mergeWithCustomize({
-    customizeArray: pluginsUnique(['HtmlWebpackPlugin']),
-  })(defaultWebpackConfig, result.webpack);
-
-  finalWebpackConfig.output.path = isAbsolute(finalWebpackConfig.output.path);
-
-  // finalWebpackConfig.entry = processEntry(finalWebpackConfig.entry);
-
-  return finalWebpackConfig;
+  return defaultConf;
 };

@@ -23,19 +23,19 @@ module.exports = {
   ],
   createTypeData: [
     {
-      type: 'input',
-      name: 'name',
+      type: "input",
+      name: "name",
       message: `package name`,
     },
     {
-      type: 'input',
-      name: 'description',
-      message: 'description',
+      type: "input",
+      name: "description",
+      message: "description",
     },
     {
-      type: 'input',
-      name: 'author',
-      message: 'author',
+      type: "input",
+      name: "author",
+      message: "author",
     },
   ],
   installTypeData: [

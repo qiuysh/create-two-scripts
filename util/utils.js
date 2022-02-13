@@ -11,7 +11,6 @@ async function inquirerPrompt(type) {
   return inquirer.prompt(type);
 }
 
-
 module.exports = {
   program,
   inquirerPrompt,
