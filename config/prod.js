@@ -7,11 +7,10 @@ const getWebpackBase = require("./base");
 
 module.exports = function (program) {
   const baseConfig = getWebpackBase(program),
-    { plugins, optimization } = baseConfig;
+    { plugins = [], optimization } = baseConfig;
 
-  optimization.moduleIds = "hashed";
-
-  optimization.minimizer.push(new CssMinimizerPlugin());
+  optimization.moduleIds = "deterministic";
+  optimization.minimizer = [new CssMinimizerPlugin()];
 
   const splitPlugin =
     new webpack.optimize.SplitChunksPlugin({
@@ -56,5 +55,6 @@ module.exports = function (program) {
 
   return merge(baseConfig, {
     mode: "production",
+    devtool: false,
   });
 };

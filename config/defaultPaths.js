@@ -19,7 +19,7 @@ function getCustomConfig() {
   if (existsSync(curFilePath)) {
     return require(curFilePath);
   }
-  throw new Error("未找到wolinrc.js配置文件！");
+  throw new Error("未找到.wolinrc.js配置文件！");
 }
 
 module.exports = {

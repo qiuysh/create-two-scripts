@@ -20,13 +20,6 @@ program
 program
   .command("start")
   .description("启动项目")
-  .option(
-    "-p, --port <port>",
-    "server start on which port",
-    parseInt,
-  )
-  .option("--host <host>", "specify a host to use")
-  .option("-t, --ts", "support typescript")
   .action((...args) => {
     execAction("start", args);
   });

@@ -7,11 +7,13 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const defaultPaths = require("./defaultPaths");
 
 module.exports = function (params) {
-  const defaultPlugins = [
+  return [
     new webpack.IgnorePlugin({
       resourceRegExp: /^\.\/locale$/,
       contextRegExp: /moment$/,
     }),
+
+    new webpack.ProgressPlugin(),
 
     new CopyPlugin(
       [
@@ -20,13 +22,7 @@ module.exports = function (params) {
         },
       ],
       {
-        ignore: [
-          "json/*.ts",
-          "imgs/*",
-          "styles/*",
-          "fonts/emfont/*",
-          "sw.js",
-        ],
+        ignore: ["imgs/*", "styles/*", "fonts/*"],
       },
     ),
 
@@ -40,11 +36,8 @@ module.exports = function (params) {
     }),
 
     new MiniCssExtractPlugin({
-      filename: "[name].[contenthash].css",
-      chunkFilename:
-        "assets/styles/[name].[contenthash].css",
+      filename: "./styles/[name].[contenthash].css",
+      chunkFilename: "./styles/[id].[contenthash].css",
     }),
   ];
-
-  return defaultPlugins;
 };

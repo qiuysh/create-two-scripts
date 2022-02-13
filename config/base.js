@@ -6,10 +6,8 @@ const getLoaders = require("./loaders");
 const paths = require("./defaultPaths");
 
 module.exports = function (program) {
-  // cli options
-  const { ts } = program,
-    // user webpack config
-    appUserConf = paths.getUserConf(),
+  // user webpack config
+  const appUserConf = paths.getUserConf(),
     entry = {
       app: `${paths.appSrc}/index`,
       ...appUserConf.entry,
@@ -17,6 +15,7 @@ module.exports = function (program) {
     output = {
       path: paths.appDist,
       filename: "js/[name].[chunkhash:8].js",
+      chunkFilename: "js/[name].chunk.[chunkhash:8].js",
       publicPath: "/",
     },
     loaders = getLoaders(program),
@@ -63,7 +62,7 @@ module.exports = function (program) {
       },
     };
 
-  if (ts) {
+  if (paths.appTsConfig) {
     // support ts paths link to webpack resolve alias
     const option = {
         configFile: paths.appTsConfig,
