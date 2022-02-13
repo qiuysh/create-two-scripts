@@ -1,6 +1,5 @@
 const path = require('path');
 const webpack = require("webpack");
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const VERSION = JSON.stringify(require("./package.json").version); // app version.
 
@@ -36,27 +35,6 @@ module.exports = {
     ]
   },
 
-  plugins: [
-
-    new CopyWebpackPlugin([{
-      from: path.resolve(__dirname, './public')
-    }], {
-      ignore: [
-        'json/*.ts',
-        'imgs/*',
-        'styles/*',
-        'fonts/emfont/*',
-        'sw.js',
-      ],
-    }),
-
-    new webpack.DefinePlugin({
-      APP: {
-        VERSION: VERSION
-      }
-    }),
-  ],
-
   optimization: {
     usedExports: true,
     minimize: isProd,
@@ -80,13 +58,6 @@ module.exports = {
 
   resolve: {
     fallback: {
-      fs: false,
-      module: "empty",
-      path: false,
-      events: false,
-      os: require.resolve('os-browserify/browser'),
-      crypto: require.resolve('crypto-browserify'),
-      stream: require.resolve('stream-browserify'),
       "@": path.resolve(__dirname, './src'),
       "public": path.resolve(__dirname, './public'),
     },
@@ -100,7 +71,5 @@ module.exports = {
     stats: {
       children: true
     },
-    proxy: [
-    ]
   },
 };
