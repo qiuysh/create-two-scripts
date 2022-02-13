@@ -3,7 +3,19 @@
 import { updateChain } from "immutability-helper-x";
 
 export const initialState: GLOBAL.storeProps = {
-  menuList: [],
+  menuList: [
+    {
+      id: 1,
+      pid: 0,
+      name: '引导',
+      code: 'guide',
+      url: 'index',
+      icon: '',
+      desc: '',
+      create_time: '',
+      modified_time: ''
+    },
+  ],
 };
 
 export const globalReducer = (

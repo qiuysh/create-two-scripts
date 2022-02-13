@@ -16,7 +16,8 @@ import ErrorBoundary from "@/components/errorBoundary";
 import { getViewPortHeight } from "@/utils/util";
 import { initialState, globalReducer } from "./stores";
 import * as ajax from "./services";
-import "@public/styles/global.less";
+import "antd/es/";
+import "public/styles/global.less";
 
 const { Content } = Layout;
 
@@ -38,11 +39,11 @@ const BaseLayout: React.FC<any> = props => {
   const { menuList } = state as GLOBAL.storeProps;
 
   useEffect(() => {
-    queryMenu();
+    // getMenuList();
   }, []);
 
   // 获取导航菜单列表
-  const queryMenu = async () => {
+  const getMenuList = async () => {
     const res: any = await ajax.getNavigation();
     if (res.result) {
       dispatch({

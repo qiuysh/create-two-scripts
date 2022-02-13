@@ -7,10 +7,6 @@ import axios, {
 } from "axios";
 import { message } from "antd";
 
-const isMock = process.env.FIRST_ENV === 'mock';
-
-console.log(process)
-
 export default function request(
   url: string,
   options: AxiosRequestConfig = {},
@@ -33,7 +29,6 @@ export default function request(
   // 使用由库提供的配置的默认值来创建实例
   return axios({
     url,
-    baseURL: isMock ? '/mock' : '',
     method: "get", // 默认值
     headers: {
       "content-type": "application/json;charset=UTF-8",
