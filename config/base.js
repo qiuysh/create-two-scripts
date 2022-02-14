@@ -14,9 +14,9 @@ module.exports = function (program) {
     },
     output = {
       path: paths.appDist,
-      filename: "js/[name].[chunkhash:8].js",
-      chunkFilename: "js/[name].chunk.[chunkhash:8].js",
+      filename: "js/[name].[contenthash].js",
       publicPath: "/",
+      clean: true,
     },
     loaders = getLoaders(program),
     plugins = getplugins(program),
