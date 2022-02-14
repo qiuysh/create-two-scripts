@@ -8,8 +8,7 @@ const isProd = process.env.NODE_ENV === "production";
 module.exports = {
 
   entry: {
-    app: { import: './src/app.tsx', dependOn: 'default-vendors' },
-    'default-vendors': ['react', 'react-dom', 'react-redux', 'react-router-dom', 'moment', 'js-cookie'],
+    app: './src/app.tsx',
   },
 
   module: {
@@ -68,8 +67,5 @@ module.exports = {
     host: '0.0.0.0',
     port: 3001,
     open: false,
-    stats: {
-      children: true
-    },
   },
 };

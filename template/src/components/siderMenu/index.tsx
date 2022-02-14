@@ -2,8 +2,6 @@
 
 import * as React from "react";
 import { Menu, Layout } from "antd";
-import CustomIcon from "@components/customIcon";
-import Logo from "../logo";
 
 const { Sider } = Layout;
 
@@ -54,7 +52,6 @@ const SiderMenu: React.FC<iProps> = props => {
       trigger={null}
       collapsible
       collapsed={collapsed}>
-      <Logo collapsed={collapsed} />
       <Menu
         mode="inline"
         theme="dark"
@@ -65,7 +62,6 @@ const SiderMenu: React.FC<iProps> = props => {
           (item: GLOBAL.menuItemProps): JSX.Element => {
             return (
               <Menu.Item key={item.code}>
-                <CustomIcon type={item.icon} />
                 <span>{item.name}</span>
               </Menu.Item>
             );
