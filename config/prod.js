@@ -2,6 +2,7 @@
 
 const { merge } = require("webpack-merge");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
 const webpack = require("webpack");
 const getWebpackBase = require("./base");
 
@@ -10,7 +11,22 @@ module.exports = function (program) {
     { plugins = [], optimization } = baseConfig;
 
   optimization.minimize = true;
-  optimization.minimizer = [new CssMinimizerPlugin()];
+  optimization.minimizer = [
+    new TerserPlugin({
+      parallel: true,
+      terserOptions: {
+        compress: {
+          drop_console: true,
+          drop_debugger: true,
+        },
+        format: {
+          comments: false,
+        },
+      },
+      extractComments: false,
+    }),
+    new CssMinimizerPlugin(),
+  ];
 
   const splitPlugin =
     new webpack.optimize.SplitChunksPlugin({
