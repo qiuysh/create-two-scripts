@@ -20,6 +20,7 @@ program
 program
   .command("start")
   .description("启动项目")
+  .option('-a, --antd', 'support antd import on demand')
   .action((...args) => {
     execAction("start", args);
   });
@@ -27,6 +28,7 @@ program
 program
   .command("build")
   .description("构建项目")
+  .option('-a, --antd', 'support antd import on demand')
   .action((...args) => {
     execAction("build", args);
   });
