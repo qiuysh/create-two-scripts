@@ -24,14 +24,14 @@ html {
   overflow: hidden;
 }
 
-.ant-layout-sider {
+.yux-sider {
   .logo {
-    height: 4rem;
-    line-height: 4rem;
+    height: 4.5714rem;
+    line-height: 4.5714rem;
     margin-left: 1.5rem;
     font-size: 2.125rem;
     font-weight: 600;
-    color: #fff;
+    color: var(--yux-color);
   }
   &.ant-layout-sider-collapsed {
     .logo {
@@ -40,12 +40,20 @@ html {
   }
 }
 
-.ant-layout-header {
-  color: #fff;
-
-  .action {
-    font-size: 1.5rem;
+.yux-content { 
+  background: var(--yux-bg);
+   .yux-header {
+    color: var(--yux-color);
+    .action {
+      font-size: 1.5rem;
+    }
   }
+}
+
+.yux-footer {
+  background: var(--yux-bg);
+  color: var(--yux-color);
+  text-align: center;
 }
 
 .layout-fixed {
@@ -59,7 +67,6 @@ html {
 
   .yux-content {
     width: fit-content;
-
     .yux-header {
       position: sticky;
       top: 0;

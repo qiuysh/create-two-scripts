@@ -1,7 +1,10 @@
 /** @format */
 
-import * as React from "react";
+import React, { useEffect } from "react";
 import { Menu, Layout } from "antd";
+import DotChartOutlined from "@ant-design/icons/DotChartOutlined";
+import Logo from "./logo";
+import "./style";
 
 const { Sider } = Layout;
 
@@ -17,7 +20,7 @@ const SiderMenu: React.FC<iProps> = props => {
   const { pathname } = location;
   const [activeKey, setActive] = React.useState<string>("");
 
-  React.useEffect(() => {
+  useEffect(() => {
     initialActiveKey();
   }, []);
 
@@ -30,8 +33,8 @@ const SiderMenu: React.FC<iProps> = props => {
         pathname === "/"
           ? menuList[0]
           : {
-              code: pathname.replace("/", ""),
-            };
+            code: pathname.replace("/", ""),
+          };
       setActive(firstActiveMenu.code);
     }
   };
@@ -52,9 +55,9 @@ const SiderMenu: React.FC<iProps> = props => {
       trigger={null}
       collapsible
       collapsed={collapsed}>
+      <Logo collapsed={collapsed} />
       <Menu
         mode="inline"
-        theme="dark"
         data-testid="test-sider-nav"
         onClick={handleClick}
         selectedKeys={[activeKey]}>
@@ -62,6 +65,7 @@ const SiderMenu: React.FC<iProps> = props => {
           (item: GLOBAL.menuItemProps): JSX.Element => {
             return (
               <Menu.Item key={item.code}>
+                <DotChartOutlined />
                 <span>{item.name}</span>
               </Menu.Item>
             );

@@ -11,24 +11,10 @@ const proxy = {
         data: [
           {
             id: 0,
-            name: "仪表盘",
-            path: "/dashboard",
-            code: "dashboard",
+            name: "demo1",
+            path: "/demo",
+            code: "demo",
             icon: "icondashboard",
-          },
-          {
-            id: 1,
-            name: "工具",
-            path: "/table",
-            code: "table",
-            icon: "iconmessage",
-          },
-          {
-            id: 2,
-            name: "表单页",
-            path: "/form",
-            code: "form",
-            icon: "iconedit-square",
           },
         ],
         result: true,

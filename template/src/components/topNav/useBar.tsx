@@ -1,14 +1,48 @@
 /** @format */
 
-import * as React from "react";
+import React, { useState, useEffect } from "react";
 import { Modal, Avatar, Menu, Switch } from "antd";
 import BellOutlined from "@ant-design/icons/BellOutlined";
-import UserOutlined from "@ant-design/icons/UserOutlined";
 import "./style.less";
 
 const { confirm } = Modal;
 
-const UseBar: React.FC<{}> = () => {
+const DEFAULTTHEME: string = localStorage.getItem("ui-theme-mode") || 'light';
+
+const UseBar: React.FC<{}> = (props) => {
+  const [theme, changeThemeMode] = useState<string>(DEFAULTTHEME)
+
+  useEffect(() => {
+    applyThemeMode(theme);
+  }, [theme])
+
+  function onLogout() {
+    confirm({
+      title: "注销",
+      content: "是否要退出当前账号？",
+      okText: "确认",
+      cancelText: "取消",
+      onOk: () => {
+        localStorage.removeItem("token");
+      },
+      onCancel() { },
+    });
+  }
+
+  function applyThemeMode(theme: string) {
+    const htmlNode: any = document.querySelector("html");
+    htmlNode.setAttribute(
+      "ui-theme-mode",
+      theme,
+    );
+    localStorage.setItem("ui-theme-mode", theme);
+  }
+
+  function onChange(checked: boolean): void {
+    const theme = checked ? "light" : "dark";
+    changeThemeMode(theme);
+  }
+
   return (
     <Menu className="yux-usebar f-fr">
       <Menu.Item>
@@ -28,7 +62,7 @@ const UseBar: React.FC<{}> = () => {
             onChange={onChange}
             checkedChildren="亮"
             unCheckedChildren="暗"
-            defaultChecked
+            checked={theme === 'light'}
           />
         </a>
       </Menu.Item>
@@ -37,25 +71,3 @@ const UseBar: React.FC<{}> = () => {
 };
 
 export default UseBar;
-
-function onChange(checked: boolean): void {
-  const htmlNode: any = document.querySelector("html");
-  htmlNode.setAttribute(
-    "ui-theme-mode",
-    checked ? "light" : "dark",
-  );
-}
-
-function onLogout() {
-  confirm({
-    title: "注销",
-    content: "是否要退出当前账号？",
-    okText: "确认",
-    cancelText: "取消",
-    onOk: () => {
-      localStorage.removeItem("token");
-      window.location.href = "/login";
-    },
-    onCancel() {},
-  });
-}
