@@ -2,6 +2,7 @@
 
 const program = require("commander");
 const inquirer = require("inquirer");
+const { log, info, error } = console;
 
 /**
  * 交互框
@@ -14,4 +15,7 @@ async function inquirerPrompt(type) {
 module.exports = {
   program,
   inquirerPrompt,
+  log,
+  info,
+  error
 };
