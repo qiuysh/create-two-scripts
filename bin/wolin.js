@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 /** @format */
 
-const { program } = require("../util/utils");
+const { program } = require("../utils");
 const packageConf = require("../package.json");
-const execAction = require("../lib");
+const action = require("../lib");
 
 program
   .usage("<command> [options]")
@@ -14,7 +14,7 @@ program
   .command("init <name>")
   .description("创建一个新的项目")
   .action((...args) => {
-    execAction("init", args);
+    action("init", args);
   });
 
 program
@@ -22,7 +22,7 @@ program
   .description("启动项目")
   .option('-a, --antd', 'support antd import on demand')
   .action((...args) => {
-    execAction("start", args);
+    action("start", args);
   });
 
 program
@@ -30,7 +30,7 @@ program
   .description("构建项目")
   .option('-a, --antd', 'support antd import on demand')
   .action((...args) => {
-    execAction("build", args);
+    action("build", args);
   });
 
 program.parse(process.argv);

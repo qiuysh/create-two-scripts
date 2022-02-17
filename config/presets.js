@@ -1,7 +1,7 @@
 /** @format */
 
 module.exports = function (params) {
-  const { antd } = params,
+  const { antd, devMode } = params,
     // presets config
     presets = [
       [
@@ -13,7 +13,12 @@ module.exports = function (params) {
           exclude: ["transform-typeof-symbol"],
         },
       ],
-      [require("@babel/preset-react").default],
+      [
+        require("@babel/preset-react").default,
+        {
+          development: devMode,
+        },
+      ],
       [require("@babel/preset-typescript").default],
     ],
     // plugins config

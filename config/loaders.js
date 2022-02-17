@@ -8,9 +8,12 @@ const paths = require("./defaultPaths");
 const getPresets = require("./presets");
 
 module.exports = function (params) {
-  const { presets, plugins } = getPresets(params),
+  const devMode = process.env.NODE_ENV === "development",
+    { presets, plugins } = getPresets({
+      ...params,
+      devMode,
+    }),
     loaderConfigs = [],
-    devMode = process.env.NODE_ENV === "development",
     defaultBabelOptions = {
       cacheDirectory: true,
       configFile: false,
@@ -23,14 +26,14 @@ module.exports = function (params) {
       include: paths.appSrc,
       use: [
         {
+          loader: require.resolve("babel-loader"),
+          options: defaultBabelOptions,
+        },
+        {
           loader: require.resolve("thread-loader"),
           options: {
             workers: 3,
           },
-        },
-        {
-          loader: require.resolve("babel-loader"),
-          options: defaultBabelOptions,
         },
       ],
     },

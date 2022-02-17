@@ -21,12 +21,11 @@ module.exports = function (program) {
         progress: true,
       },
       compress: true,
-      contentBase: paths.appDirectory,
       host: "0.0.0.0",
       historyApiFallback: true,
       open: true,
       port: 3001,
-      // static: paths.appDirectory,
+      static: paths.appDirectory + "/public",
     },
     webpackDevConfig = {
       mode: "development",
