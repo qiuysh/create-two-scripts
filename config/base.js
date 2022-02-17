@@ -1,5 +1,6 @@
 /** @format */
 
+const path = require("path");
 const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 const getplugins = require("./plugins");
 const getLoaders = require("./loaders");
@@ -7,10 +8,8 @@ const paths = require("./defaultPaths");
 
 module.exports = function (program) {
   // user webpack config
-  const appUserConf = paths.getUserConf(),
-    entry = {
-      app: `${paths.appSrc}/index`,
-      ...appUserConf.entry,
+  const entry = {
+      app: paths.appSrc + "/index",
     },
     output = {
       path: paths.appDist,
@@ -53,7 +52,10 @@ module.exports = function (program) {
       stats: {
         errorDetails: true,
       },
-      optimization: {},
+      optimization: {
+        minimize: false,
+        minimizer: [],
+      },
       externals: {},
       node: false,
       target: "web",
