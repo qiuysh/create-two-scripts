@@ -1,4 +1,4 @@
-### react_system
+### 说明
 
 技术栈：react全家桶+antd+axios+ts
 
@@ -7,27 +7,28 @@
 1、安装依赖
 
 ```bash
-npm i
+yarn
 ```
 
 2、启动项目
 
 ```bash
-npm start
+yarn start
 ```
 
-3、项目目录结构
+3、构建项目
+
+```bash
+yarn build
+```
+
+4、项目目录结构
 
 ```bash
 .
 ├── README.md
 ├── dist
-├── package-lock.json
-├── package.json
-├── scripts
-│   ├── base.js
-│   ├── dev.js
-│   └── prod.js
+├── public
 ├── src
 │   ├── assets
 │   ├── components
@@ -35,7 +36,6 @@ npm start
 │   ├── layout.tsx
 │   ├── pages
 │   ├── routers.tsx
-│   ├── template.ejs
 │   └── utils
 └── tsconfig.json
 

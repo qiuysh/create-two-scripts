@@ -19,7 +19,7 @@ const loading: JSX.Element = (
 // 基本布局
 import BaseLayout from "./layout";
 
-const Exception = lazy(() => import("./pages"));
+const Guide = lazy(() => import("./pages"));
 
 // 根路由
 const BasicRouter = (): JSX.Element => (
@@ -29,7 +29,7 @@ const BasicRouter = (): JSX.Element => (
         <Route
           path="/index"
           exact
-          component={Exception}
+          component={Guide}
         />
       </Suspense>
     </BaseLayout>
