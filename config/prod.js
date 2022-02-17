@@ -5,14 +5,15 @@ const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const webpack = require("webpack");
 const getWebpackBase = require("./base");
+const { getUserConf } = require("./defaultPaths");
 
 module.exports = function (program) {
-  const baseConfig = getWebpackBase(program),
-    { plugins = [], optimization } = baseConfig;
-
-  optimization.minimize = true;
-  optimization.minimizer = [
-    new TerserPlugin({
+  // default webpack config
+  const webpackBaseConfig = getWebpackBase(program),
+    // user custom webpack config
+    appUserConf = getUserConf(),
+    // js mini
+    jsMini = new TerserPlugin({
       parallel: true,
       terserOptions: {
         compress: {
@@ -25,11 +26,10 @@ module.exports = function (program) {
       },
       extractComments: false,
     }),
-    new CssMinimizerPlugin(),
-  ];
-
-  const splitPlugin =
-    new webpack.optimize.SplitChunksPlugin({
+    // css mini
+    cssMini = new CssMinimizerPlugin(),
+    // split plugin
+    splitPlugin = new webpack.optimize.SplitChunksPlugin({
       // webpack 5.x 推荐使用默认配置或使用 optimization.splitChunks: { chunks: 'all' } 配置；
       chunks: "all",
       // （默认值：30000s）块的最小大小
@@ -55,7 +55,7 @@ module.exports = function (program) {
         },
         defaultVendors: {
           test: /[\\/]node_modules[\\/](react|react-dom|react-redux|react-router-dom|moment|js-cookie)[\\/]/,
-          name: "default-Vendors",
+          name: "default-vendors",
           chunks: "all",
         },
         default: {
@@ -64,12 +64,26 @@ module.exports = function (program) {
           reuseExistingChunk: true,
         },
       },
-    });
+    }),
+    { plugins = [], optimization } = webpackBaseConfig;
 
-  plugins.push(splitPlugin);
+  if (jsMini) {
+    optimization.minimize = true;
+    optimization.minimizer.push(jsMini);
+  }
 
-  return merge(baseConfig, {
+  if (cssMini) {
+    optimization.minimizer.push(cssMini);
+  }
+
+  if (splitPlugin) {
+    plugins.push(splitPlugin);
+  }
+
+  return merge(webpackBaseConfig, {
+    ...appUserConf,
     mode: "production",
     devtool: false,
+    devServer: {},
   });
 };

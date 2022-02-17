@@ -4,9 +4,11 @@ const webpack = require("webpack");
 const CopyPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const defaultPaths = require("./defaultPaths");
+const paths = require("./defaultPaths");
 
-module.exports = function (params) {
+module.exports = function () {
+  const ignore = ["imgs/*", "styles/*", "fonts/*"];
+
   return [
     new webpack.IgnorePlugin({
       resourceRegExp: /^\.\/locale$/,
@@ -18,17 +20,17 @@ module.exports = function (params) {
     new CopyPlugin(
       [
         {
-          from: defaultPaths.appPublic,
+          from: paths.appPublic,
         },
       ],
       {
-        ignore: ["imgs/*", "styles/*", "fonts/*"],
+        ignore,
       },
     ),
 
     new HtmlWebpackPlugin({
-      template: defaultPaths.appHtml,
-      title: defaultPaths.appPackageJson.name,
+      template: paths.appHtml,
+      title: paths.appPackageJson.name,
       templateParameters: {
         configPath: `config.js`,
       },

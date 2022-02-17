@@ -2,6 +2,7 @@
 
 module.exports = function (params) {
   const { antd } = params,
+    // presets config
     presets = [
       [
         require("@babel/preset-env").default,
@@ -15,9 +16,9 @@ module.exports = function (params) {
       [require("@babel/preset-react").default],
       [require("@babel/preset-typescript").default],
     ],
+    // plugins config
     plugins = [
       // support proposal decorators
-      // NOTE: https://babeljs.io/docs/en/babel-plugin-proposal-decorators#note-compatibility-with-babelplugin-proposal-class-properties
       [
         require("@babel/plugin-proposal-decorators")
           .default,
@@ -32,6 +33,7 @@ module.exports = function (params) {
       ],
     ];
 
+  // support antd import
   if (antd) {
     plugins.push([
       require("babel-plugin-import").default,
@@ -43,10 +45,6 @@ module.exports = function (params) {
   }
 
   return {
-    assumptions: {
-      // use assignment rather than using Object.defineProperty
-      setPublicClassFields: true,
-    },
     presets,
     plugins,
   };

@@ -1,24 +1,27 @@
 /** @format */
 
-const path = require("path");
 const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 const getplugins = require("./plugins");
 const getLoaders = require("./loaders");
 const paths = require("./defaultPaths");
 
 module.exports = function (program) {
-  // user webpack config
+  // entry config
   const entry = {
       app: paths.appSrc + "/index",
     },
+    // output config
     output = {
       path: paths.appDist,
       filename: "js/[name].[contenthash].js",
       publicPath: "/",
       clean: true,
     },
+    // loaders config
     loaders = getLoaders(program),
+    // plugins config
     plugins = getplugins(program),
+    // extensions config
     extensions = [
       ".js",
       ".ts",
@@ -29,10 +32,8 @@ module.exports = function (program) {
       ".json",
       ".html",
     ],
-    /**
-     * default webpack configs
-     */
-    defaultConf = {
+    // default webpack config
+    webpackBaseConfig = {
       context: paths.appDirectory,
       entry,
       output,
@@ -70,10 +71,11 @@ module.exports = function (program) {
         configFile: paths.appTsConfig,
         extensions,
       },
-      { resolve } = defaultConf,
+      { resolve } = webpackBaseConfig,
+      // tsconfig instance
       tsconfigPaths = new TsconfigPathsPlugin(option);
     resolve.plugins.push(tsconfigPaths);
   }
 
-  return defaultConf;
+  return webpackBaseConfig;
 };
