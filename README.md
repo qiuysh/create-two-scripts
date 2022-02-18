@@ -1,12 +1,10 @@
 ### 简介
 
-create-scripts， 一个简易的前端脚手架工具
+create-two-scripts， 一个简易的前端脚手架工具
 
 ### 说明
 
-当前支持的模版
-
-react + ts
+当前仅支持的模版 react + ts，webpack >= 5.x
 
 ### 使用
 
