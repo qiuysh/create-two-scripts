@@ -7,7 +7,7 @@
   },
   "scripts": {
     "publish": "npm publish",
-    "unpublish": "npm unpublish --force create-scripts",
+    "unpublish": "npm unpublish --force create-two-scripts",
     "release": "standard-version",
     "eslint:test": "eslint './**/*' --ext .js,.ts",
     "lint:fix": "eslint './**/*' --fix --ext .js,.ts",
