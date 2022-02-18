@@ -8,7 +8,7 @@ const action = require("../lib");
 program
   .usage("<command> [options]")
   .version(packageConf.version, "-v, --version")
-  .description("欢迎使用wolin-script脚手架");
+  .description("欢迎使用 create-scripts 脚手架");
 
 program
   .command("init <name>")

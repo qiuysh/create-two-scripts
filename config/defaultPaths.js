@@ -15,11 +15,11 @@ function getReadFilePath(path) {
  * @return {*}
  */
 function getUserWebpackConfig() {
-  const configFilePath = getReadFilePath(".wolinrc.js");
+  const configFilePath = getReadFilePath("two.config.js");
   if (existsSync(configFilePath)) {
     return require(configFilePath);
   }
-  throw "未找到.wolinrc.js配置文件！";
+  throw "未找到 two.config.js 配置文件！";
 }
 
 module.exports = {

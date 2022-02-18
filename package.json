@@ -1,13 +1,13 @@
 {
-  "name": "wolin-scripts",
+  "name": "create-scripts",
   "version": "1.0.0-alpha.1",
   "description": "一个简易的前端脚手架工具",
   "bin": {
-    "wolin": "bin/wolin.js"
+    "two": "bin/index.js"
   },
   "scripts": {
     "publish": "npm publish",
-    "unpublish": "npm unpublish --force wolin-script",
+    "unpublish": "npm unpublish --force create-scripts",
     "release": "standard-version",
     "eslint:test": "eslint './**/*' --ext .js,.ts",
     "lint:fix": "eslint './**/*' --fix --ext .js,.ts",
