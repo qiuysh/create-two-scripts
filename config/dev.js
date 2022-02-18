@@ -10,7 +10,7 @@ module.exports = function (program) {
     // user custom webpack config
     appUserConf = paths.getUserConf(),
     // devServer config
-    serverConf = {
+    devServer = {
       allowedHosts: "auto",
       client: {
         logging: "info",
@@ -26,16 +26,13 @@ module.exports = function (program) {
       open: true,
       port: 3001,
       static: paths.appDirectory + "/public",
-    },
-    webpackDevConfig = {
-      mode: "development",
-      devtool: "cheap-module-source-map",
-      devServer: serverConf,
     };
 
   // 配置合并
   return merge(webpackBaseConfig, {
-    ...webpackDevConfig,
+    devServer,
     ...appUserConf,
+    mode: "development",
+    devtool: "cheap-module-source-map",
   });
 };
