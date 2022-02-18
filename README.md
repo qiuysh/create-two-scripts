@@ -8,23 +8,23 @@ create-scripts， 一个简易的前端脚手架工具
 
 react + ts
 
-
 ### 使用
 
 支持命令
 
 ```js
 // 启动项目
-to start
+two start
 
 // 打包
-to build
+two build
 
 // 创建项目
-to init <name>
+two init <name>
 
 ```
-支持 antd ，配置项添加 -t。
+
+PS：支持 antd 按需引入，配置项添加 -t。
 
 #### 参考
 
