@@ -8,7 +8,7 @@
   "scripts": {
     "publish": "npm publish",
     "unpublish": "npm unpublish --force create-two-scripts",
-    "release": "standard-version",
+    "release": "standard-version -r alpha",
     "eslint:test": "eslint './**/*' --ext .js,.ts",
     "lint:fix": "eslint './**/*' --fix --ext .js,.ts",
     "prettier": "prettier './**/*' --write "
