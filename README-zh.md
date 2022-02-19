@@ -1,23 +1,21 @@
-EngLish | [中文文档](./README-zh.md)
+### 简介
 
-### introduction
+create-two-scripts， 一个简易的前端脚手架工具
 
-create-two-scripts， a simple front-end toolkit
+### 说明
 
-### description
+node >= 10.13.0，当前仅支持的模版 react + ts，webpack >= 5.x
 
-node >= 10.13.0，only suppest react + ts，webpack >= 5.x
+### 使用
 
-### use
-
-##### install
+##### 安装
 
 ```js
 npm install -g create-two-scripts
 yarn global create-two-scripts
 ```
 
-##### command
+##### 支持命令
 
 ```js
 // init project
@@ -30,9 +28,9 @@ two start
 two build
 ```
 
-##### options
+##### 配置
 
-1、Add config file two.config.js
+1、添加配置文件 two.config.js 
 
 ```js
 module.exports = {
@@ -47,15 +45,13 @@ module.exports = {
 };
 ```
 
-2、support params
-
-support antd import on demand
+2、支持的参数
 
 ```js
 // two start -a
 two build -a
 ```
 
-### reference
+### 参考
 
 https://github.com/facebook/create-react-app
