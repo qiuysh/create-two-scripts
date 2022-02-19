@@ -4,7 +4,7 @@ create-two-scripts， 一个简易的前端脚手架工具
 
 ### 说明
 
-node >= 10.13.0，当前仅支持的模版 react + ts，webpack >= 5.x
+node >= 10.13.0 和 webpack >= 5.x，当前仅支持的模版 react + ts，
 
 ### 使用
 

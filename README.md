@@ -6,7 +6,7 @@ create-two-scripts， a simple front-end toolkit
 
 ### description
 
-node >= 10.13.0，only suppest react + ts，webpack >= 5.x
+node >= 10.13.0 and webpack >= 5.x, only suppest react + ts.
 
 ### use
 
