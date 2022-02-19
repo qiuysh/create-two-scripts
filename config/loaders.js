@@ -62,6 +62,20 @@ module.exports = function (params) {
         },
       ],
     },
+    scssLodaer = {
+      test: /\.s[ac]ss$/i,
+      use: [
+        devMode ? styleLoader : MiniCssExtractPlugin.loader,
+        cssLoader,
+        {
+          loader: require.resolve("sass-loader"),
+          options: {
+            // Prefer `dart-sass`
+            implementation: require.resolve("sass"),
+          },
+        },
+      ],
+    },
     fontsLoader = {
       test: /\.(woff|woff2|ttf|eot)$/,
       type: "asset/resource",
@@ -84,6 +98,10 @@ module.exports = function (params) {
   if (css3Loader && lessLodaer) {
     loaderConfigs.push(css3Loader);
     loaderConfigs.push(lessLodaer);
+  }
+
+  if (scssLodaer) {
+    loaderConfigs.push(scssLodaer);
   }
 
   if (fontsLoader) {
