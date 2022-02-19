@@ -1,6 +1,6 @@
 ### 简介
 
-create-two-scripts， 一个简易的前端脚手架工具
+create-two-scripts， 一个简易的前端脚手架工具 demo
 
 ### 说明
 
@@ -11,14 +11,15 @@ create-two-scripts， 一个简易的前端脚手架工具
 支持命令
 
 ```js
+// 创建项目
+two init <name>
+
 // 启动项目
 two start
 
 // 打包
 two build
 
-// 创建项目
-two init <name>
 
 ```
 

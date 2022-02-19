@@ -15,8 +15,15 @@
   },
   "author": "wulin",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/qiuysh/create-two-scripts/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/qiuysh/create-two-scripts"
+  },
   "publishConfig": {
-    "registry": "http://registry.npm.com"
+    "registry": "https://registry.npmjs.org/"
   },
   "config": {
     "commitizen": {
