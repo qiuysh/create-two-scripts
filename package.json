@@ -1,6 +1,6 @@
 {
   "name": "create-two-scripts",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0-alpha.0",
   "description": "一个简易的前端脚手架工具",
   "bin": {
     "two": "bin/index.js"
@@ -15,6 +15,9 @@
   },
   "author": "wulin",
   "license": "MIT",
+  "engines": {
+    "node": ">=10.13.0"
+  },
   "bugs": {
     "url": "https://github.com/qiuysh/create-two-scripts/issues"
   },
