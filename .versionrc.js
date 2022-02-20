@@ -1,5 +1,5 @@
 module.exports = {
-  "header": "# 更新历史 \n\n",
+  "header": "# 更新历史 | changelog \n\n",
   "types": [
     { "type": "feat", "section": "✨ Features | 新功能" },
     { "type": "fix", "section": "🐛 Bug Fixes | Bug 修复" },
