@@ -14,6 +14,8 @@ node >= 10.13.0 和 webpack >= 5.x，当前仅支持的模版 react + ts，
 
 ```js
 npm install -g create-two-scripts
+
+// 或者
 yarn global create-two-scripts
 ```
 

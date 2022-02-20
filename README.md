@@ -14,6 +14,8 @@ node >= 10.13.0 and webpack >= 5.x, only suppest react + ts.
 
 ```js
 npm install -g create-two-scripts
+
+// or
 yarn global create-two-scripts
 ```
 

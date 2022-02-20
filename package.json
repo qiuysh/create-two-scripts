@@ -1,6 +1,6 @@
 {
   "name": "create-two-scripts",
-  "version": "1.0.0-alpha.0",
+  "version": "1.0.0-alpha.1",
   "description": "一个简易的前端脚手架工具",
   "bin": {
     "two": "bin/index.js"
