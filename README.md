@@ -34,7 +34,7 @@ two build
 
 ##### options
 
-1、Add config file two.config.js
+1、add config file two.config.js
 
 ```js
 module.exports = {
