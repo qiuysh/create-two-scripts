@@ -2,6 +2,14 @@
   "name": "create-two-scripts",
   "version": "1.0.2-alpha.0",
   "description": "一个简易的前端脚手架工具",
+  "keywords": [
+    "react",
+    "typescript",
+    "babel",
+    "sass",
+    "scss",
+    "webpack v5"
+  ],
   "bin": {
     "two": "bin/index.js"
   },
@@ -68,6 +76,7 @@
     "commander": "^7.0.0",
     "copy-webpack-plugin": "^4.5.2",
     "css-loader": "^6.5.1",
+    "css-minimizer-webpack-plugin": "^3.4.1",
     "dart-sass": "^1.25.0",
     "fs-extra": "^10.0.0",
     "glob": "^7.1.7",
@@ -93,7 +102,6 @@
     "@babel/eslint-parser": "^7.17.0",
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",
-    "css-minimizer-webpack-plugin": "^3.4.1",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^8.9.0",
     "eslint-config-airbnb": "^19.0.4",
