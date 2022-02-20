@@ -14,8 +14,8 @@ module.exports = {
     { "type": "ci", "section": "🔧 Continuous Integration | CI 配置", "hidden": true }
   ],
   "skip": {
-    "bump": true, //缓存变化，并重置git状态至最近的tag节点
+    // "bump": true, //缓存变化，并重置git状态至最近的tag节点
     "commit": true, //提交变动
-    "tag": true //在git中增加tag标识
+    // "tag": true //在git中增加tag标识
   }
 }

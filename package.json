@@ -1,6 +1,6 @@
 {
   "name": "create-two-scripts",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0-alpha.0",
   "description": "一个简易的前端脚手架工具",
   "bin": {
     "two": "bin/index.js"
@@ -8,7 +8,7 @@
   "scripts": {
     "publish": "npm publish",
     "unpublish": "npm unpublish --force create-two-scripts",
-    "release": "standard-version -r alpha",
+    "release": "standard-version -r patch",
     "eslint:test": "eslint './**/*' --ext .js,.ts",
     "lint:fix": "eslint './**/*' --fix --ext .js,.ts",
     "prettier": "prettier './**/*' --write "
