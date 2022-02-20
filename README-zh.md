@@ -1,3 +1,5 @@
+[EngLish](./README.md) | 中文文档
+
 ### 简介
 
 create-two-scripts， 一个简易的前端脚手架工具
