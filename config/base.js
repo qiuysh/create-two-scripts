@@ -15,7 +15,6 @@ module.exports = function (program) {
       path: paths.appDist,
       filename: "js/[name].[contenthash].js",
       publicPath: "/",
-      clean: true,
     },
     // loaders config
     loaders = getLoaders(program),

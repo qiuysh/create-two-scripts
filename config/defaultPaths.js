@@ -23,7 +23,6 @@ function getUserWebpackConfig() {
 }
 
 module.exports = {
-  appBuild: getReadFilePath("build"),
   appDist: getReadFilePath("dist"),
   appPublic: getReadFilePath("public"),
   appHtml: getReadFilePath("public/index.html"),

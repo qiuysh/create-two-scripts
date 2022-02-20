@@ -13,15 +13,16 @@ module.exports = function (params) {
       ...params,
       devMode,
     }),
-    loaderConfigs = [],
     defaultBabelOptions = {
       cacheDirectory: true,
       configFile: false,
       babelrc: false,
       presets,
       plugins,
-    },
-    jsLoader = {
+    };
+
+  return [
+    {
       test: /\.(js|ts[x]?)$/,
       include: paths.appSrc,
       use: [
@@ -37,7 +38,7 @@ module.exports = function (params) {
         },
       ],
     },
-    css3Loader = {
+    {
       test: /\.css$/,
       include: paths.appSrc,
       use: [
@@ -46,7 +47,7 @@ module.exports = function (params) {
         postcssLoader,
       ],
     },
-    lessLodaer = {
+    {
       test: /\.less$/,
       exclude: /node_modules\/(!antd)/,
       use: [
@@ -62,7 +63,7 @@ module.exports = function (params) {
         },
       ],
     },
-    scssLodaer = {
+    {
       test: /\.s[ac]ss$/i,
       use: [
         devMode ? styleLoader : MiniCssExtractPlugin.loader,
@@ -76,41 +77,19 @@ module.exports = function (params) {
         },
       ],
     },
-    fontsLoader = {
+    {
       test: /\.(woff|woff2|ttf|eot)$/,
       type: "asset/resource",
       generator: {
         filename: "fonts/[hash][ext][query]",
       },
     },
-    staticLoader = {
+    {
       test: /\.(png|jpg|jpeg|gif|webp|svg)$/i,
       type: "asset/resource",
       generator: {
         filename: "images/[hash][ext][query]",
       },
-    };
-
-  if (jsLoader) {
-    loaderConfigs.push(jsLoader);
-  }
-
-  if (css3Loader && lessLodaer) {
-    loaderConfigs.push(css3Loader);
-    loaderConfigs.push(lessLodaer);
-  }
-
-  if (scssLodaer) {
-    loaderConfigs.push(scssLodaer);
-  }
-
-  if (fontsLoader) {
-    loaderConfigs.push(fontsLoader);
-  }
-
-  if (staticLoader) {
-    loaderConfigs.push(staticLoader);
-  }
-
-  return loaderConfigs;
+    },
+  ];
 };

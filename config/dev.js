@@ -25,7 +25,9 @@ module.exports = function (program) {
       historyApiFallback: true,
       open: true,
       port: 3001,
-      static: paths.appDirectory + "/public",
+      static: {
+        directory: paths.appPublic,
+      },
     };
 
   // 配置合并
