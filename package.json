@@ -13,6 +13,7 @@
   "bin": {
     "two": "bin/index.js"
   },
+  "main": "index.js",
   "scripts": {
     "publish": "npm publish",
     "unpublish": "npm unpublish --force create-two-scripts",
@@ -78,6 +79,7 @@
     "css-loader": "^6.5.1",
     "css-minimizer-webpack-plugin": "^3.4.1",
     "dart-sass": "^1.25.0",
+    "esbuild-loader": "^2.18.0",
     "fs-extra": "^10.0.0",
     "glob": "^7.1.7",
     "handlebars": "^4.7.7",
