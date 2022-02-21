@@ -4,3 +4,8 @@ node_modules
 template
 yarn.lock
 package.json
+.editorconfig
+.eslintignore
+.gitignore
+.prettierignore
+.DS_Store

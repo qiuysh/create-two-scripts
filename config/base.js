@@ -1,13 +1,12 @@
-/** @format */
-
 const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 const getplugins = require("./plugins");
 const getLoaders = require("./loaders");
 const paths = require("./defaultPaths");
 
-module.exports = function (program) {
-  // entry config
-  const entry = {
+module.exports = function (opts) {
+  const { devMode } = opts,
+    // entry config
+    entry = {
       app: paths.appSrc + "/index",
     },
     // output config
@@ -17,9 +16,9 @@ module.exports = function (program) {
       publicPath: "/",
     },
     // loaders config
-    loaders = getLoaders(program),
+    loaders = getLoaders(opts),
     // plugins config
-    plugins = getplugins(program),
+    plugins = getplugins(opts),
     // extensions config
     extensions = [
       ".js",
@@ -34,6 +33,8 @@ module.exports = function (program) {
     // default webpack config
     webpackBaseConfig = {
       context: paths.appDirectory,
+      mode: devMode ? "development" : "production",
+      devtool: false,
       entry,
       output,
       module: {

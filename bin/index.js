@@ -1,6 +1,4 @@
 #!/usr/bin/env node
-/** @format */
-
 const { program } = require("../utils");
 const packageConf = require("../package.json");
 const action = require("../lib");
@@ -20,7 +18,11 @@ program
 program
   .command("start")
   .description("启动项目")
-  .option('-a, --antd', 'support antd import on demand')
+  .option("-a, --antd", "support antd import on demand")
+  .option(
+    "-es, --esbuild",
+    "support esbuild loader and compress"
+  )
   .action((...args) => {
     action("start", args);
   });
@@ -28,7 +30,11 @@ program
 program
   .command("build")
   .description("构建项目")
-  .option('-a, --antd', 'support antd import on demand')
+  .option("-a, --antd", "support antd import on demand")
+  .option(
+    "-es, --esbuild",
+    "support esbuild loader and compress"
+  )
   .action((...args) => {
     action("build", args);
   });

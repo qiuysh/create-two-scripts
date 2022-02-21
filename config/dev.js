@@ -1,12 +1,13 @@
-/** @format */
-
 const { merge } = require("webpack-merge");
 const paths = require("./defaultPaths");
 const getWebpackBaseConfig = require("./base");
 
-module.exports = function (program) {
+module.exports = function (opts) {
   // default webpack config
-  const webpackBaseConfig = getWebpackBaseConfig(program),
+  const webpackBaseConfig = getWebpackBaseConfig({
+      ...opts,
+      devMode: true,
+    }),
     // user custom webpack config
     appUserConf = paths.getUserConf(),
     // devServer config
@@ -32,9 +33,8 @@ module.exports = function (program) {
 
   // 配置合并
   return merge(webpackBaseConfig, {
+    devtool: "cheap-module-source-map",
     devServer,
     ...appUserConf,
-    mode: "development",
-    devtool: "cheap-module-source-map",
   });
 };

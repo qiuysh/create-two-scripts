@@ -1,13 +1,10 @@
-/** @format */
-
 const { realpathSync, existsSync } = require("fs-extra");
-const { resolve, isAbsolute } = require("path"),
-  appDirectory = realpathSync(process.cwd());
+const { resolve, isAbsolute } = require("path");
 
 function getReadFilePath(path) {
   return isAbsolute(path)
     ? path
-    : resolve(appDirectory, path);
+    : resolve(realpathSync(process.cwd()), path);
 }
 
 /**
@@ -31,7 +28,7 @@ module.exports = {
   appSrc: getReadFilePath("src"),
   appTsConfig: getReadFilePath("tsconfig.json"),
   appModules: getReadFilePath("node_modules"),
-  appDirectory,
+  appDirectory: realpathSync(process.cwd()),
   getUserConf: getUserWebpackConfig,
   getReadFilePath,
 };

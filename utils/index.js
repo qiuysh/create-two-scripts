@@ -1,5 +1,3 @@
-/** @format */
-
 const program = require("commander");
 const inquirer = require("inquirer");
 const { log, info, error } = console;
@@ -17,5 +15,5 @@ module.exports = {
   inquirerPrompt,
   log,
   info,
-  error
+  error,
 };

@@ -1,15 +1,14 @@
-/** @format */
-
 module.exports = {
   printWidth: 60,
   semi: true,
   singleQuote: false,
-  trailingComma: "all",
+  trailingComma: "es5",
   bracketSpacing: true,
-  jsxBracketSameLine: true,
+  jsxBracketSameLine: false,
   jsxSingleQuote: false,
   arrowParens: "avoid",
-  insertPragma: true,
+  requirePragma: false,
+  insertPragma: false,
   tabWidth: 2,
   useTabs: false,
 };

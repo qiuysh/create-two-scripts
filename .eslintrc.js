@@ -1,5 +1,3 @@
-/** @format */
-
 module.exports = {
   parser: "@babel/eslint-parser",
   extends: [
@@ -35,7 +33,7 @@ module.exports = {
     "no-bitwise": "warn",
     "no-void": "warn",
     "no-restricted-globals": "warn",
-    "yoda": "off",
+    yoda: "off",
     "prefer-destructuring": "warn",
     "class-methods-use-this": "warn",
   },
