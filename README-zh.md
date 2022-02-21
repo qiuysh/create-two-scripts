@@ -51,9 +51,18 @@ module.exports = {
 
 2、支持的参数
 
+支持 antd 按需导入 （babel-plugin-import）
+
 ```js
 // two start -a
 two build -a
+```
+
+支持 esbuild 压缩和 loader，不支持基于 ast 的插件
+
+```js
+// two start -es
+two build -es
 ```
 
 ### 参考

@@ -51,11 +51,18 @@ module.exports = {
 
 2、support params
 
-support antd import on demand
+support antd import on demand (babel-plugin-import)
 
 ```js
 // two start -a
 two build -a
+```
+
+support esbuild, not support the webpack plugin base ast.
+
+```js
+// two start -es
+two build -es
 ```
 
 ### reference
