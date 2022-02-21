@@ -1,35 +1,41 @@
-/** @format */
-
-const MiniCssExtractPlugin = require("mini-css-extract-plugin"),
-  cssLoader = require.resolve("css-loader"),
-  styleLoader = require.resolve("style-loader"),
-  postcssLoader = require.resolve("postcss-loader");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const paths = require("./defaultPaths");
 const getPresets = require("./presets");
 
-module.exports = function (params) {
-  const devMode = process.env.NODE_ENV === "development",
-    { presets, plugins } = getPresets({
-      ...params,
-      devMode,
-    }),
-    defaultBabelOptions = {
-      cacheDirectory: true,
-      configFile: false,
-      babelrc: false,
-      presets,
-      plugins,
-    };
+module.exports = function (opts) {
+  // 参数
+  const { esbuild, devMode } = opts,
+    { presets, plugins } = getPresets(opts),
+    CssLoader = require.resolve("css-loader"),
+    StyleLoader = require.resolve("style-loader"),
+    PostcssLoader = require.resolve("postcss-loader"),
+    esbuildLoader = {
+      loader: require.resolve("esbuild-loader"),
+      options: {
+        loader: "tsx",
+        target: "es2015",
+      },
+    },
+    babelLoader = {
+      loader: require.resolve("babel-loader"),
+      options: {
+        cacheDirectory: true,
+        configFile: false,
+        babelrc: false,
+        presets,
+        plugins,
+      },
+    },
+    stylesLoader = devMode
+      ? StyleLoader
+      : MiniCssExtractPlugin.loader;
 
   return [
     {
       test: /\.(js|ts[x]?)$/,
       include: paths.appSrc,
       use: [
-        {
-          loader: require.resolve("babel-loader"),
-          options: defaultBabelOptions,
-        },
+        esbuild ? esbuildLoader : babelLoader,
         {
           loader: require.resolve("thread-loader"),
           options: {
@@ -40,19 +46,15 @@ module.exports = function (params) {
     },
     {
       test: /\.css$/,
-      include: paths.appSrc,
-      use: [
-        devMode ? styleLoader : MiniCssExtractPlugin.loader,
-        cssLoader,
-        postcssLoader,
-      ],
+      exclude: /node_modules\/(!antd)/,
+      use: [stylesLoader, CssLoader, PostcssLoader],
     },
     {
       test: /\.less$/,
       exclude: /node_modules\/(!antd)/,
       use: [
-        devMode ? styleLoader : MiniCssExtractPlugin.loader,
-        cssLoader,
+        stylesLoader,
+        CssLoader,
         {
           loader: require.resolve("less-loader"), // compiles Less to CSS
           options: {
@@ -65,9 +67,10 @@ module.exports = function (params) {
     },
     {
       test: /\.s[ac]ss$/i,
+      exclude: /node_modules/,
       use: [
-        devMode ? styleLoader : MiniCssExtractPlugin.loader,
-        cssLoader,
+        stylesLoader,
+        CssLoader,
         {
           loader: require.resolve("sass-loader"),
           options: {

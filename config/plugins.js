@@ -1,13 +1,13 @@
-/** @format */
-
 const webpack = require("webpack");
 const CopyPlugin = require("copy-webpack-plugin");
+const { ESBuildPlugin } = require("esbuild-loader");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const paths = require("./defaultPaths");
 
-module.exports = function () {
-  const ignore = ["imgs/*", "styles/*", "fonts/*"];
+module.exports = function (opts) {
+  const { esbuild } = opts,
+    ignore = ["imgs/*", "styles/*", "fonts/*"];
 
   return [
     new webpack.IgnorePlugin({
@@ -25,7 +25,7 @@ module.exports = function () {
       ],
       {
         ignore,
-      },
+      }
     ),
 
     new HtmlWebpackPlugin({
@@ -41,5 +41,7 @@ module.exports = function () {
       filename: "./styles/[name].[contenthash].css",
       chunkFilename: "./styles/[id].[contenthash].css",
     }),
+
+    esbuild && new ESBuildPlugin(),
   ];
 };
