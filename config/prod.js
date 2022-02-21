@@ -7,16 +7,16 @@ const getWebpackBase = require("./base");
 const { getUserConf } = require("./defaultPaths");
 
 module.exports = function (opts) {
-  const { esbuild } = opts,
-    // default webpack config
-    webpackBaseConfig = getWebpackBase({
-      ...opts,
-      devMode: false,
-    }),
-    // split plugin
-    { plugins = [], optimization } = webpackBaseConfig,
-    // user custom webpack config
-    appUserConf = getUserConf();
+  const { esbuild } = opts;
+  // default webpack config
+  const webpackBaseConfig = getWebpackBase({
+    ...opts,
+    devMode: false,
+  });
+  // split plugin
+  const { plugins = [], optimization } = webpackBaseConfig;
+  // user custom webpack config
+  const appUserConf = getUserConf();
 
   if (Array.isArray(optimization?.minimizer)) {
     optimization.minimize = true;
@@ -29,20 +29,20 @@ module.exports = function (opts) {
       optimization.minimizer.push(esBuildMinify);
     } else {
       const terserOptions = {
-          parallel: true,
-          terserOptions: {
-            compress: {
-              drop_console: true,
-              drop_debugger: true,
-            },
-            format: {
-              comments: false,
-            },
+        parallel: true,
+        terserOptions: {
+          compress: {
+            drop_console: true,
+            drop_debugger: true,
           },
-          extractComments: false,
+          format: {
+            comments: false,
+          },
         },
-        terserPlugin = new TerserPlugin(terserOptions),
-        cssMiniPlugin = new CssMinimizerPlugin();
+        extractComments: false,
+      };
+      const terserPlugin = new TerserPlugin(terserOptions);
+      const cssMiniPlugin = new CssMinimizerPlugin();
       optimization.minimizer.push(terserPlugin);
       optimization.minimizer.push(cssMiniPlugin);
     }
@@ -51,30 +51,31 @@ module.exports = function (opts) {
   if (Array.isArray(plugins)) {
     // cache options
     const cacheOptions = {
-        antd: {
-          name: "antd",
-          test: /[\\/]node_modules[\\/]antd[\\/]/,
-          chunks: "initial",
-        },
-        lodash: {
-          name: "lodash",
-          test: /[\\/]node_modules[\\/]lodash[\\/]/,
-          chunks: "initial",
-          // 默认组的优先级为负数，以允许任何自定义缓存组具有更高的优先级（默认值为0）
-          priority: -10,
-        },
-        defaultVendors: {
-          test: /[\\/]node_modules[\\/](react|react-dom|react-redux|react-router-dom|moment|js-cookie)[\\/]/,
-          name: "default-vendors",
-          chunks: "all",
-        },
-        default: {
-          minChunks: 2,
-          priority: -20,
-          reuseExistingChunk: true,
-        },
+      antd: {
+        name: "antd",
+        test: /[\\/]node_modules[\\/]antd[\\/]/,
+        chunks: "initial",
       },
-      splitPlugin = new webpack.optimize.SplitChunksPlugin({
+      lodash: {
+        name: "lodash",
+        test: /[\\/]node_modules[\\/]lodash[\\/]/,
+        chunks: "initial",
+        // 默认组的优先级为负数，以允许任何自定义缓存组具有更高的优先级（默认值为0）
+        priority: -10,
+      },
+      defaultVendors: {
+        test: /[\\/]node_modules[\\/](react|react-dom|react-redux|react-router-dom|moment|js-cookie)[\\/]/,
+        name: "default-vendors",
+        chunks: "all",
+      },
+      default: {
+        minChunks: 2,
+        priority: -20,
+        reuseExistingChunk: true,
+      },
+    };
+    const splitPlugin =
+      new webpack.optimize.SplitChunksPlugin({
         // webpack 5.x 推荐使用默认配置或使用 optimization.splitChunks: { chunks: 'all' } 配置；
         chunks: "all",
         // （默认值：30000s）块的最小大小

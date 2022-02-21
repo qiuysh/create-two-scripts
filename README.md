@@ -8,7 +8,7 @@ create-two-scripts， a simple front-end toolkit
 
 node >= 10.13.0 and webpack >= 5.x, only suppest react + ts.
 
-### use
+### usage
 
 ##### install
 

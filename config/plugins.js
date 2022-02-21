@@ -6,8 +6,8 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const paths = require("./defaultPaths");
 
 module.exports = function (opts) {
-  const { esbuild } = opts,
-    ignore = ["imgs/*", "styles/*", "fonts/*"];
+  const { esbuild } = opts;
+  const ignore = ["imgs/*", "styles/*", "fonts/*"];
 
   return [
     new webpack.IgnorePlugin({

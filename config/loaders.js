@@ -4,31 +4,31 @@ const getPresets = require("./presets");
 
 module.exports = function (opts) {
   // 参数
-  const { esbuild, devMode } = opts,
-    { presets, plugins } = getPresets(opts),
-    CssLoader = require.resolve("css-loader"),
-    StyleLoader = require.resolve("style-loader"),
-    PostcssLoader = require.resolve("postcss-loader"),
-    esbuildLoader = {
-      loader: require.resolve("esbuild-loader"),
-      options: {
-        loader: "tsx",
-        target: "es2015",
-      },
+  const { esbuild, devMode } = opts;
+  const { presets, plugins } = getPresets(opts);
+  const CssLoader = require.resolve("css-loader");
+  const StyleLoader = require.resolve("style-loader");
+  const PostcssLoader = require.resolve("postcss-loader");
+  const esbuildLoader = {
+    loader: require.resolve("esbuild-loader"),
+    options: {
+      loader: "tsx",
+      target: "es2015",
     },
-    babelLoader = {
-      loader: require.resolve("babel-loader"),
-      options: {
-        cacheDirectory: true,
-        configFile: false,
-        babelrc: false,
-        presets,
-        plugins,
-      },
+  };
+  const babelLoader = {
+    loader: require.resolve("babel-loader"),
+    options: {
+      cacheDirectory: true,
+      configFile: false,
+      babelrc: false,
+      presets,
+      plugins,
     },
-    stylesLoader = devMode
-      ? StyleLoader
-      : MiniCssExtractPlugin.loader;
+  };
+  const stylesLoader = devMode
+    ? StyleLoader
+    : MiniCssExtractPlugin.loader;
 
   return [
     {

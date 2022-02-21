@@ -20,7 +20,10 @@ module.exports = {
   rules: {
     "prefer-const": "warn",
     "no-var": "warn",
-    "one-var": "warn",
+    "one-var": [
+      "warn",
+      { var: "always", let: "never", const: "never" },
+    ],
     "no-sequences": "warn",
     "no-cond-assign": "warn",
     "no-unused-vars": "warn",
