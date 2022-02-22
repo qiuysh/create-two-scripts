@@ -43,5 +43,5 @@ module.exports = function (opts) {
     }),
 
     esbuild && new ESBuildPlugin(),
-  ];
+  ].filter(e => e);
 };

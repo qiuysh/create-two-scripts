@@ -1,5 +1,5 @@
 module.exports = function (opts) {
-  const { antd, devMode, esbuild } = opts;
+  const { antd, devMode } = opts;
   // presets config
   const presets = [
     [
@@ -36,7 +36,7 @@ module.exports = function (opts) {
   ];
 
   // support antd import, esbuild not support ast
-  if (antd && !esbuild) {
+  if (antd) {
     plugins.push([
       require("babel-plugin-import").default,
       {

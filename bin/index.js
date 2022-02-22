@@ -11,7 +11,7 @@ program
 program
   .command("init <name>")
   .description("创建一个新的项目")
-  .action((...args) => {
+  .action((args) => {
     action("init", args);
   });
 
@@ -23,7 +23,7 @@ program
     "-es, --esbuild",
     "support esbuild loader and compress"
   )
-  .action((...args) => {
+  .action((args) => {
     action("start", args);
   });
 
@@ -35,7 +35,7 @@ program
     "-es, --esbuild",
     "support esbuild loader and compress"
   )
-  .action((...args) => {
+  .action((args) => {
     action("build", args);
   });
 
