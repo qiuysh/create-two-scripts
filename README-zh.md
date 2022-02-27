@@ -58,7 +58,7 @@ module.exports = {
 two build -a
 ```
 
-支持 esbuild 压缩和 loader，不支持基于 ast 的插件
+支持 esbuild 压缩和 loader，不支持基于 ast 的 webpack 插件
 
 ```js
 // two start -es
