@@ -10,9 +10,9 @@
     "stylelint:test": "stylelint src --fix .less,.css",
     "lint:fix": "eslint src --fix --ext .js,.ts,.tsx",
     "prettier": "prettier --write src/*",
-    "test": "BABEL_ENV=test jest",
-    "test:watch": "BABEL_ENV=test jest --watch",
-    "test:coverage": "BABEL_ENV=test jest --coverage",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0"
   },
   "sideEffects": [
