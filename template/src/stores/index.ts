@@ -1,5 +1,3 @@
-/** @format */
-
 import { updateChain } from "immutability-helper-x";
 
 export const initialState: GLOBAL.storeProps = {

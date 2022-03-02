@@ -1,4 +1,3 @@
-/** @format */
 import React from "react";
 import {
   render,
@@ -6,7 +5,7 @@ import {
   fireEvent,
   RenderResult,
 } from "@testing-library/react";
-import SiderMenu from "@components/siderMenu";
+import SiderMenu from "@/components/siderMenu";
 
 const defaultProps = {
   collapsed: false,

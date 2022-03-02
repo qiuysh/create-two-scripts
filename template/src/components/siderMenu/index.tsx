@@ -1,5 +1,3 @@
-/** @format */
-
 import React, { useEffect } from "react";
 import { Menu, Layout } from "antd";
 import DotChartOutlined from "@ant-design/icons/DotChartOutlined";

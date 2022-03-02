@@ -1,6 +1,4 @@
-/** @format */
-
-import * as React from "react";
+import React from "react";
 import { Layout } from "antd";
 import MenuFoldOutlined from "@ant-design/icons/MenuFoldOutlined";
 import MenuUnfoldOutlined from "@ant-design/icons/MenuUnfoldOutlined";

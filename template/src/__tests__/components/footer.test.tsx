@@ -1,7 +1,6 @@
-/** @format */
 import React from "react";
 import { render, cleanup, RenderResult } from "@testing-library/react";
-import Footer from "@components/footer";
+import Footer from "@/components/footer";
 
 afterEach(cleanup);
 

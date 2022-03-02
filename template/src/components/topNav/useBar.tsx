@@ -1,5 +1,3 @@
-/** @format */
-
 import React, { useState, useEffect } from "react";
 import { Modal, Avatar, Menu, Switch } from "antd";
 import BellOutlined from "@ant-design/icons/BellOutlined";
