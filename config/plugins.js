@@ -17,16 +17,17 @@ module.exports = function (opts) {
 
     new webpack.ProgressPlugin(),
 
-    new CopyPlugin(
-      [
+    new CopyPlugin({
+      patterns: [
         {
           from: paths.appPublic,
+          to: paths.appDist,
+          globOptions: {
+            ignore,
+          },
         },
       ],
-      {
-        ignore,
-      }
-    ),
+    }),
 
     new HtmlWebpackPlugin({
       template: paths.appHtml,
