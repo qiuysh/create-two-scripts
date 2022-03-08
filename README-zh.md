@@ -1,3 +1,5 @@
+[![NPM downloads][download-img]][download-url] [![NPM version][npm-version]][npm-version-url] [![NODE version][node-version]][node-version-url]
+
 [EngLish](./README.md) | 中文文档
 
 ### 简介

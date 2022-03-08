@@ -1,6 +1,4 @@
-<div>
 [![NPM downloads][download-img]][download-url] [![NPM version][npm-version]][npm-version-url] [![NODE version][node-version]][node-version-url]
-</div>
 
 [download-img]: https://img.shields.io/npm/dm/create-two-scripts?logo=npm&style=flat
 [download-url]: https://img.shields.io/npm/dm/create-two-scripts
