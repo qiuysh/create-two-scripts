@@ -1,3 +1,14 @@
+<div>
+[![NPM downloads][download-img]][download-url] [![NPM version][npm-version]][npm-version-url] [![NODE version][node-version]][node-version-url]
+</div>
+
+[download-img]: https://img.shields.io/npm/dm/create-two-scripts?logo=npm&style=flat
+[download-url]: https://img.shields.io/npm/dm/create-two-scripts
+[npm-version]: https://img.shields.io/npm/v/create-two-scripts?logo=npm&style=flat
+[npm-version-url]: https://img.shields.io/npm/v/create-two-scripts
+[node-version]: https://img.shields.io/node/v/create-two-scripts?logo=npm&style=flat
+[node-version-url]: https://img.shields.io/node/v/create-two-scripts
+
 EngLish | [中文文档](./README-zh.md)
 
 ### introduction
@@ -6,7 +17,7 @@ create-two-scripts， a simple front-end toolkit
 
 ### description
 
-node >= 10.13.0 and webpack >= 5.x, only suppest react + ts.
+node >= 10.13.0, webpack >= 5.x and react >= 16.9.x, only suppest react + ts.
 
 ### usage
 
@@ -63,6 +74,12 @@ support esbuild, not support the webpack plugin base ast.
 ```js
 // two start -es
 two build -es
+```
+
+support HMR, enable by default.
+
+```js
+two start -h
 ```
 
 

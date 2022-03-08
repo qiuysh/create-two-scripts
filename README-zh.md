@@ -65,6 +65,12 @@ two build -a
 two build -es
 ```
 
+支持 hmr ，默认启用
+
+```js
+two start -h
+```
+
 ### 参考
 
 https://github.com/facebook/create-react-app
