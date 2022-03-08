@@ -1,0 +1,40 @@
+name: GitHub Actions CI workflow
+
+on: push
+
+jobs:
+  lint: 
+    name: code style lint
+    run-on: ubuntu-latest
+    step:
+
+      # checkout new code
+      - name: checkout
+        uses: actions/checkout@v2
+
+      # support pnpm
+      - name: pnpm
+        uses: pnpm/action-setup@v2.0.1
+        with:
+          version: 6.20.3
+
+      # install node 
+      - name: use nodejs
+        uses: actions/setup-node@v2
+          with:
+            node-version: '12'
+            cache: pnpm
+
+      # install dependencies
+      - name: Install dependencies
+        run: pnpm install
+      
+      # eslint
+      - name: eslint
+        run: pnpm lint:fix
+
+      # prettier
+      - name: prettier
+        run: pnpm prettier
+
+     
