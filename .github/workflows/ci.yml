@@ -21,9 +21,9 @@ jobs:
       # install node 
       - name: use nodejs
         uses: actions/setup-node@v2
-          with:
-            node-version: '12'
-            cache: pnpm
+        with:
+          node-version: '12'
+          cache: pnpm
 
       # install dependencies
       - name: Install dependencies
