@@ -3,10 +3,12 @@ const CopyPlugin = require("copy-webpack-plugin");
 const { ESBuildPlugin } = require("esbuild-loader");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const ReactRefreshPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
 const paths = require("./defaultPaths");
 
 module.exports = function (opts) {
-  const { esbuild } = opts;
+  const { esbuild, hot } = opts;
+
   const ignore = ["imgs/*", "styles/*", "fonts/*"];
 
   return [
@@ -30,6 +32,7 @@ module.exports = function (opts) {
     }),
 
     new HtmlWebpackPlugin({
+      filename: "index.html",
       template: paths.appHtml,
       title: paths.appPackageJson.name,
       templateParameters: {
@@ -44,5 +47,7 @@ module.exports = function (opts) {
     }),
 
     esbuild && new ESBuildPlugin(),
+
+    hot && new ReactRefreshPlugin(),
   ].filter(e => e);
 };

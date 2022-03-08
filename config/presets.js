@@ -1,5 +1,5 @@
 module.exports = function (opts) {
-  const { antd, devMode } = opts;
+  const { antd, devMode, hot } = opts;
   // presets config
   const presets = [
     [
@@ -44,6 +44,10 @@ module.exports = function (opts) {
         style: true,
       },
     ]);
+  }
+  // support HMR
+  if (hot) {
+    plugins.push(require.resolve("react-refresh/babel"));
   }
 
   return {

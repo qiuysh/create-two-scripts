@@ -3,6 +3,8 @@ const paths = require("./defaultPaths");
 const getWebpackBaseConfig = require("./base");
 
 module.exports = function (opts) {
+  opts.hot = opts.hot || true;
+
   // default webpack config
   const webpackBaseConfig = getWebpackBaseConfig({
     ...opts,
@@ -33,7 +35,7 @@ module.exports = function (opts) {
 
   // 配置合并
   return merge(webpackBaseConfig, {
-    devtool: "cheap-module-source-map",
+    devtool: "eval-cheap-module-source-map",
     devServer,
     ...appUserConf,
   });

@@ -6,19 +6,20 @@ const action = require("../lib");
 program
   .usage("<command> [options]")
   .version(packageConf.version, "-v, --version")
-  .description("欢迎使用 create-two-scripts 脚手架");
+  .description("welcome, create-two-scripts");
 
 program
   .command("init <name>")
-  .description("创建一个新的项目")
+  .description("create a new project")
   .action((args) => {
     action("init", args);
   });
 
 program
   .command("start")
-  .description("启动项目")
+  .description("start this project")
   .option("-a, --antd", "support antd import on demand")
+  .option("-h, --hot", "support hmr in dev model")
   .option(
     "-es, --esbuild",
     "support esbuild loader and compress"
@@ -29,7 +30,7 @@ program
 
 program
   .command("build")
-  .description("构建项目")
+  .description("build this project")
   .option("-a, --antd", "support antd import on demand")
   .option(
     "-es, --esbuild",
