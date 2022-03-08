@@ -6,7 +6,7 @@ jobs:
   lint: 
     name: code style lint
     run-on: ubuntu-latest
-    step:
+    steps:
 
       # checkout new code
       - name: checkout
