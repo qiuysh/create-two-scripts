@@ -1,5 +1,13 @@
 [![NPM downloads][download-img]][download-url] [![NPM version][npm-version]][npm-version-url] [![NODE version][node-version]][node-version-url]
 
+
+[download-img]: https://img.shields.io/npm/dm/create-two-scripts?style=flat
+[download-url]: https://img.shields.io/npm/dm/create-two-scripts
+[npm-version]: https://img.shields.io/npm/v/create-two-scripts?style=flat
+[npm-version-url]: https://img.shields.io/npm/v/create-two-scripts
+[node-version]: https://img.shields.io/node/v/create-two-scripts?style=flat
+[node-version-url]: https://img.shields.io/node/v/create-two-scripts
+
 [EngLish](./README.md) | 中文文档
 
 ### 简介
