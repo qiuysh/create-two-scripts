@@ -6,4 +6,5 @@ node_modules
 template
 *.md
 yarn.lock
+pnpm-lock.yaml
 package.json
