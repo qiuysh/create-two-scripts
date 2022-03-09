@@ -2,7 +2,7 @@ module.exports = {
   initTypeData: [
     {
       type: "list",
-      message: "请选择对应的技术栈模版",
+      message: "please, select technology stack template",
       name: "tempType",
       choices: [
         {
@@ -39,7 +39,7 @@ module.exports = {
   installTypeData: [
     {
       type: "list",
-      message: "是否继续安装依赖？",
+      message: "continue installing dependencies ？",
       name: "installType",
       choices: [
         {

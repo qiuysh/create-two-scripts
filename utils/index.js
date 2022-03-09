@@ -3,8 +3,8 @@ const inquirer = require("inquirer");
 const { log, info, error } = console;
 
 /**
- * 交互框
- * @param {} type inquirer类型
+ * 
+ * @param {} type inquirer
  */
 async function inquirerPrompt(type) {
   return inquirer.prompt(type);
