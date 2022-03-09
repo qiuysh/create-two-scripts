@@ -47,6 +47,7 @@ specifiers:
   shelljs: ^0.8.4
   standard-version: ^9.1.0
   style-loader: ^3.3.1
+  terser-webpack-plugin: ^5.3.1
   thread-loader: ^3.0.4
   tsconfig-paths-webpack-plugin: ^3.5.2
   webpack: ^5.68.0
@@ -84,6 +85,7 @@ dependencies:
   sass-loader: registry.npmmirror.com/sass-loader/12.6.0_sass@1.49.9+webpack@5.70.0
   shelljs: registry.npmmirror.com/shelljs/0.8.5
   style-loader: registry.npmmirror.com/style-loader/3.3.1_webpack@5.70.0
+  terser-webpack-plugin: registry.npmmirror.com/terser-webpack-plugin/5.3.1_webpack@5.70.0
   thread-loader: registry.npmmirror.com/thread-loader/3.0.4_webpack@5.70.0
   tsconfig-paths-webpack-plugin: registry.npmmirror.com/tsconfig-paths-webpack-plugin/3.5.2
   webpack: registry.npmmirror.com/webpack/5.70.0
