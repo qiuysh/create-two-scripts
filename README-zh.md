@@ -1,6 +1,7 @@
-[![NPM downloads][download-img]][download-url] [![NPM version][npm-version]][npm-version-url] [![NODE version][node-version]][node-version-url]
+[![github-ci][github-ci-img]][github-ci-url] [![NPM downloads][download-img]][download-url] [![NPM version][npm-version]][npm-version-url] [![NODE version][node-version]][node-version-url]
 
-
+[github-ci-img]:https://img.shields.io/github/workflow/status/qiuysh/create-two-scripts/GitHub%20Actions%20CI%20workflow?logo=github&style=flat
+[github-ci-url]:https://img.shields.io/github/workflow/status/qiuysh/create-two-scripts/GitHub%20Actions%20CI%20workflow
 [download-img]: https://img.shields.io/npm/dm/create-two-scripts?style=flat
 [download-url]: https://img.shields.io/npm/dm/create-two-scripts
 [npm-version]: https://img.shields.io/npm/v/create-two-scripts?style=flat
@@ -12,7 +13,7 @@
 
 ### 简介
 
-create-two-scripts， 一个简易的前端脚手架工具
+create-two-scripts， 一个简易的 react 应用前端脚手架工具
 
 ### 说明
 

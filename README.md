@@ -1,5 +1,7 @@
-[![NPM downloads][download-img]][download-url] [![NPM version][npm-version]][npm-version-url] [![NODE version][node-version]][node-version-url]
+[![github-ci][github-ci-img]][github-ci-url] [![NPM downloads][download-img]][download-url] [![NPM version][npm-version]][npm-version-url] [![NODE version][node-version]][node-version-url]
 
+[github-ci-img]:https://img.shields.io/github/workflow/status/qiuysh/create-two-scripts/GitHub%20Actions%20CI%20workflow?logo=github&style=flat
+[github-ci-url]:https://img.shields.io/github/workflow/status/qiuysh/create-two-scripts/GitHub%20Actions%20CI%20workflow
 [download-img]: https://img.shields.io/npm/dm/create-two-scripts?style=flat
 [download-url]: https://img.shields.io/npm/dm/create-two-scripts
 [npm-version]: https://img.shields.io/npm/v/create-two-scripts?style=flat
@@ -11,7 +13,7 @@ EngLish | [中文文档](./README-zh.md)
 
 ### introduction
 
-create-two-scripts， a simple front-end toolkit
+create-two-scripts， a simple react application front-end toolkit
 
 ### description
 
