@@ -23,11 +23,11 @@ module.exports = {
     '^@components(.*)$': '<rootDir>/src/components$1',
     '^@pages(.*)$': '<rootDir>/src/pages$1',
   },
-  testPathIgnorePatterns: ['<rootDir>/dist/', '<rootDir>/node_modules/', '<rootDir>/.vscode/'], //转换时需忽略的文件
-  collectCoverageFrom: ['<rootDir>/src/**/*.{tsx,ts,js}'], // 哪些文件需要收集覆盖率信息
-  coverageDirectory: '<rootDir>/.coverage', // 输出覆盖信息文件的目录
+  testPathIgnorePatterns: ['<rootDir>/dist/', '<rootDir>/node_modules/', '<rootDir>/.vscode/'],
+  collectCoverageFrom: ['<rootDir>/src/**/*.{tsx,ts,js}'], 
+  coverageDirectory: '<rootDir>/.coverage', 
   coveragePathIgnorePatterns: ['<rootDir>/dist/', '<rootDir>/node_modules/', '<rootDir>/.vscode/'],
-  testMatch: [ // 匹配的测试文件
+  testMatch: [ 
     '<rootDir>/src/__tests__/**/?(*.)(spec|test).{ts,tsx}',
   ]
 }

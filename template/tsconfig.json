@@ -1,19 +1,18 @@
 {
   "compilerOptions": {
-    "allowSyntheticDefaultImports": true, // 允许从没有设置默认导出的模块中默认导入。
-    "allowUnreachableCode": true, // 不报告执行不到的代码错误。
+    "allowSyntheticDefaultImports": true, 
+    "allowUnreachableCode": true,
     "allowJs": true,
-    "module": "esNext", // 使用 ES2015 模块
-    "target": "ES5", // 编译成 ES2015 (Babel 将做剩下的事情)
-    "baseUrl": ".", // 可以相对这个目录 import 文件
-    "sourceMap": true, // 使 TypeScript 生成 sourcemaps
+    "module": "esNext", 
+    "target": "ES5", 
+    "baseUrl": ".", 
+    "sourceMap": true, 
     "outDir": "dist", 
     "jsx": "react", 
     "strict": true,
     "moduleResolution": "node",
     "noImplicitAny": true,
-    "experimentalDecorators": true, // 允许使用修饰器
-    // "esModuleInterop": true, // 相当于开启了allowSyntheticDefaultImports和提供__importStar、__importDefault两个helper来兼容babel生态，且module：'commonjs'是才会生效
+    "experimentalDecorators": true, 
     "paths": {
       "@/*": [
         "./src/*"

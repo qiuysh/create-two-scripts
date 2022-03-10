@@ -31,21 +31,15 @@ export default class ErrorBoundary extends React.Component<
     }
   }
 
-  // componentDidCatch(error: unknown, errorInfo: unknown) {
-  // 你同样可以将错误日志上报给服务器
-  //   console.log(error, errorInfo);
-  // }
 
   render() {
     const { hasError } = this.state;
     const { children } = this.props;
     if (hasError) {
-      // 你可以自定义降级后的 UI 并渲染
       return (
         <Result
           status="error"
-          title="程序出错"
-          subTitle="请联系技术支持！"
+          title="code error"
         />
       );
     }

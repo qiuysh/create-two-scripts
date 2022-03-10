@@ -3,7 +3,6 @@ import LoadingOutlined from "@ant-design/icons/LoadingOutlined";
 import {
   BrowserRouter as Router,
   Route,
-  Switch,
 } from "react-router-dom";
 
 const loading: JSX.Element = (
@@ -16,12 +15,10 @@ const loading: JSX.Element = (
   </div>
 );
 
-// 基本布局
 import BaseLayout from "./layout";
 
 const Guide = lazy(() => import("./pages"));
 
-// 根路由
 const BasicRouter = (): JSX.Element => (
   <Router>
     <BaseLayout>

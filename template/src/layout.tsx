@@ -40,7 +40,6 @@ const BaseLayout: React.FC<any> = props => {
     // getMenuList();
   }, []);
 
-  // 获取导航菜单列表
   const getMenuList = async () => {
     const res: any = await ajax.getNavigation();
     if (res.result) {
