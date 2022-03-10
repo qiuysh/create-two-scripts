@@ -13,7 +13,7 @@ EngLish | [中文文档](./README-zh.md)
 
 ### introduction
 
-create-two-scripts， a simple react application front-end toolkit
+create-two-scripts， a simple react application front-end scaffolding tool
 
 ### description
 
