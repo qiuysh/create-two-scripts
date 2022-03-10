@@ -7,13 +7,13 @@ module.exports = {
       choices: [
         {
           name: "React + TypeScript",
-          value: "react_template",
+          value: "react_ts",
           url: "",
           checked: true,
         },
         {
-          name: "Vue + TypeScript",
-          value: "vue_template",
+          name: "React + JavaScript",
+          value: "react_js",
           url: "",
         },
       ],
@@ -39,7 +39,7 @@ module.exports = {
   installTypeData: [
     {
       type: "list",
-      message: "continue installing dependencies ？",
+      message: "continue install dependencies ？",
       name: "installType",
       choices: [
         {
