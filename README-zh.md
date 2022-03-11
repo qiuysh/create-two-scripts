@@ -62,7 +62,7 @@ module.exports = {
 
 2、支持的参数
 
-支持 antd 按需导入 （babel-plugin-import）
+支持 antd 按需导入（ babel-plugin-import ）
 
 ```js
 // two start -a

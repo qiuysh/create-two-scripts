@@ -11,17 +11,17 @@
 
 EngLish | [中文文档](./README-zh.md)
 
-### introduction
+### Introduction
 
-create-two-scripts， a simple react application front-end scaffolding tool
+Create-two-scripts， a simple react application front-end scaffolding tool
 
-### description
+### Description
 
 node >= 10.13.0, webpack >= 5.x and react >= 16.9.x, only suppest react + ts.
 
-### usage
+### Usage
 
-##### install
+##### Install
 
 ```js
 npm install -g create-two-scripts
@@ -30,7 +30,7 @@ npm install -g create-two-scripts
 yarn global add create-two-scripts
 ```
 
-##### command
+##### Command
 
 ```js
 // init project
@@ -43,9 +43,9 @@ two start
 two build
 ```
 
-##### options
+##### Options
 
-1、add config file two.config.js
+1、Add config file two.config.js
 
 ```js
 module.exports = {
@@ -60,29 +60,29 @@ module.exports = {
 };
 ```
 
-2、support params
+2、Support params
 
-support antd import on demand (babel-plugin-import)
+Support antd import on demand (babel-plugin-import)
 
 ```js
 // two start -a
 two build -a
 ```
 
-support esbuild, not support the webpack plugin base ast.
+Support esbuild, not support the webpack plugin base ast.
 
 ```js
 // two start -es
 two build -es
 ```
 
-support HMR, enable by default.
+Support HMR, enable by default.
 
 ```js
 two start -h
 ```
 
 
-### reference
+### Reference
 
 https://github.com/facebook/create-react-app
