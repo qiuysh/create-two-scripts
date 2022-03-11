@@ -9,16 +9,20 @@ module.exports = function (opts) {
   const entry = {
     app: paths.appSrc + "/index",
   };
+
   // output config
   const output = {
     path: paths.appDist,
     filename: "js/[name].[contenthash].js",
     publicPath: "/",
   };
+
   // loaders config
   const loaders = getLoaders(opts);
+
   // plugins config
   const plugins = getplugins(opts);
+
   // extensions config
   const extensions = [
     ".js",
@@ -27,9 +31,12 @@ module.exports = function (opts) {
     ".tsx",
     ".css",
     ".less",
+    ".scss",
+    ".sass",
     ".json",
     ".html",
   ];
+
   // default webpack config
   const webpackBaseConfig = {
     context: paths.appDirectory,
