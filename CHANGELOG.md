@@ -1,7 +1,31 @@
 # 更新历史 | changelog 
 
 
-### [1.0.6](https://github.com/qiuysh/create-two-scripts/compare/v1.0.0...v1.0.6) (2022-02-20)
+### [1.0.8-alpha.0](https://github.com/qiuysh/create-two-scripts/compare/v1.0.7...v1.0.8-alpha.0) (2022-03-12)
+
+### [1.0.7-alpha.0](https://github.com/qiuysh/create-two-scripts/compare/v1.0.6...v1.0.7) (2022-03-12)
+
+
+### 🐛 Bug Fixes | Bug 修复
+
+* fix params type ([b8b5fea](https://github.com/qiuysh/create-two-scripts/commit/b8b5feabb866a4b37bcbe67dee1edbb54fa8579e))
+
+
+### ✨ Features | 新功能
+
+* add esbuild loader ([3ce0c59](https://github.com/qiuysh/create-two-scripts/commit/3ce0c59358f18c049a04793f1b3b5d5d42f4c4d3))
+* add hmr dev model ([13cde6e](https://github.com/qiuysh/create-two-scripts/commit/13cde6ec1f29df8f8d5affe0e23ddbd2fc055b4d))
+* change log function ([59f2a27](https://github.com/qiuysh/create-two-scripts/commit/59f2a279bebfbc191d03e1dd4747cdf1d7e6db96))
+* delete stats ([be684ed](https://github.com/qiuysh/create-two-scripts/commit/be684edf3a971b63633e6bfeaac04ba4521851b8))
+* update copy plugin config ([2ef16b3](https://github.com/qiuysh/create-two-scripts/commit/2ef16b3b7b920fcfe545150423a45f0b42bb3f8a))
+* update extensions config ([8f4c111](https://github.com/qiuysh/create-two-scripts/commit/8f4c111fb26a422399d703f13075b2655a783fea))
+* update init logic ([430f6a1](https://github.com/qiuysh/create-two-scripts/commit/430f6a14942cd456e978cbc7b5a14930db0903cd))
+* update template ([5d8bd93](https://github.com/qiuysh/create-two-scripts/commit/5d8bd9309ff6cb14cbc4d3adbe7f4e4eeab85d92))
+* update template ([f142789](https://github.com/qiuysh/create-two-scripts/commit/f14278902eb8bcea6d4ad395928f3e9849db4b45))
+* update template package ([cdecc47](https://github.com/qiuysh/create-two-scripts/commit/cdecc477e097c1e0a8c8cd040f651a5e6ea7dd38))
+* update template prettier ([b27f0ef](https://github.com/qiuysh/create-two-scripts/commit/b27f0ef61e0c3c00f17822103d1e94b9bd30dae3))
+
+### [1.0.6-alpha.0](https://github.com/qiuysh/create-two-scripts/compare/v1.0.0...v1.0.6) (2022-02-20)
 
 ## 1.0.0-alpha.0 (2022-02-19)
 
