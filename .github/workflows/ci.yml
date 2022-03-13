@@ -12,29 +12,29 @@ jobs:
       - name: checkout
         uses: actions/checkout@v2
 
-      # support pnpm
-      - name: use pnpm
-        uses: pnpm/action-setup@v2.0.1
+      # support yarn
+      - name: use yarn
+        uses: borales/actions-yarn@v2.3.0
         with:
-          version: 6.20.3
+          cmd: install
 
       # install node 
       - name: use nodejs
         uses: actions/setup-node@v2
         with:
           node-version: '12'
-          cache: pnpm
+          cache: yarn
 
       # install dependencies
       - name: install dependencies
-        run: pnpm install
+        run: yarn
       
       # eslint
       - name: eslint
-        run: pnpm lint:fix
+        run: yarn lint:fix
 
       # prettier
       - name: prettier
-        run: pnpm prettier
+        run: yarn prettier
 
      
