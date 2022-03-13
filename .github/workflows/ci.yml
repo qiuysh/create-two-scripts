@@ -18,16 +18,24 @@ jobs:
         with:
           node-version: '12'
 
-      # install dependencies
-      - name: install dependencies
-        run: npm install yarn && yarn install
+      # use yarn && install dependencies
+      - name: use yarn && install dependencies
+        uses: borales/actions-yarn@v2.3.0
+        with:
+          cmd: install
+
       
       # eslint
       - name: eslint
-        run: yarn run lint:fix
+        uses: borales/actions-yarn@v2.3.0
+        with:
+          cmd: lint:fix
 
       # prettier
       - name: prettier
-        run: yarn run prettier
+        uses: borales/actions-yarn@v2.3.0
+        with:
+          cmd: prettier
+        # run: yarn run prettier
 
      
