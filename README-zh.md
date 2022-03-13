@@ -65,8 +65,8 @@ module.exports = {
 支持 antd 按需导入（ babel-plugin-import ）
 
 ```js
-// two start -a
-two build -a
+// two start --antd
+two build --antd
 ```
 
 支持 esbuild 压缩和 loader，不支持基于 ast 的 webpack 插件

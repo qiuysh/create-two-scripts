@@ -65,8 +65,8 @@ module.exports = {
 Support antd import on demand (babel-plugin-import)
 
 ```js
-// two start -a
-two build -a
+// two start --antd
+two build --antd
 ```
 
 Support esbuild, not support the webpack plugin base ast.
