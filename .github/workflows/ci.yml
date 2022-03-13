@@ -25,14 +25,14 @@ jobs:
 
       # install dependencies
       - name: install dependencies
-        run: yarn
+        run: yarn install
       
       # eslint
       - name: eslint
-        run: yarn lint:fix
+        run: yarn run lint:fix
 
       # prettier
       - name: prettier
-        run: yarn prettier
+        run: yarn run prettier
 
      
