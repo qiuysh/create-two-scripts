@@ -17,12 +17,13 @@ program
 
 program
   .command("start")
-  .description("start this project")
+  .description("start the project")
+  .option("-p, --port <port>", "support custom start port", parseInt)
   .option("-a, --antd", "support antd import on demand")
   .option("-h, --hot", "support hmr in dev model")
   .option(
     "-es, --esbuild",
-    "support esbuild loader and compress"
+    "support esbuild loader"
   )
   .action((args) => {
     action("start", args);
@@ -30,7 +31,7 @@ program
 
 program
   .command("build")
-  .description("build this project")
+  .description("build the project")
   .option("-a, --antd", "support antd import on demand")
   .option(
     "-es, --esbuild",
@@ -43,5 +44,5 @@ program
 program.parse(process.argv);
 
 if (!program.args[0]) {
-  program.Help();
+  program.help();
 }

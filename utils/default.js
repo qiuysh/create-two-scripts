@@ -40,7 +40,7 @@ module.exports = {
     {
       type: "list",
       message: "continue install dependencies ？",
-      name: "installType",
+      name: "isInstall",
       choices: [
         {
           name: "yes",
@@ -52,6 +52,15 @@ module.exports = {
           value: false,
         },
       ],
-    },
+    }
+  ],
+
+  checkedPort: [
+    {
+      type: "confirm",
+      message: "continue install dependencies ？",
+      name: "changeport",
+      default: true
+    }
   ],
 };

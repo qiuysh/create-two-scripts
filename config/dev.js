@@ -3,11 +3,11 @@ const paths = require("./defaultPaths");
 const getWebpackBaseConfig = require("./base");
 
 module.exports = function (opts) {
-  opts.hot = opts.hot || true;
-
+  const { port } = opts;
   // default webpack config
   const webpackBaseConfig = getWebpackBaseConfig({
     ...opts,
+    hot: true,
     devMode: true,
   });
   // user custom webpack config
@@ -27,13 +27,15 @@ module.exports = function (opts) {
     host: "0.0.0.0",
     historyApiFallback: true,
     open: true,
-    port: 3001,
+    port: port || 3001,
     static: {
-      directory: paths.appPublic,
+      directory: paths.appDirectory,
+      publicPath: "/",
+      watch: true,
     },
   };
 
-  // 配置合并
+  // merge config
   return merge(webpackBaseConfig, {
     devtool: "eval-cheap-module-source-map",
     devServer,

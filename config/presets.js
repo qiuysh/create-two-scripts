@@ -5,7 +5,7 @@ module.exports = function (opts) {
     [
       require("@babel/preset-env").default,
       {
-        useBuiltIns: "entry",
+        useBuiltIns: "usage",
         corejs: 3,
         // Exclude transforms that make all code slower
         exclude: ["transform-typeof-symbol"],

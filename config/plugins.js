@@ -1,5 +1,4 @@
 const webpack = require("webpack");
-const CopyPlugin = require("copy-webpack-plugin");
 const { ESBuildPlugin } = require("esbuild-loader");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
@@ -9,8 +8,6 @@ const paths = require("./defaultPaths");
 module.exports = function (opts) {
   const { esbuild, hot } = opts;
 
-  const ignore = ["imgs/*", "styles/*", "fonts/*"];
-
   return [
     new webpack.IgnorePlugin({
       resourceRegExp: /^\.\/locale$/,
@@ -18,18 +15,6 @@ module.exports = function (opts) {
     }),
 
     new webpack.ProgressPlugin(),
-
-    new CopyPlugin({
-      patterns: [
-        {
-          from: paths.appPublic,
-          to: paths.appDist,
-          globOptions: {
-            ignore,
-          },
-        },
-      ],
-    }),
 
     new HtmlWebpackPlugin({
       filename: "index.html",

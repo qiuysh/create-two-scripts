@@ -8,7 +8,7 @@ function getReadFilePath(path) {
 }
 
 /**
- * 获取自定义配置
+ * get custom webpack config
  * @return {*}
  */
 function getUserWebpackConfig() {
@@ -16,7 +16,7 @@ function getUserWebpackConfig() {
   if (existsSync(configFilePath)) {
     return require(configFilePath);
   }
-  throw "未找到 two.config.js 配置文件！";
+  throw "not found two.config.js";
 }
 
 module.exports = {
