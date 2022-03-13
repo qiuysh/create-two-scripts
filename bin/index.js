@@ -19,7 +19,7 @@ program
   .command("start")
   .description("start the project")
   .option("-p, --port <port>", "support custom start port", parseInt)
-  .option("-a, --antd", "support antd import on demand")
+  .option("--antd", "support antd import on demand")
   .option("-h, --hot", "support hmr in dev model")
   .option(
     "-es, --esbuild",
@@ -32,7 +32,7 @@ program
 program
   .command("build")
   .description("build the project")
-  .option("-a, --antd", "support antd import on demand")
+  .option("--antd", "support antd import on demand")
   .option(
     "-es, --esbuild",
     "support esbuild loader and compress"
