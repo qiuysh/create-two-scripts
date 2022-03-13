@@ -18,14 +18,9 @@ jobs:
         with:
           node-version: '12'
 
-       # support yarn
-      - name: use yarn
-        uses: borales/actions-yarn@v2.3.0
-       
-
       # install dependencies
       - name: install dependencies
-        run: yarn install
+        run: npm install yarn && yarn install
       
       # eslint
       - name: eslint
