@@ -62,7 +62,6 @@ module.exports = function (opts) {
         name: "lodash",
         test: /[\\/]node_modules[\\/]lodash[\\/]/,
         chunks: "initial",
-        // 默认组的优先级为负数，以允许任何自定义缓存组具有更高的优先级（默认值为0）
         priority: -10,
       },
       defaultVendors: {
@@ -78,9 +77,7 @@ module.exports = function (opts) {
     };
     const splitPlugin =
       new webpack.optimize.SplitChunksPlugin({
-        // webpack 5.x 推荐使用默认配置或使用 optimization.splitChunks: { chunks: 'all' } 配置；
         chunks: "all",
-        // （默认值：30000s）块的最小大小
         minSize: 30000,
         maxSize: 600000,
         minRemainingSize: 0,
