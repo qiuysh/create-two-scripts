@@ -33,19 +33,19 @@ yarn global add create-two-scripts
 ##### 支持命令
 
 ```js
-// init project
+// 创建新的工程
 two init <name>
 
-// start project
+// 启动
 two start
 
-// build project
+// 构建
 two build
 ```
 
 ##### 配置
 
-1、添加配置文件 two.config.js 
+1、添加配置文件 two.config.js
 
 ```js
 module.exports = {
@@ -62,25 +62,22 @@ module.exports = {
 
 2、支持的参数
 
-支持 antd 按需导入（ babel-plugin-import ）
+|名称    |配置   | 环境  | 描述   |
+|:---   |:----  |:----  |:---- |
+| 使用ts| -ts, --typescript | 开发/生产|支持 typescript|
+| 使用 esbuild| -es, --esbuild | 开发/生产|支持 esbuild 压缩和 loader，不支持基于 ast 的 webpack 插件。|
+| 自定义端口| -p, --port | 开发 |支持端口自定义|
+| 使用 antd | --antd | 开发/生产|支持 antd 按需导入（ babel-plugin-import ）|
+
+
+
+使用示例
 
 ```js
-// two start --antd
-two build --antd
-```
-
-支持 esbuild 压缩和 loader，不支持基于 ast 的 webpack 插件
-
-```js
-// two start -es
+two start -es
 two build -es
 ```
 
-支持 hmr ，默认启用
-
-```js
-two start -h
-```
 
 ### 参考
 

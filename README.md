@@ -62,24 +62,20 @@ module.exports = {
 
 2、Support params
 
-Support antd import on demand (babel-plugin-import)
+|name   |option   | env |desc   |
+|:---   |:----  |:----  |:----  |
+| use ts| -ts, --typescript | development / production | Support typescript|
+| use esbuild| -es, --esbuild | development / production | Support esbuild, not support the webpack plugin base ast.|
+| custom port| -p, --port | development | set port inline|
+| use antd | --antd | development / production | Support antd import on demand (babel-plugin-import)|
+
+
+
+use demo
 
 ```js
-// two start --antd
-two build --antd
-```
-
-Support esbuild, not support the webpack plugin base ast.
-
-```js
-// two start -es
+two start -es
 two build -es
-```
-
-Support HMR, enable by default.
-
-```js
-two start -h
 ```
 
 
