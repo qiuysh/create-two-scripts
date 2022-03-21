@@ -33,8 +33,6 @@ module.exports = function (opts) {
     ".less",
     ".scss",
     ".sass",
-    ".json",
-    ".html",
   ];
 
   // default webpack config

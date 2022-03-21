@@ -1,5 +1,5 @@
 module.exports = function (opts) {
-  const { antd, devMode, hot } = opts;
+  const { antd, devMode, hot, typescript } = opts;
   // presets config
   const presets = [
     [
@@ -17,7 +17,6 @@ module.exports = function (opts) {
         development: devMode,
       },
     ],
-    [require("@babel/preset-typescript").default],
   ];
   // plugins config
   const plugins = [
@@ -34,6 +33,12 @@ module.exports = function (opts) {
       },
     ],
   ];
+  // support typescript
+  if (typescript) {
+    presets.push([
+      require("@babel/preset-typescript").default,
+    ]);
+  }
 
   // support antd import, esbuild not support ast
   if (antd) {

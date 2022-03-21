@@ -4,10 +4,12 @@ const getWebpackBaseConfig = require("./base");
 
 module.exports = function (opts) {
   const { port } = opts;
+  // default use
+  const hot = true;
   // default webpack config
   const webpackBaseConfig = getWebpackBaseConfig({
     ...opts,
-    hot: true,
+    hot,
     devMode: true,
   });
   // user custom webpack config
@@ -24,6 +26,7 @@ module.exports = function (opts) {
       progress: true,
     },
     compress: true,
+    hot,
     host: "0.0.0.0",
     historyApiFallback: true,
     open: true,

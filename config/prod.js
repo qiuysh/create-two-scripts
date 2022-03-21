@@ -19,7 +19,9 @@ module.exports = function (opts) {
   const appUserConf = getUserConf();
 
   if (Array.isArray(optimization?.minimizer)) {
+    optimization.runtimeChunk = true;
     optimization.minimize = true;
+    optimization.moduleIds = "deterministic";
     // support esbuild compress
     if (esbuild) {
       const esBuildMinify = new ESBuildMinifyPlugin({

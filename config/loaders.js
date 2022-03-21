@@ -3,11 +3,9 @@ const paths = require("./defaultPaths");
 const getPresets = require("./presets");
 
 module.exports = function (opts) {
-  // 参数
   const { esbuild, devMode } = opts;
   const { presets, plugins } = getPresets(opts);
   const CssLoader = require.resolve("css-loader");
-  const StyleLoader = require.resolve("style-loader");
   const PostcssLoader = require.resolve("postcss-loader");
   const esbuildLoader = {
     loader: require.resolve("esbuild-loader"),
@@ -26,13 +24,14 @@ module.exports = function (opts) {
       plugins,
     },
   };
-  const stylesLoader = devMode
-    ? StyleLoader
+
+  const StylesLoader = devMode
+    ? require.resolve("style-loader")
     : MiniCssExtractPlugin.loader;
 
   return [
     {
-      test: /\.(js|ts[x]?)$/,
+      test: /\.(j|t)sx?$/,
       include: paths.appSrc,
       use: [
         esbuild ? esbuildLoader : babelLoader,
@@ -47,13 +46,13 @@ module.exports = function (opts) {
     {
       test: /\.css$/,
       exclude: /node_modules\/(!antd)/,
-      use: [stylesLoader, CssLoader, PostcssLoader],
+      use: [StylesLoader, CssLoader, PostcssLoader],
     },
     {
       test: /\.less$/,
       exclude: /node_modules\/(!antd)/,
       use: [
-        stylesLoader,
+        StylesLoader,
         CssLoader,
         {
           loader: require.resolve("less-loader"), // compiles Less to CSS
@@ -69,7 +68,7 @@ module.exports = function (opts) {
       test: /\.s[ac]ss$/i,
       exclude: /node_modules/,
       use: [
-        stylesLoader,
+        StylesLoader,
         CssLoader,
         {
           loader: require.resolve("sass-loader"),
