@@ -2,6 +2,7 @@ const webpack = require("webpack");
 const { ESBuildPlugin } = require("esbuild-loader");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CaseSensitivePathsPlugin = require("case-sensitive-paths-webpack-plugin");
 const ReactRefreshPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
 const paths = require("./defaultPaths");
 
@@ -15,6 +16,8 @@ module.exports = function (opts) {
     }),
 
     new webpack.ProgressPlugin(),
+    // https://github.com/Urthen/case-sensitive-paths-webpack-plugin#readme
+    new CaseSensitivePathsPlugin(),
 
     new HtmlWebpackPlugin({
       filename: "index.html",
