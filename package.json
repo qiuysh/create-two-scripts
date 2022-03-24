@@ -1,6 +1,6 @@
 {
   "name": "create-two-scripts",
-  "version": "1.0.8-alpha.0",
+  "version": "1.0.9-alpha",
   "description": "一个简易的前端脚手架工具",
   "keywords": [
     "react",
@@ -17,7 +17,7 @@
   "scripts": {
     "publish": "npm publish",
     "unpublish": "npm unpublish --force create-two-scripts",
-    "release": "standard-version -r 1.0.8-alpha.0",
+    "release": "standard-version -r 1.0.9-alpha",
     "eslint:test": "eslint './**/*' --ext .js,.ts",
     "lint:fix": "eslint './**/*' --fix --ext .js,.ts",
     "prettier": "prettier './**/*' --write "
