@@ -4,7 +4,7 @@ const getWebpackBaseConfig = require("./base");
 
 module.exports = function (opts) {
   const { port } = opts;
-  // default use
+  // default use hot
   const hot = true;
   // default webpack config
   const webpackBaseConfig = getWebpackBaseConfig({
