@@ -47,7 +47,7 @@ module.exports = function (opts) {
     },
     plugins,
     resolve: {
-      modules: [paths.appModules, "node_modules"],
+      modules: ["node_modules"],
       extensions,
       plugins: [],
     },

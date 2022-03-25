@@ -7,6 +7,7 @@ module.exports = function (opts) {
   const { presets, plugins } = getPresets(opts);
   const CssLoader = require.resolve("css-loader");
   const PostcssLoader = require.resolve("postcss-loader");
+
   const esbuildLoader = {
     loader: require.resolve("esbuild-loader"),
     options: {
@@ -31,7 +32,7 @@ module.exports = function (opts) {
 
   return [
     {
-      test: /\.(j|t)sx?$/,
+      test: /\.(j|t)s[x]?$/,
       include: paths.appSrc,
       use: [
         esbuild ? esbuildLoader : babelLoader,

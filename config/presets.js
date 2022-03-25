@@ -29,7 +29,10 @@ module.exports = function (opts) {
       require("@babel/plugin-transform-runtime").default,
       {
         corejs: false,
+        version: require("@babel/runtime/package.json")
+          .version,
         regenerator: true,
+        absoluteRuntime: false,
       },
     ],
   ];
