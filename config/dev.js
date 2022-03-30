@@ -3,15 +3,9 @@ const paths = require("./defaultPaths");
 const getWebpackBaseConfig = require("./base");
 
 module.exports = function (opts) {
-  const { port } = opts;
-  // default use hot
-  const hot = true;
+  const { port, hot } = opts;
   // default webpack config
-  const webpackBaseConfig = getWebpackBaseConfig({
-    ...opts,
-    hot,
-    devMode: true,
-  });
+  const webpackBaseConfig = getWebpackBaseConfig(opts);
   // user custom webpack config
   const appUserConf = paths.getUserConf();
   // devServer config

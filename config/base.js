@@ -4,7 +4,7 @@ const getLoaders = require("./loaders");
 const paths = require("./defaultPaths");
 
 module.exports = function (opts) {
-  const { devMode, typescript } = opts;
+  const { ts } = opts;
   // entry config
   const entry = {
     app: paths.appSrc + "/index",
@@ -38,7 +38,7 @@ module.exports = function (opts) {
   // default webpack config
   const webpackBaseConfig = {
     context: paths.appDirectory,
-    mode: devMode ? "development" : "production",
+    mode: process.env.NODE_ENV || "development",
     devtool: false,
     entry,
     output,
@@ -70,7 +70,7 @@ module.exports = function (opts) {
     },
   };
 
-  if (paths.appTsConfig && typescript) {
+  if (paths.appTsConfig && ts) {
     // support ts paths link to webpack resolve alias
     const option = {
       configFile: paths.appTsConfig,
