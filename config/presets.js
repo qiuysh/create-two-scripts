@@ -1,5 +1,5 @@
 module.exports = function (opts) {
-  const { antd, devMode, hot, typescript } = opts;
+  const { ts } = opts;
   // presets config
   const presets = [
     [
@@ -14,7 +14,7 @@ module.exports = function (opts) {
     [
       require("@babel/preset-react").default,
       {
-        development: devMode,
+        development: process.env.NODE_ENV === "development",
       },
     ],
   ];
@@ -37,25 +37,10 @@ module.exports = function (opts) {
     ],
   ];
   // support typescript
-  if (typescript) {
+  if (ts) {
     presets.push([
       require("@babel/preset-typescript").default,
     ]);
-  }
-
-  // support antd import, esbuild not support ast
-  if (antd) {
-    plugins.push([
-      require("babel-plugin-import").default,
-      {
-        libraryName: "antd",
-        style: true,
-      },
-    ]);
-  }
-  // support HMR
-  if (hot) {
-    plugins.push(require.resolve("react-refresh/babel"));
   }
 
   return {
