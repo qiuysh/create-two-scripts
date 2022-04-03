@@ -29,25 +29,3 @@ jobs:
       
       - name: prettier
         run: yarn run prettier
-
-      # # use yarn && install dependencies
-      # - name: use yarn && install dependencies
-      #   uses: borales/actions-yarn@v2.3.0
-      #   with:
-      #     cmd: install
-
-      
-      # # eslint
-      # - name: eslint
-      #   uses: borales/actions-yarn@v2.3.0
-      #   with:
-      #     cmd: lint:fix
-
-      # # prettier
-      # - name: prettier
-      #   uses: borales/actions-yarn@v2.3.0
-      #   with:
-      #     cmd: prettier
-      #   # run: yarn run prettier
-
-     

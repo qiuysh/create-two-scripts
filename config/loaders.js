@@ -3,25 +3,30 @@ const paths = require("./defaultPaths");
 const getPresets = require("./presets");
 
 module.exports = function (opts) {
-  const { esbuild, devMode } = opts;
-  const { presets, plugins } = getPresets(opts);
+  const { esbuild, ts, hot } = opts;
+  const defaultPresets = getPresets(opts);
   const CssLoader = require.resolve("css-loader");
   const PostcssLoader = require.resolve("postcss-loader");
+  const devMode = process.env.NODE_ENV === "development";
+
   const esbuildLoader = {
     loader: require.resolve("esbuild-loader"),
     options: {
-      loader: "tsx",
+      loader: ts ? "tsx" : "jsx",
       target: "es2015",
     },
   };
+
   const babelLoader = {
     loader: require.resolve("babel-loader"),
     options: {
       cacheDirectory: true,
       configFile: false,
       babelrc: false,
-      presets,
-      plugins,
+      presets: defaultPresets,
+      plugins: hot
+        ? [require.resolve("react-refresh/babel")]
+        : [],
     },
   };
 
@@ -31,7 +36,7 @@ module.exports = function (opts) {
 
   return [
     {
-      test: /\.(j|t)sx?$/,
+      test: /\.(j|t)s[x]?$/,
       include: paths.appSrc,
       use: [
         esbuild ? esbuildLoader : babelLoader,

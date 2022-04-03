@@ -64,10 +64,9 @@ module.exports = {
 
 |名称    |配置   | 环境  | 描述   |
 |:---   |:----  |:----  |:---- |
-| 使用 ts| -ts, --typescript | 开发/生产|支持 typescript|
+| 使用 ts| -t, --ts | 开发/生产|支持 typescript|
 | 使用 esbuild| -es, --esbuild | 开发/生产|支持 esbuild 压缩和 loader，不支持基于 ast 的 webpack 插件。|
 | 自定义端口| -p, --port | 开发 |支持端口自定义|
-| 使用 antd | --antd | 开发/生产|支持 antd 按需导入（ babel-plugin-import ）|
 
 
 

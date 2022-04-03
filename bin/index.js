@@ -19,26 +19,26 @@ program
   .command("start")
   .description("start the project")
   .option("-p, --port <port>", "support custom start port", parseInt)
-  .option("--antd", "support antd import on demand")
-  .option("-ts, --typescript", "support typescript")
+  .option("-t, --ts", "support typescript")
   .option(
     "-es, --esbuild",
     "support esbuild loader"
   )
   .action((args) => {
+    process.env.NODE_ENV = "development";
     action("start", args);
   });
 
 program
   .command("build")
   .description("build the project")
-  .option("--antd", "support antd import on demand")
-  .option("-ts, --typescript", "support typescript")
+  .option("-t, --ts", "support typescript")
   .option(
     "-es, --esbuild",
     "support esbuild loader and compress"
   )
   .action((args) => {
+    process.env.NODE_ENV = "production";
     action("build", args);
   });
 

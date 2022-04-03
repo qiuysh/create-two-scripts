@@ -9,10 +9,7 @@ const { getUserConf } = require("./defaultPaths");
 module.exports = function (opts) {
   const { esbuild } = opts;
   // default webpack config
-  const webpackBaseConfig = getWebpackBase({
-    ...opts,
-    devMode: false,
-  });
+  const webpackBaseConfig = getWebpackBase(opts);
   // split plugin
   const { plugins = [], optimization } = webpackBaseConfig;
   // user custom webpack config
