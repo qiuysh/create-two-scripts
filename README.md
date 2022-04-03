@@ -64,10 +64,9 @@ module.exports = {
 
 |name   |option   | env |desc   |
 |:---   |:----  |:----  |:----  |
-| use ts| -ts, --typescript | development / production | Support typescript|
+| use ts| -t, --ts | development / production | Support typescript|
 | use esbuild| -es, --esbuild | development / production | Support esbuild, not support the webpack plugin base ast.|
 | custom port| -p, --port | development | set port inline|
-| use antd | --antd | development / production | Support antd import on demand (babel-plugin-import)|
 
 
 
