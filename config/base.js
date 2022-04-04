@@ -5,6 +5,9 @@ const paths = require("./defaultPaths");
 
 module.exports = function (opts) {
   const { ts } = opts;
+
+  const isDev = process.env.NODE_ENV === "development";
+
   // entry config
   const entry = {
     app: paths.appSrc + "/index",
@@ -13,7 +16,12 @@ module.exports = function (opts) {
   // output config
   const output = {
     path: paths.appDist,
-    filename: "js/[name].[contenthash].js",
+    filename: isDev
+      ? "js/[name].js"
+      : "js/[name].[contenthash].js",
+    chunkFilename: isDev
+      ? "js/[name].chunk.js"
+      : "js/[name].chunk.[contenthash].js",
     publicPath: "/",
   };
 

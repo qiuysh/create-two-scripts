@@ -1,4 +1,5 @@
 const { merge } = require("webpack-merge");
+const path = require("path");
 const paths = require("./defaultPaths");
 const getWebpackBaseConfig = require("./base");
 
@@ -22,13 +23,15 @@ module.exports = function (opts) {
     compress: true,
     hot,
     host: "0.0.0.0",
-    historyApiFallback: true,
+    historyApiFallback: {
+      disableDotRule: true,
+      index: paths.appHtml,
+    },
     open: true,
     port: port || 3001,
     static: {
       directory: paths.appDirectory,
       publicPath: "/",
-      watch: true,
     },
   };
 

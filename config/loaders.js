@@ -7,7 +7,7 @@ module.exports = function (opts) {
   const defaultPresets = getPresets(opts);
   const CssLoader = require.resolve("css-loader");
   const PostcssLoader = require.resolve("postcss-loader");
-  const devMode = process.env.NODE_ENV === "development";
+  const isDev = process.env.NODE_ENV === "development";
 
   const esbuildLoader = {
     loader: require.resolve("esbuild-loader"),
@@ -23,14 +23,20 @@ module.exports = function (opts) {
       cacheDirectory: true,
       configFile: false,
       babelrc: false,
-      presets: defaultPresets,
+      presets: [
+        [
+          {
+            ...defaultPresets,
+          },
+        ],
+      ],
       plugins: hot
         ? [require.resolve("react-refresh/babel")]
         : [],
     },
   };
 
-  const StylesLoader = devMode
+  const StylesLoader = isDev
     ? require.resolve("style-loader")
     : MiniCssExtractPlugin.loader;
 
