@@ -6,8 +6,6 @@
     "module": "esNext", 
     "target": "ES5", 
     "baseUrl": ".", 
-    "sourceMap": true, 
-    "outDir": "dist", 
     "jsx": "react", 
     "strict": true,
     "moduleResolution": "node",
@@ -28,7 +26,6 @@
   },
   "exclude": [
     "node_modules",
-    "scripts",
     "dist",
     "public",
     "tsconfig.json"

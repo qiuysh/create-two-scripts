@@ -1,10 +1,14 @@
 const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 const getplugins = require("./plugins");
 const getLoaders = require("./loaders");
+const getOptimization = require("./optimization");
 const paths = require("./defaultPaths");
 
 module.exports = function (opts) {
   const { ts } = opts;
+
+  const isDev = process.env.NODE_ENV === "development";
+
   // entry config
   const entry = {
     app: paths.appSrc + "/index",
@@ -13,7 +17,12 @@ module.exports = function (opts) {
   // output config
   const output = {
     path: paths.appDist,
-    filename: "js/[name].[contenthash].js",
+    filename: isDev
+      ? "js/[name].js"
+      : "js/[name].[contenthash].js",
+    chunkFilename: isDev
+      ? "js/[name].chunk.js"
+      : "js/[id].chunk.[contenthash].js",
     publicPath: "/",
   };
 
@@ -22,6 +31,9 @@ module.exports = function (opts) {
 
   // plugins config
   const plugins = getplugins(opts);
+
+  // optimization config
+  const optimizations = getOptimization(opts);
 
   // extensions config
   const extensions = [
@@ -61,6 +73,7 @@ module.exports = function (opts) {
     optimization: {
       minimize: false,
       minimizer: [],
+      ...optimizations,
     },
     externals: {},
     node: false,

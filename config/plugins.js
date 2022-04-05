@@ -8,6 +8,30 @@ const paths = require("./defaultPaths");
 
 module.exports = function (opts) {
   const { esbuild, hot } = opts;
+  // cache options
+  const cacheOptions = {
+    antd: {
+      name: "antd",
+      test: /[\\/]node_modules[\\/]antd[\\/]/,
+      chunks: "initial",
+    },
+    lodash: {
+      name: "lodash",
+      test: /[\\/]node_modules[\\/]lodash[\\/]/,
+      chunks: "initial",
+      priority: -10,
+    },
+    defaultVendors: {
+      test: /[\\/]node_modules[\\/](react|react-dom|react-redux|react-router-dom|moment|js-cookie)[\\/]/,
+      name: "default-vendors",
+      chunks: "all",
+    },
+    default: {
+      minChunks: 2,
+      priority: -20,
+      reuseExistingChunk: true,
+    },
+  };
 
   return [
     new webpack.IgnorePlugin({
@@ -32,6 +56,18 @@ module.exports = function (opts) {
     new MiniCssExtractPlugin({
       filename: "./styles/[name].[contenthash].css",
       chunkFilename: "./styles/[id].[contenthash].css",
+    }),
+
+    new webpack.optimize.SplitChunksPlugin({
+      chunks: "all",
+      minSize: 30000,
+      maxSize: 600000,
+      minRemainingSize: 0,
+      minChunks: 1,
+      maxAsyncRequests: 30,
+      maxInitialRequests: 30,
+      enforceSizeThreshold: 50000,
+      cacheGroups: cacheOptions,
     }),
 
     esbuild && new ESBuildPlugin(),
