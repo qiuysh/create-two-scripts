@@ -1,6 +1,7 @@
 const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 const getplugins = require("./plugins");
 const getLoaders = require("./loaders");
+const getOptimization = require("./optimization");
 const paths = require("./defaultPaths");
 
 module.exports = function (opts) {
@@ -21,7 +22,7 @@ module.exports = function (opts) {
       : "js/[name].[contenthash].js",
     chunkFilename: isDev
       ? "js/[name].chunk.js"
-      : "js/[name].chunk.[contenthash].js",
+      : "js/[id].chunk.[contenthash].js",
     publicPath: "/",
   };
 
@@ -30,6 +31,9 @@ module.exports = function (opts) {
 
   // plugins config
   const plugins = getplugins(opts);
+
+  // optimization config
+  const optimizations = getOptimization(opts);
 
   // extensions config
   const extensions = [
@@ -69,6 +73,7 @@ module.exports = function (opts) {
     optimization: {
       minimize: false,
       minimizer: [],
+      ...optimizations,
     },
     externals: {},
     node: false,
