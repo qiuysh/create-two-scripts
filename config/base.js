@@ -21,7 +21,7 @@ module.exports = function (opts) {
       ? "js/[name].js"
       : "js/[name].[contenthash].js",
     chunkFilename: isDev
-      ? "js/[name].chunk.js"
+      ? "js/[id].chunk.js"
       : "js/[id].chunk.[contenthash].js",
     publicPath: "/",
   };
