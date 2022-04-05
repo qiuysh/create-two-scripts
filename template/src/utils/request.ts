@@ -9,22 +9,16 @@ export default function request(
   url: string,
   options: AxiosRequestConfig = {},
 ): AxiosPromise {
-  // 请求拦截器
+  // interceptors
   axios.interceptors.request.use(
     (config: AxiosRequestConfig) => {
-      const token: string | null = localStorage.getItem(
-        "token",
-      );
-      if (token) {
-        config.headers.Authorization = token; // 让每个请求携带token--['X-Token']为自定义key 请根据实际情况自行修改
-      }
       return config;
     },
     error => {
       Promise.reject(error);
     },
   );
-  // 使用由库提供的配置的默认值来创建实例
+
   return axios({
     url,
     method: "get", // 默认值
@@ -59,7 +53,6 @@ export default function request(
     .catch(error => {
       const { response } = error;
 
-      // 错误提示
       tipError(
         response || {
           ...error,
@@ -116,8 +109,9 @@ function tipError(res: AxiosResponse) {
       // 注意：其他错误的错误提示需要在业务内自行处理
       break;
   }
+
   console.error(
-    "http返回结果的 status 码错误，错误信息是:",
+    "http status:",
     res,
   );
 }
