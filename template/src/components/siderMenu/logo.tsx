@@ -8,7 +8,7 @@ export default function Logo({
 }: iProps): JSX.Element {
   return (
     <div className="logo">
-      {collapsed ? "Leek" : "Leek Box"}
+      {collapsed ? "two" : "create two"}
     </div>
   );
 }
