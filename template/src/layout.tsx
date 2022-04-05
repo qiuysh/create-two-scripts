@@ -14,15 +14,14 @@ import ErrorBoundary from "@/components/errorBoundary";
 import { getViewPortHeight } from "@/utils/util";
 import { initialState, globalReducer } from "./stores";
 import * as ajax from "./services";
-import "antd/es/";
 import "public/styles/global.less";
 
 const { Content } = Layout;
 
-const TITLE: string = "Leekbox workbench";
+const TITLE: string = "create two";
 
 const contentStyle: { [key: string]: any } = {
-  margin: "24px 24px 0",
+  margin: "1.7143rem 1.7143rem 0",
   minHeight: getViewPortHeight() - 154,
 };
 
@@ -42,7 +41,7 @@ const BaseLayout: React.FC<any> = props => {
 
   const getMenuList = async () => {
     const res: any = await ajax.getNavigation();
-    if (res.result) {
+    if (res.code) {
       dispatch({
         type: "global/menus",
         payload: res.data,
@@ -51,32 +50,30 @@ const BaseLayout: React.FC<any> = props => {
   };
 
   return (
-    <>
-      <DocumentTitle title={TITLE}>
-        <Layout
-          className={classnames("", {
-            "layout-fixed": true,
-          })}>
-          <SiderMenu
+    <DocumentTitle title={TITLE}>
+      <Layout
+        className={classnames("", {
+          "layout-fixed": true,
+        })}>
+        <SiderMenu
+          collapsed={collapsed}
+          history={history}
+          menuList={menuList}
+        />
+        <Layout className="yux-content">
+          <TopNav
             collapsed={collapsed}
-            history={history}
-            menuList={menuList}
+            changeCollapse={changeCollapse}
           />
-          <Layout className="yux-content">
-            <TopNav
-              collapsed={collapsed}
-              changeCollapse={changeCollapse}
-            />
-            <Content style={contentStyle}>
-              <ErrorBoundary location={location}>
-                {children}
-              </ErrorBoundary>
-            </Content>
-            <Footer />
-          </Layout>
+          <Content style={contentStyle}>
+            <ErrorBoundary location={location}>
+              {children}
+            </ErrorBoundary>
+          </Content>
+          <Footer />
         </Layout>
-      </DocumentTitle>
-    </>
+      </Layout>
+    </DocumentTitle>
   );
 };
 export default withRouter(BaseLayout);

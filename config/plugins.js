@@ -22,7 +22,7 @@ module.exports = function (opts) {
       priority: -10,
     },
     defaultVendors: {
-      test: /[\\/]node_modules[\\/](react|react-dom|react-redux|react-router-dom|moment|js-cookie)[\\/]/,
+      test: /[\\/]node_modules[\\/](react|react-dom|react-router-dom|js-cookie)[\\/]/,
       name: "default-vendors",
       chunks: "all",
     },

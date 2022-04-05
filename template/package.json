@@ -4,8 +4,8 @@
   "description": "{{ description }}",
   "main": "index.js",
   "scripts": {
-    "start": "two start",
-    "build": "rimraf dist && two build",
+    "start": "two start -es",
+    "build": "rimraf dist && two build -es",
     "eslint:test": "eslint src --ext .js,.ts,.tsx",
     "stylelint:test": "stylelint src --fix .less,.css",
     "lint:fix": "eslint src --fix --ext .js,.ts,.tsx",
