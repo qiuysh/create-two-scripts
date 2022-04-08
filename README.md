@@ -64,8 +64,8 @@ module.exports = {
 
 |name   |option   | env |desc   |
 |:---   |:----  |:----  |:----  |
-| use ts| -t, --ts | development / production | Support typescript|
-| use esbuild| -es, --esbuild | development / production | Support esbuild, not support the webpack plugin base ast.|
+| use ts| -t, --ts | development / production | Typescript is support by default  |
+| use esbuild| -es, --esbuild | development / production | Support esbuild, ast based babel plugins are not supported.(ex: babel-plugin-import)|
 | custom port| -p, --port | development | set port inline|
 
 
