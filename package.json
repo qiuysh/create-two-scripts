@@ -1,6 +1,6 @@
 {
   "name": "create-two-scripts",
-  "version": "1.0.9-alpha",
+  "version": "1.0.9",
   "description": "a simple react application front-end scaffolding tool",
   "keywords": [
     "react",
@@ -17,7 +17,7 @@
   "scripts": {
     "publish": "npm publish",
     "unpublish": "npm unpublish --force create-two-scripts",
-    "release": "standard-version -r 1.0.9-alpha",
+    "release": "standard-version -r 1.0.9",
     "eslint:test": "eslint './**/*' --ext .js,.ts",
     "lint:fix": "eslint './**/*' --fix --ext .js,.ts",
     "prettier": "prettier './**/*' --write "
