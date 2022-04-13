@@ -26,7 +26,7 @@ const BasicRouter = (): JSX.Element => (
         <Route
           path="/index"
           exact
-          component={Guide}
+          component={(props: any) => <Guide {...props} />}
         />
       </Suspense>
     </BaseLayout>
