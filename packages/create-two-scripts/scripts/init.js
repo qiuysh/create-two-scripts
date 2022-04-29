@@ -2,7 +2,7 @@ const path = require("path");
 const ora = require("ora");
 const chalk = require("chalk");
 const fs = require("fs-extra");
-const shell = require("shelljs");
+const { exec } = require("shelljs");
 const handlebars = require("handlebars");
 const { inquirerPrompt } = require("../utils");
 const {
@@ -15,6 +15,10 @@ function initPromptData(name) {
   return createTypeData;
 }
 
+function getTemplateDir(params) {
+  
+}
+
 /**
  * create project
  * @param {*} args
@@ -24,10 +28,13 @@ async function init(name) {
   const createPrompt = initPromptData(projectName);
   const initPrompt = await inquirerPrompt(createPrompt);
   const spinner = ora("initializing the project...\n");
+  const currentTemplate = "cts-template-typescript";
+
   try {
     if (fs.existsSync(projectName)) {
       throw `waring, ${projectName} already exists`;
     }
+
 
     spinner.start();
 
@@ -37,17 +44,19 @@ async function init(name) {
     }, 1000);
 
     await fs.copy(
-      path.join(__dirname, "..", "template"),
+      path.join(__dirname, "..", currentTemplate),
       projectName
     );
 
     const packagePath = `${projectName}/package.json`;
+
     const packageContent = fs.readFileSync(
       packagePath,
       "utf-8"
     );
     const packageResult =
       handlebars.compile(packageContent)(initPrompt);
+
     fs.writeFileSync(packagePath, packageResult);
 
     spinner.succeed(
@@ -62,7 +71,7 @@ async function init(name) {
 
     if (
       isInstall &&
-      shell.exec(`cd ${projectName} && yarn`).code != 0
+      exec(`cd ${projectName} && yarn`).code != 0
     ) {
       throw "fail, install dependencies!";
     }

@@ -1,7 +1,7 @@
 {
   "name": "babel-preset-two-app",
   "version": "1.0.0",
-  "description": "babel-preset-two-app",
+  "description": "Babel preset used by create two scripts",
   "keywords": [
     "preset",
     "babel"
@@ -9,7 +9,7 @@
   "main": "index.js",
   "scripts": {
     "publish": "npm publish",
-    "unpublish": "npm unpublish --force create-two-scripts",
+    "unpublish": "npm unpublish --force babel-preset-two-app",
     "release": "standard-version -r 1.0.0"
   },
   "author": "wulin",

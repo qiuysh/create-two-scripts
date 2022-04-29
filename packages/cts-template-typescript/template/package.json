@@ -1,0 +1,103 @@
+{
+  "name": "{{ name }}",
+  "version": "1.0.0",
+  "description": "{{ description }}",
+  "main": "index.js",
+  "scripts": {
+    "start": "two start -es",
+    "build": "rimraf dist && two build -es",
+    "eslint:test": "eslint src --ext .js,.ts,.tsx",
+    "stylelint:test": "stylelint src --fix .less,.css",
+    "lint:fix": "eslint src --fix --ext .js,.ts,.tsx",
+    "prettier": "prettier --write src/*",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0"
+  },
+  "sideEffects": [
+    "dist/*",
+    "mock/*",
+    "*.less"
+  ],
+  "author": "{{ author }}",
+  "license": "MIT",
+  "dependencies": {
+    "@ant-design/icons": "^4.4.0",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^12.0.0",
+    "antd": "^4.11.2",
+    "axios": ">=0.18.1",
+    "classnames": "^2.2.5",
+    "history": "^4.10.1",
+    "immutability-helper-x": "^1.0.5",
+    "lodash-es": "^4.17.21",
+    "moment": "^2.24.0",
+    "prop-types": "^15.7.2",
+    "qs": "^6.9.6",
+    "react": "^16.11.0",
+    "react-document-title": "^2.0.3",
+    "react-dom": "^16.11.0",
+    "react-router": "^4.3.1",
+    "react-router-dom": "^4.3.1"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^16.2.3",
+    "@commitlint/config-conventional": "^16.2.1",
+    "@types/jest": "^26.0.20",
+    "@types/react": "^16.14.2",
+    "@types/react-document-title": "^2.0.3",
+    "@types/react-dom": "^16.9.10",
+    "@types/react-router-dom": "^5.1.2",
+    "@typescript-eslint/eslint-plugin": "^2.7.0",
+    "@typescript-eslint/parser": "^2.7.0",
+    "create-two-scripts": "^1.0.9",
+    "cross-env": "^6.0.3",
+    "cz-conventional-changelog": "^3.3.0",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.6",
+    "eslint": "^8.11.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-wolin": "git+ssh://git@github.com:qiuysh/eslint-config-wolin.git",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jest": "^24.1.3",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-react": "^7.22.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "husky": "^4.3.8",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^26.6.3",
+    "jest-canvas-mock": "^2.3.1",
+    "lint-staged": "^10.5.3",
+    "mocker-api": "^2.9.5",
+    "mockjs": "^1.1.0",
+    "prettier": "^2.2.1",
+    "rimraf": "^2.5.4",
+    "stylelint": "^13.12.0",
+    "stylelint-config-standard": "^21.0.0",
+    "stylelint-order": "^4.1.0",
+    "ts-jest": "^26.5.5",
+    "typescript": "^4.6.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{less,css}": [
+      "stylelint --fix"
+    ],
+    "src/**/*.{js,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}

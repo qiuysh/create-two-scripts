@@ -30,10 +30,16 @@
   "bugs": {
     "url": "https://github.com/qiuysh/create-two-scripts/issues"
   },
+  "files": [
+    "bin",
+    "scripts",
+    "utils",
+    "webpack"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/qiuysh/create-two-scripts",
-    "directory": "packages/create-cli"
+    "directory": "packages/create-two-scripts"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
@@ -67,6 +73,7 @@
     "@babel/core": "^7.17.2",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.4",
     "babel-loader": "^8.2.3",
+    "babel-preset-two-app": "^1.0.0",
     "case-sensitive-paths-webpack-plugin": "^2.4.0",
     "chalk": "^4.1.0",
     "commander": "^7.0.0",

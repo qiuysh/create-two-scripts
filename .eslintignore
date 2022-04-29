@@ -3,7 +3,7 @@ node_modules
 .vscode
 .DS_Store
 .git
-template
+packages/cts-template-typescript
 *.md
 yarn.lock
 pnpm-lock.yaml

@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 const { program } = require("../utils");
 const packageConf = require("../package.json");
-const actions = require("../actions");
+const actions = require("../scripts");
 
 program
   .usage("<command> [options]")
   .version(packageConf.version, "-v, --version")
-  .description("welcome, create-two-scripts");
+  .description("Welcome, use Create Two Scripts");
 
 program
   .command("init <name>")
