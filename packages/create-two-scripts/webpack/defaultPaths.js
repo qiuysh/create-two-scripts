@@ -26,7 +26,6 @@ module.exports = {
   appConfig: getReadFilePath("public/config"),
   appPackageJson: getReadFilePath("package.json"),
   appSrc: getReadFilePath("src"),
-  appTsConfig: getReadFilePath("tsconfig.json"),
   appModules: getReadFilePath("node_modules"),
   appDirectory: realpathSync(process.cwd()),
   getUserConf: getUserWebpackConfig,

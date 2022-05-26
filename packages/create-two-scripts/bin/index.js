@@ -23,7 +23,7 @@ program
     "support custom start port",
     parseInt
   )
-  .option("-t, --ts", "support typescript")
+  .option("-t, --ts <ts>", "support typescript")
   .option("-es, --esbuild", "support esbuild loader")
   .action(args => {
     process.env.NODE_ENV = "development";
@@ -33,7 +33,7 @@ program
 program
   .command("build")
   .description("build the project")
-  .option("-t, --ts", "support typescript")
+  .option("-t, --ts <ts>", "support typescript")
   .option(
     "-es, --esbuild",
     "support esbuild loader and compress"

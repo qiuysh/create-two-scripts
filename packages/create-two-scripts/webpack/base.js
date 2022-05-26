@@ -7,6 +7,8 @@ const paths = require("./defaultPaths");
 module.exports = function (opts) {
   const { ts } = opts;
 
+  console.log(opts)
+
   const isDev = process.env.NODE_ENV === "development";
 
   // entry config
@@ -83,10 +85,11 @@ module.exports = function (opts) {
     },
   };
 
-  if (paths.appTsConfig && ts) {
+  if (ts) {
     // support ts paths link to webpack resolve alias
+    const appTsConfig = paths.getReadFilePath("tsconfig.json")
     const option = {
-      configFile: paths.appTsConfig,
+      configFile: appTsConfig,
       extensions,
     };
     const { resolve } = webpackBaseConfig;

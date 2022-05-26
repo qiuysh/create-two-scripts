@@ -6,7 +6,7 @@ const { message } = require("../utils");
 
 module.exports = function (opts) {
   try {
-    opts.ts = opts.ts || true;
+    opts.ts = typeof opts?.ts === "string" ? opts?.ts === 'true' : true;
     // get base webpack config
     const webpackProdConfig = getProdWebpackConf(opts);
 

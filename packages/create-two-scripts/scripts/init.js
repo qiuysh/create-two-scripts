@@ -4,7 +4,7 @@ const chalk = require("chalk");
 const fs = require("fs-extra");
 const { exec } = require("shelljs");
 const os = require("os");
-const { inquirerPrompt } = require("../utils");
+const { prompt } = require("../utils");
 const {
   defaultTempData,
   createPackageData,
@@ -47,9 +47,9 @@ async function init(name) {
     }
     fs.mkdirs(projectName);
     // choose template
-    const { template } = await inquirerPrompt(defaultTempData);
+    const { template } = await prompt(defaultTempData);
 
-    const { name, description, author, license = "MIT" } = await inquirerPrompt(createPackageData);
+    const { name, description, author, license = "MIT" } = await prompt(createPackageData);
 
     const initPackageJson = {
       name: projectName,
@@ -100,7 +100,7 @@ async function init(name) {
       chalkStyle(`Success, ${projectName} is created! \n`)
     );
 
-    const { isInstall } = await inquirerPrompt(
+    const { isInstall } = await prompt(
       installDependenciesData
     );
 

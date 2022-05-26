@@ -7,7 +7,7 @@ const { log } = console;
  *
  * @param {} type inquirer
  */
-async function inquirerPrompt(type) {
+async function prompt(type) {
   return inquirer.prompt(type);
 }
 
@@ -30,6 +30,6 @@ function message(key, msg) {
 
 module.exports = {
   program,
-  inquirerPrompt,
+  prompt,
   message,
 };

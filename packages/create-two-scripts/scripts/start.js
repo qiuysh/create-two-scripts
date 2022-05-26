@@ -5,7 +5,7 @@ const detectPort = require("detect-port");
 const getDevWebpackConf = require("../webpack/base.js");
 const defaultServer = require("../webpack/devServer");
 const { getUserConf } = require("../webpack/defaultPaths");
-const { message, inquirerPrompt } = require("../utils");
+const { message, prompt } = require("../utils");
 
 /**
  * check port
@@ -25,7 +25,7 @@ async function checkPort(port) {
   if (newPort === port) {
     return newPort;
   }
-  const { changePort } = await inquirerPrompt(option);
+  const { changePort } = await prompt(option);
   if (!changePort) {
     throw "Process has reject!";
   }
@@ -34,10 +34,10 @@ async function checkPort(port) {
 
 module.exports = async function (opts) {
   const { port } = opts;
-
+  
   opts.hot = true;
 
-  opts.ts = opts.ts || true;
+  opts.ts = typeof opts?.ts === "string" ? opts?.ts === 'true' : true;
 
   try {
     // user custom webpack config
