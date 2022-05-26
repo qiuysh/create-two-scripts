@@ -1,0 +1,83 @@
+@charset "UTF-8";
+
+@import "./theme.less";
+
+html {
+  height: 100%;
+  font-size: 14px;
+}
+
+.f-fl {
+  float: left;
+}
+
+.f-fr {
+  float: right;
+}
+
+.icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
+
+.yux-sider {
+  .logo {
+    height: 4.5714rem;
+    line-height: 4.5714rem;
+    margin-left: 1.5rem;
+    font-size: 2.125rem;
+    font-weight: 600;
+    color: var(--yux-color);
+  }
+  &.ant-layout-sider-collapsed {
+    .logo {
+      margin-left: 0.5rem;
+    }
+  }
+}
+
+.yux-content { 
+  background: var(--yux-bg);
+   .yux-header {
+    color: var(--yux-color);
+    .action {
+      font-size: 1.5rem;
+    }
+  }
+}
+
+.yux-footer {
+  background: var(--yux-bg);
+  color: var(--yux-color);
+  text-align: center;
+}
+
+.layout-fixed {
+  .yux-sider {
+    position: sticky;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: 12;
+  }
+
+  .yux-content {
+    width: fit-content;
+    .yux-header {
+      position: sticky;
+      top: 0;
+      right: 0;
+      z-index: 10;
+    }
+  }
+}
+
+.page-loading {
+  width: 100vw;
+  height: 100vh;
+  line-height: 100vh;
+  text-align: center;
+}
