@@ -14,9 +14,11 @@ const {
 
 function getTemplateDir(template, projectDir) {
   let templatePath = null;
-  const debug = true;
-  if (debug) {
-    templatePath = process.mainModule?.path?.replace('create-two-scripts/bin', template);
+  const type = ['-d', '--debug'];
+  const { argv } = process;
+  const debug = argv.length === 5 ? type.includes(argv[argv.length - 2]) : false;
+  if (debug && module) {
+    templatePath = module.path.replace('create-two-scripts/scripts', template);
   } else {
     exec(`cd ${projectDir}`);
     exec(`yarn add ${template}`);
@@ -52,7 +54,7 @@ async function init(name) {
     const { name, description, author, license = "MIT" } = await prompt(createPackageData);
 
     const initPackageJson = {
-      name: projectName,
+      name,
       version: '1.0.0',
       private: true,
       description,
@@ -92,7 +94,7 @@ async function init(name) {
     );
 
     // remove cts template
-    if (initPackageJson?.dependencies?.[template]) {
+    if (initPackageJson.dependencies && initPackageJson.dependencies[template]) {
       exec(`cd ${projectName} && yarn remove ${template}`)
     }
 

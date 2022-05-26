@@ -6,11 +6,15 @@ const actions = require("../scripts");
 program
   .usage("<command> [options]")
   .version(packageConf.version, "-v, --version")
-  .description("Welcome, use Create Two Scripts");
+  .description("Welcome, use create two scripts");
 
 program
   .command("init <name>")
   .description("create a new project")
+  .option(
+    "-d, --debug",
+    "support debug init with used yarn link by local dev"
+  )
   .action(args => {
     actions.init(args);
   });

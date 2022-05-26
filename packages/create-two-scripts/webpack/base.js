@@ -7,8 +7,6 @@ const paths = require("./defaultPaths");
 module.exports = function (opts) {
   const { ts } = opts;
 
-  console.log(opts)
-
   const isDev = process.env.NODE_ENV === "development";
 
   // entry config

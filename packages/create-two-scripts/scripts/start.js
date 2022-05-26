@@ -37,7 +37,7 @@ module.exports = async function (opts) {
   
   opts.hot = true;
 
-  opts.ts = typeof opts?.ts === "string" ? opts?.ts === 'true' : true;
+  opts.ts = typeof opts.ts === "string" ? opts.ts === 'true' : true;
 
   try {
     // user custom webpack config
