@@ -17,7 +17,7 @@ Create-two-scripts， a simple react application front-end scaffolding tool
 
 ### Description
 
-node >= 10.13.0, webpack >= 5.x and react >= 16.9.x, only suppest react + ts.
+node >= 10.13.0, webpack >= 5.x and react >= 16.9.x, suppest react + ts/js.
 
 ### Usage
 
@@ -70,13 +70,19 @@ module.exports = {
 
 
 
-use demo
+use esbuild demo
 
 ```js
 two start -es
 two build -es
 ```
 
+use js demo, typescript is support by default
+
+```js
+two start --ts=false
+two build --ts=false
+```
 
 ### Reference
 
