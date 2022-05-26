@@ -1,7 +1,4 @@
 {
-  "name": "{{ name }}",
-  "version": "1.0.0",
-  "description": "{{ description }}",
   "main": "index.js",
   "scripts": {
     "start": "two start -es",
@@ -20,8 +17,6 @@
     "mock/*",
     "*.less"
   ],
-  "author": "{{ author }}",
-  "license": "MIT",
   "dependencies": {
     "@ant-design/icons": "^4.4.0",
     "@testing-library/jest-dom": "^5.14.1",

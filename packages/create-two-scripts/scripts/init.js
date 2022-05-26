@@ -3,20 +3,32 @@ const ora = require("ora");
 const chalk = require("chalk");
 const fs = require("fs-extra");
 const { exec } = require("shelljs");
-const handlebars = require("handlebars");
+const os = require("os");
 const { inquirerPrompt } = require("../utils");
 const {
-  createTypeData,
-  installTypeData,
-} = require("../utils/default");
+  defaultTempData,
+  createPackageData,
+  installDependenciesData,
+} = require("../utils/defaultInquirer");
 
-function initPromptData(name) {
-  createTypeData[0].default = name;
-  return createTypeData;
+
+function getTemplateDir(template, projectDir) {
+  let templatePath = null;
+  const debug = true;
+  if (debug) {
+    templatePath = process.mainModule?.path?.replace('create-two-scripts/bin', template);
+  } else {
+    exec(`cd ${projectDir}`);
+    exec(`yarn add ${template}`);
+    templatePath = path.join(projectDir, 'node_modules', template);
+  }
+  return path.join(templatePath, 'template');
 }
 
-function getTemplateDir(params) {
-  
+function chalkStyle(params) {
+  return chalk
+    .hex("#27ae60")
+    .bold(params)
 }
 
 /**
@@ -25,64 +37,86 @@ function getTemplateDir(params) {
  */
 async function init(name) {
   const projectName = name;
-  const createPrompt = initPromptData(projectName);
-  const initPrompt = await inquirerPrompt(createPrompt);
-  const spinner = ora("initializing the project...\n");
-  const currentTemplate = "cts-template-typescript";
+  const rootDir = process.cwd();
+  const projectDir = `${rootDir}/${projectName}`;
+  const spinner = ora("Initializing the project...\n");
 
   try {
     if (fs.existsSync(projectName)) {
-      throw `waring, ${projectName} already exists`;
+      throw `Waring, ${projectName} already exists`;
     }
+    fs.mkdirs(projectName);
+    // choose template
+    const { template } = await inquirerPrompt(defaultTempData);
 
+    const { name, description, author, license = "MIT" } = await inquirerPrompt(createPackageData);
+
+    const initPackageJson = {
+      name: projectName,
+      version: '1.0.0',
+      private: true,
+      description,
+      author,
+      license,
+    };
 
     spinner.start();
 
     setTimeout(() => {
       spinner.color = "#27ae60";
-      spinner.text = "creating...\n";
+      spinner.text = "Creating...\n";
     }, 1000);
 
-    await fs.copy(
-      path.join(__dirname, "..", currentTemplate),
-      projectName
+    fs.writeFileSync(
+      path.join(projectDir, 'package.json'),
+      JSON.stringify(initPackageJson, null, 2) + os.EOL
     );
 
-    const packagePath = `${projectName}/package.json`;
+    const templateDir = getTemplateDir(template, projectDir);
 
-    const packageContent = fs.readFileSync(
-      packagePath,
+    fs.copySync(templateDir, projectDir)
+
+    const templatePackageJson = fs.readJSONSync(
+      projectDir + '/package.json',
       "utf-8"
     );
-    const packageResult =
-      handlebars.compile(packageContent)(initPrompt);
 
-    fs.writeFileSync(packagePath, packageResult);
+    const projectPackageJson = {
+      ...initPackageJson,
+      ...templatePackageJson
+    };
+
+    fs.writeFileSync(
+      path.join(rootDir, projectName, 'package.json'),
+      JSON.stringify(projectPackageJson, null, 2) + os.EOL
+    );
+
+    // remove cts template
+    if (initPackageJson?.dependencies?.[template]) {
+      exec(`cd ${projectName} && yarn remove ${template}`)
+    }
 
     spinner.succeed(
-      chalk
-        .hex("#27ae60")
-        .bold(`success, ${projectName} is created!\n`)
+      chalkStyle(`Success, ${projectName} is created! \n`)
     );
 
     const { isInstall } = await inquirerPrompt(
-      installTypeData
+      installDependenciesData
     );
 
     if (
       isInstall &&
       exec(`cd ${projectName} && yarn`).code != 0
     ) {
-      throw "fail, install dependencies!";
+      throw "Fail, install dependencies!";
     }
 
     spinner.succeed(
-      chalk
-        .hex("#27ae60")
-        .bold(
-          `done, you can run 'yarn start' to start ${projectName}. \n`
-        )
+      chalkStyle(
+        `Done, you can run 'yarn start' to start ${projectName}. \n`
+      )
     );
+
   } catch (err) {
     spinner.fail(chalk.red(err));
     spinner.stop();

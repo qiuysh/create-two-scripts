@@ -8,17 +8,12 @@
     "babel",
     "sass",
     "scss",
+    "less",
     "webpack v5"
   ],
-  "bin": {
-    "two": "bin/index.js"
-  },
-  "main": "index.js",
   "private": "true",
-  "workspaces": [
-    "packages/*"
-  ],
   "scripts": {
+    "build": "yarn workspaces create-two-scripts run build",
     "release": "standard-version -r 1.0.9",
     "eslint:test": "eslint './packages/**/*' --ext .js,.ts",
     "lint:fix": "eslint './packages/**/*' --fix --ext .js,.ts",
@@ -82,5 +77,8 @@
     "prettier": "^2.2.1",
     "standard-version": "^9.1.0",
     "typescript": "^4.6.3"
-  }
+  },
+  "workspaces": [
+    "packages/*"
+  ]
 }

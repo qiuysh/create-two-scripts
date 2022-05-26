@@ -1,25 +1,23 @@
 module.exports = {
-  initTypeData: [
+  defaultTempData: [
     {
       type: "list",
       message: "please, select technology stack template",
-      name: "tempType",
+      name: "template",
       choices: [
         {
           name: "React + TypeScript",
-          value: "react_ts",
-          url: "",
+          value: "cts-template-typescript",
           checked: true,
         },
         {
           name: "React + JavaScript",
-          value: "react_js",
-          url: "",
+          value: "cts-template",
         },
       ],
     },
   ],
-  createTypeData: [
+  createPackageData: [
     {
       type: "input",
       name: "name",
@@ -35,11 +33,16 @@ module.exports = {
       name: "author",
       message: "author",
     },
+    {
+      type: "input",
+      name: "license",
+      message: "license",
+    },
   ],
-  installTypeData: [
+  installDependenciesData: [
     {
       type: "list",
-      message: "continue install dependencies ？",
+      message: "Continue install dependencies ？",
       name: "isInstall",
       choices: [
         {
@@ -52,15 +55,6 @@ module.exports = {
           value: false,
         },
       ],
-    },
-  ],
-
-  checkedPort: [
-    {
-      type: "confirm",
-      message: "continue install dependencies ？",
-      name: "changeport",
-      default: true,
     },
   ],
 };

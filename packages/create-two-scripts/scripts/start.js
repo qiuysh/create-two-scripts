@@ -17,7 +17,7 @@ async function checkPort(port) {
   const option = [
     {
       type: "confirm",
-      message: `the port ${port} has been used, use a new port ${newPort} instead ? `,
+      message: `The port ${port} has been used, use new port ${newPort} instead ? `,
       name: "changePort",
       default: true,
     },
@@ -27,7 +27,7 @@ async function checkPort(port) {
   }
   const { changePort } = await inquirerPrompt(option);
   if (!changePort) {
-    throw "process has reject!";
+    throw "Process has reject!";
   }
   return newPort;
 }
