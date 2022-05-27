@@ -3,8 +3,10 @@ node_modules
 .vscode
 .DS_Store
 .git
-template
+packages/cts-template-typescript
+packages/cts-template
 *.md
 yarn.lock
 pnpm-lock.yaml
 package.json
+tsconfig.json

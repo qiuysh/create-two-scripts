@@ -17,7 +17,7 @@ create-two-scripts， 一个简易的 react 应用前端脚手架工具
 
 ### 说明
 
-node >= 10.13.0 和 webpack >= 5.x，当前仅支持的模版 react + ts，
+node >= 10.13.0 和 webpack >= 5.x，当前支持的模版 react + ts/js
 
 ### 使用
 
@@ -70,11 +70,19 @@ module.exports = {
 
 
 
-使用示例
+使用 esbuild 示例
 
 ```js
 two start -es
 two build -es
+```
+
+
+使用 js 示例，默认支持ts
+
+```js
+two start --ts=false
+two build --ts=false
 ```
 
 

@@ -1,0 +1,30 @@
+{
+  "name": "cts-template",
+  "version": "1.0.0",
+  "description": "The base javascript template for Create Two Scripts.",
+  "keywords": [
+    "react",
+    "create-two-scripts",
+    "template"
+  ],
+  "main": "index.js",
+  "author": "wulin",
+  "license": "MIT",
+  "engines": {
+    "node": ">=10.13.0"
+  },
+  "bugs": {
+    "url": "https://github.com/qiuysh/create-two-scripts/issues"
+  },
+  "files": [
+    "template"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/qiuysh/create-two-scripts",
+    "directory": "packages/cts-template"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  }
+}

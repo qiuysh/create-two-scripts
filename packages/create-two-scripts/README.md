@@ -68,8 +68,6 @@ module.exports = {
 | Use esbuild| -es, --esbuild | development / production | Support esbuild, ast based babel plugins are not supported.(ex: babel-plugin-import)|
 | Custom port| -p, --port | development | Set port inline|
 
-
-
 use esbuild demo
 
 ```js
