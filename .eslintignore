@@ -4,6 +4,7 @@ node_modules
 .DS_Store
 .git
 packages/cts-template-typescript
+packages/cts-template
 *.md
 yarn.lock
 pnpm-lock.yaml
