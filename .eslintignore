@@ -9,3 +9,4 @@ packages/cts-template
 yarn.lock
 pnpm-lock.yaml
 package.json
+tsconfig.json
