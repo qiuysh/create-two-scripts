@@ -108,6 +108,6 @@ function createLoaders({ esbuild, ts, hot }) {
       ],
     },
   ];
-};
+}
 
 export default createLoaders;

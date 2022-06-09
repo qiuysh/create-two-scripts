@@ -12,7 +12,7 @@ const appDirectory = realpathSync(process.cwd());
 function getReadFilePath(path: string): string {
   return isAbsolute(path)
     ? path
-    : resolve(realpathSync(process.cwd()), path);
+    : resolve(appDirectory, path);
 }
 
 /**
@@ -36,5 +36,5 @@ export {
   appModules,
   appDirectory,
   getReadFilePath,
-  getUserConf
+  getUserConf,
 };

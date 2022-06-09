@@ -2,7 +2,7 @@ import CssMinimizerPlugin from "css-minimizer-webpack-plugin";
 import TerserPlugin from "terser-webpack-plugin";
 import { ESBuildMinifyPlugin } from "esbuild-loader";
 
-function optimization (opts) {
+function optimization(opts) {
   const { esbuild } = opts;
 
   const defaultMinimizer: any[] = [];
@@ -40,6 +40,6 @@ function optimization (opts) {
     moduleIds: "deterministic",
     minimizer: defaultMinimizer,
   };
-};
+}
 
 export default optimization;

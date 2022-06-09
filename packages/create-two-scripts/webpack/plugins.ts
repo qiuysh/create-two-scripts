@@ -4,11 +4,14 @@ import HtmlWebpackPlugin from "html-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import CaseSensitivePathsPlugin from "case-sensitive-paths-webpack-plugin";
 import ReactRefreshPlugin from "@pmmmwh/react-refresh-webpack-plugin";
-import { appHtml, appPackageJson } from "../utils/defaultPaths";
+import {
+  appHtml,
+  appPackageJson,
+} from "../utils/defaultPaths";
 
 function createPlugins({ esbuild, hot }) {
   // cache options
-  const cacheOptions: any = {
+  const cacheOptions: unknown = {
     antd: {
       name: "antd",
       test: /[\\/]node_modules[\\/]antd[\\/]/,
@@ -73,6 +76,6 @@ function createPlugins({ esbuild, hot }) {
 
     hot && new ReactRefreshPlugin(),
   ].filter(e => e);
-};
+}
 
 export default createPlugins;

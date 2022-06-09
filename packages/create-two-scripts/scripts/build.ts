@@ -1,17 +1,17 @@
 import webpack from "webpack";
 import { merge } from "webpack-merge";
-import getProdWebpackConf from "../webpack/base";
+import getBaseWebpackConf from "../webpack/base";
 import { getUserConf } from "../utils/defaultPaths";
 import { message } from "../utils";
 
-function build (opts) {
+function build(opts) {
   try {
     // get base webpack config
-    const webpackProdConfig = getProdWebpackConf(opts);
+    const webpackBaseConfig = getBaseWebpackConf(opts);
 
     const appUserConf = getUserConf();
 
-    const webpackConfig = merge(webpackProdConfig, {
+    const webpackConfig = merge(webpackBaseConfig, {
       ...appUserConf,
       devServer: {},
     });
@@ -23,10 +23,10 @@ function build (opts) {
         throw err;
       }
     });
-  } catch (err: any) {
+  } catch (err) {
     message("error", err);
     process.exit(1);
   }
-};
+}
 
 export default build;

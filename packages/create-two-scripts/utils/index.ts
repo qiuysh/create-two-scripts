@@ -29,9 +29,4 @@ function message(key: string, msg: string): void {
   }
 }
 
-export {
-  program,
-  prompt,
-  message,
-  error, warn, info
-};
+export { program, prompt, message, error, warn, info };

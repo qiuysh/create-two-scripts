@@ -1,4 +1,4 @@
-const { env, argv } = process; 
+const { env, argv } = process;
 
 const defaultTempData = [
   {
@@ -24,25 +24,25 @@ const createPackageData = [
     type: "input",
     name: "name",
     message: `package name`,
-    default: argv[argv.length - 1]
+    default: argv[argv.length - 1],
   },
   {
     type: "input",
     name: "description",
     message: "description",
-    default: "a spa application with react"
+    default: "a spa application with react",
   },
   {
     type: "input",
     name: "author",
     message: "author",
-    default: env.USER
+    default: env.USER,
   },
   {
     type: "input",
     name: "license",
     message: "license",
-    default: "MIT"
+    default: "MIT",
   },
 ];
 
@@ -63,7 +63,7 @@ const installDependenciesData = [
       },
     ],
   },
-]
+];
 
 export {
   defaultTempData,

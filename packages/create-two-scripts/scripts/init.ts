@@ -4,33 +4,40 @@ import chalk from "chalk";
 import fs from "fs-extra";
 import { exec } from "shelljs";
 import os from "os";
-import { prompt } from"../utils";
+import { prompt } from "../utils";
 import {
   defaultTempData,
   createPackageData,
   installDependenciesData,
 } from "../utils/iMessage";
 
-
 function getTemplateDir(template, projectDir) {
-  let templatePath: any = null;
-  const type = ['-d', '--debug'];
+  let templatePath: string | undefineds;
+  const type = ["-d", "--debug"];
   const { argv } = process;
-  const debug = argv.length === 5 ? type.includes(argv[argv.length - 2]) : false;
+  const debug =
+    argv.length === 5
+      ? type.includes(argv[argv.length - 2])
+      : false;
   if (debug && module) {
-    templatePath = module.path.replace('create-two-scripts/scripts', template);
+    templatePath = module.path.replace(
+      "create-two-scripts/scripts",
+      template
+    );
   } else {
     exec(`cd ${projectDir}`);
     exec(`yarn add ${template}`);
-    templatePath = path.join(projectDir, 'node_modules', template);
+    templatePath = path.join(
+      projectDir,
+      "node_modules",
+      template
+    );
   }
-  return path.join(templatePath, 'template');
+  return path.join(templatePath, "template");
 }
 
 function chalkStyle(params) {
-  return chalk
-    .hex("#27ae60")
-    .bold(params)
+  return chalk.hex("#27ae60").bold(params);
 }
 
 /**
@@ -51,11 +58,16 @@ async function init(name) {
     // choose template
     const { template } = await prompt(defaultTempData);
 
-    const { name, description, author, license = "MIT" } = await prompt(createPackageData);
+    const {
+      name,
+      description,
+      author,
+      license = "MIT",
+    } = await prompt(createPackageData);
 
     const initPackageJson: any = {
       name,
-      version: '1.0.0',
+      version: "1.0.0",
       private: true,
       description,
       author,
@@ -70,32 +82,38 @@ async function init(name) {
     }, 1000);
 
     fs.writeFileSync(
-      path.join(projectDir, 'package.json'),
+      path.join(projectDir, "package.json"),
       JSON.stringify(initPackageJson, null, 2) + os.EOL
     );
 
-    const templateDir = getTemplateDir(template, projectDir);
+    const templateDir = getTemplateDir(
+      template,
+      projectDir
+    );
 
-    fs.copySync(templateDir, projectDir)
+    fs.copySync(templateDir, projectDir);
 
     const templatePackageJson = fs.readJSONSync(
-      projectDir + '/package.json',
+      projectDir + "/package.json",
       "utf-8"
     );
 
     const projectPackageJson = {
       ...initPackageJson,
-      ...templatePackageJson
+      ...templatePackageJson,
     };
 
     fs.writeFileSync(
-      path.join(rootDir, projectName, 'package.json'),
+      path.join(rootDir, projectName, "package.json"),
       JSON.stringify(projectPackageJson, null, 2) + os.EOL
     );
 
     // remove cts template
-    if (initPackageJson.dependencies && initPackageJson.dependencies[template]) {
-      exec(`cd ${projectName} && yarn remove ${template}`)
+    if (
+      initPackageJson.dependencies &&
+      initPackageJson.dependencies[template]
+    ) {
+      exec(`cd ${projectName} && yarn remove ${template}`);
     }
 
     spinner.succeed(
@@ -118,7 +136,6 @@ async function init(name) {
         `Done, you can run 'yarn start' to start ${projectName}. \n`
       )
     );
-
   } catch (err) {
     spinner.fail(chalk.red(err));
     spinner.stop();

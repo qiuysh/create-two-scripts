@@ -2,9 +2,11 @@ import webpack from "webpack";
 import { merge } from "webpack-merge";
 import webpackDevServer from "webpack-dev-server";
 import detectPort from "detect-port";
-import getDevWebpackConf from "../webpack/base.js";
-import defaultServer from "../webpack/devServer";
-import { getUserConf } from "../utils/defaultPaths";
+import getBaseWebpackConf from "../webpack/base.js";
+import {
+  getUserConf,
+  appPublic,
+} from "../utils/defaultPaths";
 import { message, prompt } from "../utils";
 
 /**
@@ -32,40 +34,63 @@ async function checkPort(port) {
   return newPort;
 }
 
-async function start (opts) {
-  const { port } = opts;
-  
-  opts.hot = true;
+function getDevServer(customServer) {
+  return {
+    allowedHosts: "auto",
+    client: {
+      logging: "info",
+      overlay: {
+        errors: true,
+        warnings: false,
+      },
+      progress: true,
+    },
+    compress: true,
+    hot: true,
+    host: "0.0.0.0",
+    historyApiFallback: true,
+    open: true,
+    port: 3001,
+    static: {
+      directory: appPublic,
+    },
+    ...customServer,
+  };
+}
 
-  opts.ts = typeof opts.ts === "string" ? opts.ts === 'true' : true;
+async function start(opts) {
+  const { port, hot = true, ts = true } = opts;
+
+  opts.ts =
+    typeof opts.ts === "string" ? opts.ts === "true" : true;
 
   try {
     // user custom webpack config
     const appUserConf = getUserConf();
     // webpack config
-    const webpackDevConfig = getDevWebpackConf(opts);
+    const webpackBaseConfig = getBaseWebpackConf(opts);
 
-    const webpackConf = merge(webpackDevConfig, {
+    const webpackConf = merge(webpackBaseConfig, {
       devtool: "eval-cheap-module-source-map",
       ...appUserConf,
     });
     // webpack config instance
     const compiler = webpack(webpackConf);
 
-    const finallyDevServer = {
-      ...defaultServer,
-      ...appUserConf.devServer,
-    };
+    const defaultServer = getDevServer(
+      appUserConf.devServer
+    );
+
     // inline port overwrite devServer port
     const realPort = await checkPort(
-      port || finallyDevServer.port
+      port || defaultServer.port
     );
     // get real server port
-    finallyDevServer.port = realPort;
+    defaultServer.port = realPort;
 
     // devServer config
     const server = new webpackDevServer(
-      finallyDevServer,
+      defaultServer,
       compiler
     );
     // devServer start callback
@@ -74,10 +99,10 @@ async function start (opts) {
         throw err;
       }
     });
-  } catch (err: any) {
+  } catch (err) {
     message("error", err);
     process.exit(500);
   }
-};
+}
 
 export default start;

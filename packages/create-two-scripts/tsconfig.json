@@ -2,10 +2,7 @@
   "compilerOptions": {
     "target": "ES5",
     "module": "CommonJS",
-    "lib": [
-      "es6",
-      "dom"
-    ],
+    "lib": ["es6", "dom"],
     "outDir": "lib",
     "declaration": true,
     "removeComments": true,
@@ -18,22 +15,13 @@
     "baseUrl": "./",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "typeRoots": [
-      "./node_modules/@types",
-      "./typings"
-    ],
-    "types": [
-      "node"
-    ]
+    "typeRoots": ["./node_modules/@types", "./typings"],
+    "types": ["node"]
   },
   "include": [
     "./scripts/*.ts",
     "./utils/*.ts",
-    "./webpack/*.ts",
+    "./webpack/*.ts"
   ],
-  "exclude": [
-    "node_modules",
-    "lib",
-    "bin",
-  ]
+  "exclude": ["node_modules", "lib", "bin"]
 }
