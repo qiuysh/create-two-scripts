@@ -1,7 +1,8 @@
-const program = require("commander");
-const inquirer = require("inquirer");
-const chalk = require("chalk");
-const { log } = console;
+import program from "commander";
+import inquirer from "inquirer";
+import chalk from "chalk";
+
+const { log, error, warn, info } = console;
 
 /**
  *
@@ -11,7 +12,7 @@ async function prompt(type) {
   return inquirer.prompt(type);
 }
 
-function message(key, msg) {
+function message(key: string, msg: string): void {
   switch (key) {
     case "success":
       log(`${chalk.hex("#27ae60").bold(msg)}\n`);
@@ -28,8 +29,9 @@ function message(key, msg) {
   }
 }
 
-module.exports = {
+export {
   program,
   prompt,
   message,
+  error, warn, info
 };

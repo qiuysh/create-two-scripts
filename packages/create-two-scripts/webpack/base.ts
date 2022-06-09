@@ -1,22 +1,25 @@
-const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
-const getplugins = require("./plugins");
-const getLoaders = require("./loaders");
-const getOptimization = require("./optimization");
-const paths = require("./defaultPaths");
+import { Configuration } from "webpack";
+import TsconfigPathsPlugin from "tsconfig-paths-webpack-plugin";
+import createPlugins from "./plugins";
+import createLoaders from "./loaders";
+import getOptimization from "./optimization";
+import { appSrc, appDist, appDirectory, getReadFilePath } from "../utils/defaultPaths";
 
-module.exports = function (opts) {
+function webpackConfig (opts) {
   const { ts } = opts;
 
-  const isDev = process.env.NODE_ENV === "development";
+  const nodeEnv = process.env.NODE_ENV;
+
+  const isDev: boolean = nodeEnv === "development";
 
   // entry config
   const entry = {
-    app: paths.appSrc + "/index",
+    app: appSrc + "/index",
   };
 
   // output config
   const output = {
-    path: paths.appDist,
+    path: appDist,
     filename: isDev
       ? "js/[name].js"
       : "js/[name].[contenthash].js",
@@ -27,16 +30,16 @@ module.exports = function (opts) {
   };
 
   // loaders config
-  const loaders = getLoaders(opts);
+  const loaders = createLoaders(opts);
 
   // plugins config
-  const plugins = getplugins(opts);
+  const plugins = createPlugins(opts);
 
   // optimization config
-  const optimizations = getOptimization(opts);
+  const optimizations:any = getOptimization(opts);
 
   // extensions config
-  const extensions = [
+  const extensions: string [] = [
     ".js",
     ".ts",
     ".jsx",
@@ -47,10 +50,12 @@ module.exports = function (opts) {
     ".sass",
   ];
 
+  const mode: any = nodeEnv;
+
   // default webpack config
-  const webpackBaseConfig = {
-    context: paths.appDirectory,
-    mode: process.env.NODE_ENV || "development",
+  const webpackBaseConfig: Configuration = {
+    context: appDirectory,
+    mode,
     devtool: false,
     entry,
     output,
@@ -70,11 +75,7 @@ module.exports = function (opts) {
     stats: {
       errorDetails: true,
     },
-    optimization: {
-      minimize: false,
-      minimizer: [],
-      ...optimizations,
-    },
+    optimization: optimizations,
     externals: {},
     node: false,
     target: "web",
@@ -85,16 +86,18 @@ module.exports = function (opts) {
 
   if (ts) {
     // support ts paths link to webpack resolve alias
-    const appTsConfig = paths.getReadFilePath("tsconfig.json")
+    const appTsConfig = getReadFilePath("tsconfig.json")
     const option = {
       configFile: appTsConfig,
       extensions,
     };
     const { resolve } = webpackBaseConfig;
     // tsconfig instance
-    const tsconfigPaths = new TsconfigPathsPlugin(option);
-    resolve.plugins.push(tsconfigPaths);
+    const tsconfigPaths: any = new TsconfigPathsPlugin(option);
+    resolve?.plugins?.push(tsconfigPaths);
   }
 
   return webpackBaseConfig;
 };
+
+export default webpackConfig;

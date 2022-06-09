@@ -1,10 +1,4 @@
 {
-  "name": "demo2",
-  "version": "1.0.0",
-  "private": true,
-  "description": "",
-  "author": "",
-  "license": "",
   "main": "index.js",
   "scripts": {
     "start": "two start --ts=false -es",
@@ -45,7 +39,7 @@
   "devDependencies": {
     "@commitlint/cli": "^16.2.3",
     "@commitlint/config-conventional": "^16.2.1",
-    "create-two-scripts": "^1.0.9",
+    "create-two-scripts": "^2.0.0",
     "cross-env": "^6.0.3",
     "cz-conventional-changelog": "^3.3.0",
     "enzyme": "^3.11.0",

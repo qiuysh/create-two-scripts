@@ -1,0 +1,11 @@
+declare const appDist: string;
+declare const appPublic: string;
+declare const appHtml: string;
+declare const appConfig: string;
+declare const appPackageJson: string;
+declare const appSrc: string;
+declare const appModules: string;
+declare const appDirectory: string;
+declare function getReadFilePath(path: string): string;
+declare function getUserConf(): any;
+export { appDist, appPublic, appHtml, appConfig, appPackageJson, appSrc, appModules, appDirectory, getReadFilePath, getUserConf };

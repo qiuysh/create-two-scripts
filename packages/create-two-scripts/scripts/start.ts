@@ -1,11 +1,11 @@
-const webpack = require("webpack");
-const { merge } = require("webpack-merge");
-const webpackDevServer = require("webpack-dev-server");
-const detectPort = require("detect-port");
-const getDevWebpackConf = require("../webpack/base.js");
-const defaultServer = require("../webpack/devServer");
-const { getUserConf } = require("../webpack/defaultPaths");
-const { message, prompt } = require("../utils");
+import webpack from "webpack";
+import { merge } from "webpack-merge";
+import webpackDevServer from "webpack-dev-server";
+import detectPort from "detect-port";
+import getDevWebpackConf from "../webpack/base.js";
+import defaultServer from "../webpack/devServer";
+import { getUserConf } from "../utils/defaultPaths";
+import { message, prompt } from "../utils";
 
 /**
  * check port
@@ -32,7 +32,7 @@ async function checkPort(port) {
   return newPort;
 }
 
-module.exports = async function (opts) {
+async function start (opts) {
   const { port } = opts;
   
   opts.hot = true;
@@ -74,8 +74,10 @@ module.exports = async function (opts) {
         throw err;
       }
     });
-  } catch (err) {
+  } catch (err: any) {
     message("error", err);
     process.exit(500);
   }
 };
+
+export default start;

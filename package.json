@@ -1,6 +1,6 @@
 {
   "name": "create-two-scripts",
-  "version": "1.0.9",
+  "version": "2.0.0",
   "description": "A simple react application front-end scaffolding tool",
   "keywords": [
     "react",
@@ -14,7 +14,7 @@
   "private": "true",
   "scripts": {
     "build": "yarn workspaces create-two-scripts run build",
-    "release": "standard-version -r 1.0.9",
+    "release": "standard-version -r 2.0.0",
     "eslint:test": "eslint './packages/**/*' --ext .js,.ts",
     "lint:fix": "eslint './packages/**/*' --fix --ext .js,.ts",
     "prettier": "prettier './packages/**/*' --write "

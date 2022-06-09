@@ -66,7 +66,7 @@
 * update webpack  base config ([c787690](https://github.com/qiuysh/create-two-scripts/commit/c78769031a2cc403d0f6767ffdfb593966095bb2))
 * update webpack config ([d51e631](https://github.com/qiuysh/create-two-scripts/commit/d51e631725c2308d64e92cf22fc717f6f3a64bbd))
 
-### 1.0.9-alpha (2022-03-24)
+### 2.0.0-alpha (2022-03-24)
 
 
 ### 🐛 Bug Fixes | Bug 修复

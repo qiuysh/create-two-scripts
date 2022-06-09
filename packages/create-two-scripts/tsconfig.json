@@ -6,10 +6,10 @@
       "es6",
       "dom"
     ],
-    "outDir": "dist",
+    "outDir": "lib",
     "declaration": true,
     "removeComments": true,
-    "rootDir": "./src",
+    "rootDir": "./",
     "strict": true,
     "skipLibCheck": true,
     "moduleResolution": "node",
@@ -20,17 +20,20 @@
     "esModuleInterop": true,
     "typeRoots": [
       "./node_modules/@types",
-      "./scr/typings"
+      "./typings"
     ],
     "types": [
       "node"
     ]
   },
   "include": [
-    "./src/*.ts"
+    "./scripts/*.ts",
+    "./utils/*.ts",
+    "./webpack/*.ts",
   ],
   "exclude": [
     "node_modules",
-    "dist"
+    "lib",
+    "bin",
   ]
 }

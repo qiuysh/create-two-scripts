@@ -1,15 +1,14 @@
-const webpack = require("webpack");
-const { ESBuildPlugin } = require("esbuild-loader");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const CaseSensitivePathsPlugin = require("case-sensitive-paths-webpack-plugin");
-const ReactRefreshPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
-const paths = require("./defaultPaths");
+import webpack from "webpack";
+import { ESBuildPlugin } from "esbuild-loader";
+import HtmlWebpackPlugin from "html-webpack-plugin";
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import CaseSensitivePathsPlugin from "case-sensitive-paths-webpack-plugin";
+import ReactRefreshPlugin from "@pmmmwh/react-refresh-webpack-plugin";
+import { appHtml, appPackageJson } from "../utils/defaultPaths";
 
-module.exports = function (opts) {
-  const { esbuild, hot } = opts;
+function createPlugins({ esbuild, hot }) {
   // cache options
-  const cacheOptions = {
+  const cacheOptions: any = {
     antd: {
       name: "antd",
       test: /[\\/]node_modules[\\/]antd[\\/]/,
@@ -45,8 +44,8 @@ module.exports = function (opts) {
 
     new HtmlWebpackPlugin({
       filename: "index.html",
-      template: paths.appHtml,
-      title: paths.appPackageJson.name,
+      template: appHtml,
+      title: appPackageJson?.name,
       templateParameters: {
         configPath: `config.js`,
       },
@@ -75,3 +74,5 @@ module.exports = function (opts) {
     hot && new ReactRefreshPlugin(),
   ].filter(e => e);
 };
+
+export default createPlugins;

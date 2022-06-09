@@ -1,19 +1,19 @@
-const path = require("path");
-const ora = require("ora");
-const chalk = require("chalk");
-const fs = require("fs-extra");
-const { exec } = require("shelljs");
-const os = require("os");
-const { prompt } = require("../utils");
-const {
+import path from "path";
+import ora from "ora";
+import chalk from "chalk";
+import fs from "fs-extra";
+import { exec } from "shelljs";
+import os from "os";
+import { prompt } from"../utils";
+import {
   defaultTempData,
   createPackageData,
   installDependenciesData,
-} = require("../utils/defaultInquirer");
+} from "../utils/iMessage";
 
 
 function getTemplateDir(template, projectDir) {
-  let templatePath = null;
+  let templatePath: any = null;
   const type = ['-d', '--debug'];
   const { argv } = process;
   const debug = argv.length === 5 ? type.includes(argv[argv.length - 2]) : false;
@@ -38,10 +38,10 @@ function chalkStyle(params) {
  * @param {*} args
  */
 async function init(name) {
-  const projectName = name;
-  const rootDir = process.cwd();
-  const projectDir = `${rootDir}/${projectName}`;
-  const spinner = ora("Initializing the project...\n");
+  const projectName: string = name;
+  const rootDir: string = process.cwd();
+  const projectDir: string = `${rootDir}/${projectName}`;
+  const spinner: any = ora("Initializing the project...\n");
 
   try {
     if (fs.existsSync(projectName)) {
@@ -53,7 +53,7 @@ async function init(name) {
 
     const { name, description, author, license = "MIT" } = await prompt(createPackageData);
 
-    const initPackageJson = {
+    const initPackageJson: any = {
       name,
       version: '1.0.0',
       private: true,
@@ -126,4 +126,4 @@ async function init(name) {
   }
 }
 
-module.exports = init;
+export default init;

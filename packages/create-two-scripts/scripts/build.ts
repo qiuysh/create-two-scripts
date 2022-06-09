@@ -1,12 +1,11 @@
-const webpack = require("webpack");
-const { merge } = require("webpack-merge");
-const getProdWebpackConf = require("../webpack/base.js");
-const { getUserConf } = require("../webpack/defaultPaths");
-const { message } = require("../utils");
+import webpack from "webpack";
+import { merge } from "webpack-merge";
+import getProdWebpackConf from "../webpack/base";
+import { getUserConf } from "../utils/defaultPaths";
+import { message } from "../utils";
 
-module.exports = function (opts) {
+function build (opts) {
   try {
-    opts.ts = typeof opts.ts === "string" ? opts.ts === 'true' : true;
     // get base webpack config
     const webpackProdConfig = getProdWebpackConf(opts);
 
@@ -24,8 +23,10 @@ module.exports = function (opts) {
         throw err;
       }
     });
-  } catch (err) {
+  } catch (err: any) {
     message("error", err);
     process.exit(1);
   }
 };
+
+export default build;

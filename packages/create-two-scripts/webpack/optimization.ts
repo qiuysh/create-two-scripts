@@ -1,11 +1,11 @@
-const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
-const TerserPlugin = require("terser-webpack-plugin");
-const { ESBuildMinifyPlugin } = require("esbuild-loader");
+import CssMinimizerPlugin from "css-minimizer-webpack-plugin";
+import TerserPlugin from "terser-webpack-plugin";
+import { ESBuildMinifyPlugin } from "esbuild-loader";
 
-module.exports = function (opts) {
+function optimization (opts) {
   const { esbuild } = opts;
 
-  const defaultMinimizer = [];
+  const defaultMinimizer: any[] = [];
 
   // support esbuild compress
   if (esbuild) {
@@ -41,3 +41,5 @@ module.exports = function (opts) {
     minimizer: defaultMinimizer,
   };
 };
+
+export default optimization;

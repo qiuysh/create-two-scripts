@@ -1,6 +1,6 @@
-const paths = require("./defaultPaths");
+import { appPublic }  from "../utils/defaultPaths";
 
-module.exports = {
+export default {
   allowedHosts: "auto",
   client: {
     logging: "info",
@@ -17,6 +17,6 @@ module.exports = {
   open: true,
   port: 3001,
   static: {
-    directory: paths.appPublic,
+    directory: appPublic,
   },
 };
