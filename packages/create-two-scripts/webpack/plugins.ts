@@ -11,7 +11,7 @@ import {
 
 function createPlugins({ esbuild, hot }) {
   // cache options
-  const cacheOptions: unknown = {
+  const cacheOptions = {
     antd: {
       name: "antd",
       test: /[\\/]node_modules[\\/]antd[\\/]/,

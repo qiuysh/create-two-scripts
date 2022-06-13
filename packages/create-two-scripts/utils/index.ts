@@ -12,7 +12,7 @@ async function prompt(type) {
   return inquirer.prompt(type);
 }
 
-function message(key: string, msg: string): void {
+function message(key, msg) {
   switch (key) {
     case "success":
       log(`${chalk.hex("#27ae60").bold(msg)}\n`);

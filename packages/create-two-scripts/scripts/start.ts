@@ -8,6 +8,7 @@ import {
   appPublic,
 } from "../utils/defaultPaths";
 import { message, prompt } from "../utils";
+import { OptsProps } from "../typings";
 
 /**
  * check port
@@ -58,11 +59,12 @@ function getDevServer(customServer) {
   };
 }
 
-async function start(opts) {
-  const { port, hot = true, ts = true } = opts;
 
-  opts.ts =
-    typeof opts.ts === "string" ? opts.ts === "true" : true;
+async function start(opts: OptsProps) {
+  const { port } = opts;
+
+  // opts.ts =
+  //   typeof opts.ts === "string" ? opts.ts === "true" : true;
 
   try {
     // user custom webpack config

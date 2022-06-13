@@ -12,7 +12,7 @@ import {
 } from "../utils/iMessage";
 
 function getTemplateDir(template, projectDir) {
-  let templatePath: string | undefineds;
+  let templatePath;
   const type = ["-d", "--debug"];
   const { argv } = process;
   const debug =
@@ -45,10 +45,10 @@ function chalkStyle(params) {
  * @param {*} args
  */
 async function init(name) {
-  const projectName: string = name;
-  const rootDir: string = process.cwd();
-  const projectDir: string = `${rootDir}/${projectName}`;
-  const spinner: any = ora("Initializing the project...\n");
+  const projectName = name;
+  const rootDir = process.cwd();
+  const projectDir = `${rootDir}/${projectName}`;
+  const spinner = ora("Initializing the project...\n");
 
   try {
     if (fs.existsSync(projectName)) {
@@ -65,7 +65,7 @@ async function init(name) {
       license = "MIT",
     } = await prompt(createPackageData);
 
-    const initPackageJson: any = {
+    const initPackageJson = {
       name,
       version: "1.0.0",
       private: true,

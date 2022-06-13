@@ -36,8 +36,5 @@
     "@babel/preset-react": "^7.16.7",
     "@babel/preset-typescript": "^7.16.7",
     "@babel/runtime": "^7.17.2"
-  },
-  "devDependencies": {
-    "standard-version": "^9.1.0"
   }
 }

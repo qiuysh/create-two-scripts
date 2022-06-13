@@ -1,4 +1,3 @@
-import { Configuration } from "webpack";
 import TsconfigPathsPlugin from "tsconfig-paths-webpack-plugin";
 import createPlugins from "./plugins";
 import createLoaders from "./loaders";
@@ -10,12 +9,12 @@ import {
   getReadFilePath,
 } from "../utils/defaultPaths";
 
+const { NODE_ENV } = process.env;
+
 function webpackConfig(opts) {
   const { ts } = opts;
 
-  const nodeEnv: string | undefined = process.env.NODE_ENV;
-
-  const isDev: boolean = nodeEnv === "development" || false;
+  const isDev = NODE_ENV === "development" || false;
 
   // entry config
   const entry = {
@@ -41,10 +40,10 @@ function webpackConfig(opts) {
   const plugins = createPlugins(opts);
 
   // optimization config
-  const optimizations: any = getOptimization(opts);
+  const optimizations = getOptimization(opts);
 
   // extensions config
-  const extensions: string[] = [
+  const extensions = [
     ".js",
     ".ts",
     ".jsx",
@@ -55,12 +54,10 @@ function webpackConfig(opts) {
     ".sass",
   ];
 
-  const mode: any = nodeEnv;
-
   // default webpack config
-  const webpackBaseConfig: Configuration = {
+  const webpackBaseConfig = {
     context: appDirectory,
-    mode,
+    mode: NODE_ENV,
     devtool: false,
     entry,
     output,
@@ -98,10 +95,8 @@ function webpackConfig(opts) {
     };
     const { resolve } = webpackBaseConfig;
     // tsconfig instance
-    const tsconfigPaths: any = new TsconfigPathsPlugin(
-      option
-    );
-    resolve?.plugins?.push(tsconfigPaths);
+    const tsconfigPaths = new TsconfigPathsPlugin(option);
+    resolve.plugins.push(tsconfigPaths);
   }
 
   return webpackBaseConfig;

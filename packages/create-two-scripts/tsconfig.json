@@ -21,7 +21,8 @@
   "include": [
     "./scripts/*.ts",
     "./utils/*.ts",
-    "./webpack/*.ts"
+    "./webpack/*.ts",
+    "./typings/*.ts"
   ],
   "exclude": ["node_modules", "lib", "bin"]
 }
