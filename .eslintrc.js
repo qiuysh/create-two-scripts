@@ -1,5 +1,5 @@
 module.exports = {
-  parser: "@babel/eslint-parser",
+  parser: "@typescript-eslint/parser",
   plugins: ["@typescript-eslint"],
   extends: [
     "eslint:recommended",
@@ -21,6 +21,7 @@ module.exports = {
     node: true,
     commonjs: true,
   },
+  root: true,
   rules: {
     "prefer-const": "warn",
     "no-var": "warn",

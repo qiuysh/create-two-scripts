@@ -1510,6 +1510,16 @@
     semver "^7.3.7"
     tsutils "^3.21.0"
 
+"@typescript-eslint/parser@^5.27.1":
+  version "5.27.1"
+  resolved "https://registry.npmmirror.com/@typescript-eslint/parser/-/parser-5.27.1.tgz#3a4dcaa67e45e0427b6ca7bb7165122c8b569639"
+  integrity sha512-7Va2ZOkHi5NP+AZwb5ReLgNF6nWLGTeUJfxdkVUAPPSaAdbWNnFZzLZ4EGGmmiCTg+AwlbE1KyUYTBglosSLHQ==
+  dependencies:
+    "@typescript-eslint/scope-manager" "5.27.1"
+    "@typescript-eslint/types" "5.27.1"
+    "@typescript-eslint/typescript-estree" "5.27.1"
+    debug "^4.3.4"
+
 "@typescript-eslint/scope-manager@5.27.1":
   version "5.27.1"
   resolved "https://registry.npmmirror.com/@typescript-eslint/scope-manager/-/scope-manager-5.27.1.tgz#4d1504392d01fe5f76f4a5825991ec78b7b7894d"
