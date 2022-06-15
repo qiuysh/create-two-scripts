@@ -1,4 +1,4 @@
-import webpack from "webpack";
+import webpack, { Configuration } from "webpack";
 import { merge } from "webpack-merge";
 import webpackDevServer from "webpack-dev-server";
 import detectPort from "detect-port";
@@ -8,15 +8,15 @@ import {
   appPublic,
 } from "../utils/defaultPaths";
 import { message, prompt } from "../utils";
-import { OptsProps } from "../typings";
+import { OptsProps, PackageProps } from "../typings";
 
 /**
  * check port
  * @param {*} port
  * @returns
  */
-async function checkPort(port) {
-  const newPort = await detectPort(port);
+async function checkPort(port: number) {
+  const newPort: number = await detectPort(port);
   const option = [
     {
       type: "confirm",
@@ -35,7 +35,9 @@ async function checkPort(port) {
   return newPort;
 }
 
-function getDevServer(customServer) {
+function getDevServer(
+  customServer: PackageProps
+): PackageProps {
   return {
     allowedHosts: "auto",
     client: {
@@ -59,12 +61,8 @@ function getDevServer(customServer) {
   };
 }
 
-
 async function start(opts: OptsProps) {
   const { port } = opts;
-
-  // opts.ts =
-  //   typeof opts.ts === "string" ? opts.ts === "true" : true;
 
   try {
     // user custom webpack config
@@ -72,10 +70,14 @@ async function start(opts: OptsProps) {
     // webpack config
     const webpackBaseConfig = getBaseWebpackConf(opts);
 
-    const webpackConf = merge(webpackBaseConfig, {
-      devtool: "eval-cheap-module-source-map",
-      ...appUserConf,
-    });
+    const webpackConf: Configuration = merge(
+      webpackBaseConfig,
+      {
+        devtool: "eval-cheap-module-source-map",
+        mode: "development",
+        ...appUserConf,
+      }
+    );
     // webpack config instance
     const compiler = webpack(webpackConf);
 

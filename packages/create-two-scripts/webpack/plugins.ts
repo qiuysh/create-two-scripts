@@ -4,14 +4,11 @@ import HtmlWebpackPlugin from "html-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import CaseSensitivePathsPlugin from "case-sensitive-paths-webpack-plugin";
 import ReactRefreshPlugin from "@pmmmwh/react-refresh-webpack-plugin";
-import {
-  appHtml,
-  appPackageJson,
-} from "../utils/defaultPaths";
+import { appHtml } from "../utils/defaultPaths";
 
 function createPlugins({ esbuild, hot }) {
   // cache options
-  const cacheOptions = {
+  const cacheOptions: any = {
     antd: {
       name: "antd",
       test: /[\\/]node_modules[\\/]antd[\\/]/,
@@ -42,15 +39,16 @@ function createPlugins({ esbuild, hot }) {
     }),
 
     new webpack.ProgressPlugin(),
+
     // https://github.com/Urthen/case-sensitive-paths-webpack-plugin#readme
     new CaseSensitivePathsPlugin(),
 
     new HtmlWebpackPlugin({
       filename: "index.html",
       template: appHtml,
-      title: appPackageJson?.name,
+      title: "create app",
       templateParameters: {
-        configPath: `config.js`,
+        configPath: "config.js",
       },
       inject: "body",
     }),
@@ -75,7 +73,7 @@ function createPlugins({ esbuild, hot }) {
     esbuild && new ESBuildPlugin(),
 
     hot && new ReactRefreshPlugin(),
-  ].filter(e => e);
+  ].filter(Boolean);
 }
 
 export default createPlugins;

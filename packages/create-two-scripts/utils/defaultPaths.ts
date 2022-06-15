@@ -9,7 +9,7 @@ const appSrc = getReadFilePath("src");
 const appModules = getReadFilePath("node_modules");
 const appDirectory = realpathSync(process.cwd());
 
-function getReadFilePath(path) {
+function getReadFilePath(path: string): string {
   return isAbsolute(path)
     ? path
     : resolve(appDirectory, path);

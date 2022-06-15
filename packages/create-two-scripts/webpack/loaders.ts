@@ -4,7 +4,8 @@ import { appSrc } from "../utils/defaultPaths";
 function createLoaders({ esbuild, ts, hot }) {
   const CssLoader = require.resolve("css-loader");
   const PostcssLoader = require.resolve("postcss-loader");
-  const isDev = process.env.NODE_ENV === "development";
+  const isDev: boolean =
+    process.env.NODE_ENV === "development";
 
   const esbuildLoader = {
     loader: require.resolve("esbuild-loader"),

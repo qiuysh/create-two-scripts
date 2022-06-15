@@ -1,4 +1,4 @@
-import webpack from "webpack";
+import webpack, { Configuration } from "webpack";
 import { merge } from "webpack-merge";
 import getBaseWebpackConf from "../webpack/base";
 import { getUserConf } from "../utils/defaultPaths";
@@ -11,7 +11,8 @@ function build(opts) {
 
     const appUserConf = getUserConf();
 
-    const webpackConfig = merge(webpackBaseConfig, {
+    const webpackConfig: Configuration = merge(webpackBaseConfig, {
+      mode: "production",
       ...appUserConf,
       devServer: {},
     });

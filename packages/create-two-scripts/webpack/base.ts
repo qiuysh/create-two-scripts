@@ -1,4 +1,5 @@
 import TsconfigPathsPlugin from "tsconfig-paths-webpack-plugin";
+import { Options } from "tsconfig-paths-webpack-plugin/lib/options";
 import createPlugins from "./plugins";
 import createLoaders from "./loaders";
 import getOptimization from "./optimization";
@@ -9,12 +10,13 @@ import {
   getReadFilePath,
 } from "../utils/defaultPaths";
 
-const { NODE_ENV } = process.env;
+const { NODE_ENV = "development" } = process.env;
 
 function webpackConfig(opts) {
   const { ts } = opts;
 
-  const isDev = NODE_ENV === "development" || false;
+  const isDev: boolean =
+    NODE_ENV === "development" || false;
 
   // entry config
   const entry = {
@@ -40,10 +42,10 @@ function webpackConfig(opts) {
   const plugins = createPlugins(opts);
 
   // optimization config
-  const optimizations = getOptimization(opts);
+  const optimization = getOptimization(opts);
 
   // extensions config
-  const extensions = [
+  const extensions: string[] = [
     ".js",
     ".ts",
     ".jsx",
@@ -56,47 +58,76 @@ function webpackConfig(opts) {
 
   // default webpack config
   const webpackBaseConfig = {
+    cache: {
+      type: "filesystem",
+    },
     context: appDirectory,
-    mode: NODE_ENV,
     devtool: false,
     entry,
+    externals: {},
+    externalsPresets: {},
+    experiments: false,
     output,
+    optimization,
+    plugins,
+    performance: {
+      hints: false,
+    },
+    infrastructureLogging: {
+      colors: true,
+      level: "verbose",
+    },
     module: {
       rules: loaders,
     },
-    plugins,
+    node: false,
     resolve: {
       modules: ["node_modules"],
       extensions,
       plugins: [],
     },
-    performance: {
-      // 打包性能配置
-      hints: false, // 关闭性能提示
-    },
+    resolveLoader: {},
     stats: {
       errorDetails: true,
     },
-    optimization: optimizations,
-    externals: {},
-    node: false,
+    snapshot: {},
     target: "web",
-    cache: {
-      type: "filesystem",
+    watch: false,
+    watchOptions: {
+      ignored: /node_modules/,
     },
   };
 
   if (ts) {
     // support ts paths link to webpack resolve alias
-    const appTsConfig = getReadFilePath("tsconfig.json");
-    const option = {
+    const appTsConfig: string =
+      getReadFilePath("tsconfig.json");
+    const option: Options = {
       configFile: appTsConfig,
+      baseUrl: undefined,
+      silent: false,
+      logLevel: "WARN",
+      logInfoToStdOut: false,
+      context: undefined,
+      colors: true,
+      mainFields: ["main"],
       extensions,
     };
-    const { resolve } = webpackBaseConfig;
-    // tsconfig instance
-    const tsconfigPaths = new TsconfigPathsPlugin(option);
-    resolve.plugins.push(tsconfigPaths);
+
+    const {
+      resolve: { plugins = [] },
+    } = webpackBaseConfig;
+
+    if (
+      Object.prototype.toString.call(plugins) ===
+      "[object Array]"
+    ) {
+      // tsconfig instance
+      const tsconfigPath: TsconfigPathsPlugin =
+        new TsconfigPathsPlugin(option);
+
+      plugins.push(tsconfigPath);
+    }
   }
 
   return webpackBaseConfig;

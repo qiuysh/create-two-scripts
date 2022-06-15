@@ -1,5 +1,10 @@
 export interface OptsProps {
-  hot: true;
-  ts: true;
+  esbuild: boolean;
+  hot: boolean;
+  ts: boolean;
   port?: number;
+}
+
+export interface PackageProps {
+  [key: string]: any;
 }

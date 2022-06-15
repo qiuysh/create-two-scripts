@@ -11,11 +11,16 @@ import {
   installDependenciesData,
 } from "../utils/iMessage";
 
-function getTemplateDir(template, projectDir) {
-  let templatePath;
-  const type = ["-d", "--debug"];
+import { PackageProps } from "../typings";
+
+function getTemplateDir(
+  template: string,
+  projectDir: string
+): string {
+  let templatePath: string | null = null;
+  const type: string[] = ["-d", "--debug"];
   const { argv } = process;
-  const debug =
+  const debug: boolean =
     argv.length === 5
       ? type.includes(argv[argv.length - 2])
       : false;
@@ -36,7 +41,7 @@ function getTemplateDir(template, projectDir) {
   return path.join(templatePath, "template");
 }
 
-function chalkStyle(params) {
+function chalkStyle(params: string) {
   return chalk.hex("#27ae60").bold(params);
 }
 
@@ -44,11 +49,11 @@ function chalkStyle(params) {
  * create project
  * @param {*} args
  */
-async function init(name) {
-  const projectName = name;
-  const rootDir = process.cwd();
+async function init(name: string) {
+  const projectName: string = name;
+  const rootDir: string = process.cwd();
   const projectDir = `${rootDir}/${projectName}`;
-  const spinner = ora("Initializing the project...\n");
+  const spinner: any = ora("Initializing the project...\n");
 
   try {
     if (fs.existsSync(projectName)) {
@@ -59,19 +64,20 @@ async function init(name) {
     const { template } = await prompt(defaultTempData);
 
     const {
-      name,
+      name = projectName,
       description,
       author,
       license = "MIT",
     } = await prompt(createPackageData);
 
-    const initPackageJson = {
+    const initPackageJson: PackageProps = {
       name,
       version: "1.0.0",
       private: true,
       description,
       author,
       license,
+      dependencies: {},
     };
 
     spinner.start();
@@ -86,19 +92,20 @@ async function init(name) {
       JSON.stringify(initPackageJson, null, 2) + os.EOL
     );
 
-    const templateDir = getTemplateDir(
+    const templateDir: string = getTemplateDir(
       template,
       projectDir
     );
 
     fs.copySync(templateDir, projectDir);
 
-    const templatePackageJson = fs.readJSONSync(
-      projectDir + "/package.json",
-      "utf-8"
-    );
+    const templatePackageJson: PackageProps =
+      fs.readJSONSync(
+        projectDir + "/package.json",
+        "utf-8"
+      );
 
-    const projectPackageJson = {
+    const projectPackageJson: PackageProps = {
       ...initPackageJson,
       ...templatePackageJson,
     };
