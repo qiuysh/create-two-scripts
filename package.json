@@ -13,11 +13,11 @@
   ],
   "private": "true",
   "scripts": {
-    "build": "yarn workspaces create-two-scripts run build",
-    "release": "standard-version -r 2.0.0",
     "eslint:test": "eslint './packages/**/*' --ext .js,.ts",
     "lint:fix": "eslint './packages/**/*' --fix --ext .js,.ts",
-    "prettier": "prettier './packages/**/*' --write "
+    "prettier": "prettier './packages/**/*' --write ",
+    "publish": "yarn workspaces run publish",
+    "unpublish": "yarn workspaces run unpublish"
   },
   "author": "wulin",
   "license": "MIT",
