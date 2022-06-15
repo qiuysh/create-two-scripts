@@ -15,14 +15,13 @@
     "baseUrl": "./",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "typeRoots": ["./node_modules/@types", "./typings"],
+    "typeRoots": ["./node_modules/@types"],
     "types": ["node"]
   },
   "include": [
     "./scripts/*.ts",
     "./utils/*.ts",
     "./webpack/*.ts",
-    "./typings/*.ts"
   ],
   "exclude": ["node_modules", "lib", "bin"]
 }
