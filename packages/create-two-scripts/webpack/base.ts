@@ -1,3 +1,4 @@
+import { Configuration } from "webpack";
 import TsconfigPathsPlugin from "tsconfig-paths-webpack-plugin";
 import { Options } from "tsconfig-paths-webpack-plugin/lib/options";
 import createPlugins from "./plugins";
@@ -6,13 +7,13 @@ import getOptimization from "./optimization";
 import {
   appSrc,
   appDist,
-  appDirectory,
   getReadFilePath,
 } from "../utils/defaultPaths";
+import { OptsProps } from "../typings";
 
 const { NODE_ENV = "development" } = process.env;
 
-function webpackConfig(opts) {
+function webpackConfig(opts: OptsProps): Configuration {
   const { ts } = opts;
 
   const isDev: boolean =
@@ -56,26 +57,31 @@ function webpackConfig(opts) {
     ".sass",
   ];
 
+  const fallback = {
+    events: false,
+    fs: false,
+    path: false,
+    os: false,
+    buffer: require.resolve('buffer'),
+    crypto: require.resolve('crypto-browserify'),
+    stream: require.resolve('stream-browserify'),
+    string_decoder: require.resolve('string_decoder'),
+  };
+
   // default webpack config
   const webpackBaseConfig = {
     cache: {
-      type: "filesystem",
+      type: <const>"filesystem",
     },
-    context: appDirectory,
+    context: process.cwd(),
     devtool: false,
     entry,
     externals: {},
-    externalsPresets: {},
-    experiments: false,
     output,
     optimization,
     plugins,
     performance: {
       hints: false,
-    },
-    infrastructureLogging: {
-      colors: true,
-      level: "verbose",
     },
     module: {
       rules: loaders,
@@ -84,13 +90,13 @@ function webpackConfig(opts) {
     resolve: {
       modules: ["node_modules"],
       extensions,
-      plugins: [],
+      plugins: [] as any[],
+      fallback,
     },
     resolveLoader: {},
     stats: {
       errorDetails: true,
     },
-    snapshot: {},
     target: "web",
     watch: false,
     watchOptions: {
@@ -130,7 +136,7 @@ function webpackConfig(opts) {
     }
   }
 
-  return webpackBaseConfig;
+  return webpackBaseConfig as Configuration;
 }
 
 export default webpackConfig;

@@ -11,11 +11,14 @@ function build(opts) {
 
     const appUserConf = getUserConf();
 
-    const webpackConfig: Configuration = merge(webpackBaseConfig, {
-      mode: "production",
-      ...appUserConf,
-      devServer: {},
-    });
+    const webpackConfig: Configuration = merge(
+      webpackBaseConfig,
+      {
+        mode: "production",
+        ...appUserConf,
+        devServer: {},
+      }
+    );
     // get webpack instance
     const compiler = webpack(webpackConfig);
     // start a webpack compiler
@@ -30,4 +33,4 @@ function build(opts) {
   }
 }
 
-export default build;
+export = build;

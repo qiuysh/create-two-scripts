@@ -8,9 +8,8 @@ import { prompt } from "../utils";
 import {
   defaultTempData,
   createPackageData,
-  installDependenciesData,
+  installDepData,
 } from "../utils/iMessage";
-
 import { PackageProps } from "../typings";
 
 function getTemplateDir(
@@ -18,7 +17,7 @@ function getTemplateDir(
   projectDir: string
 ): string {
   let templatePath: string | null = null;
-  const type: string[] = ["-d", "--debug"];
+  const type: string[] = ["--debug"];
   const { argv } = process;
   const debug: boolean =
     argv.length === 5
@@ -26,9 +25,10 @@ function getTemplateDir(
       : false;
   if (debug && module) {
     templatePath = module.path.replace(
-      "create-two-scripts/scripts",
+      "create-two-scripts/lib/scripts",
       template
     );
+    console.log(templatePath, template)
   } else {
     exec(`cd ${projectDir}`);
     exec(`yarn add ${template}`);
@@ -49,10 +49,9 @@ function chalkStyle(params: string) {
  * create project
  * @param {*} args
  */
-async function init(name: string) {
-  const projectName: string = name;
+async function init(projectName: string) {
   const rootDir: string = process.cwd();
-  const projectDir = `${rootDir}/${projectName}`;
+  const projectDir: string = path.join(rootDir, projectName);
   const spinner: any = ora("Initializing the project...\n");
 
   try {
@@ -128,7 +127,7 @@ async function init(name: string) {
     );
 
     const { isInstall } = await prompt(
-      installDependenciesData
+      installDepData
     );
 
     if (
@@ -150,4 +149,4 @@ async function init(name: string) {
   }
 }
 
-export default init;
+export = init;

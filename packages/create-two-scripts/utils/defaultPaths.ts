@@ -7,9 +7,9 @@ const appHtml = getReadFilePath("public/index.html");
 const appPackageJson = getReadFilePath("package.json");
 const appSrc = getReadFilePath("src");
 const appModules = getReadFilePath("node_modules");
-const appDirectory = realpathSync(process.cwd());
 
 function getReadFilePath(path: string): string {
+  const appDirectory = realpathSync(process.cwd());
   return isAbsolute(path)
     ? path
     : resolve(appDirectory, path);
@@ -20,7 +20,7 @@ function getReadFilePath(path: string): string {
  * @return {*}
  */
 function getUserConf() {
-  const configFilePath = getReadFilePath("two.config.js");
+  const configFilePath: string = getReadFilePath("two.config.js");
   if (existsSync(configFilePath)) {
     return require(configFilePath);
   }
@@ -34,7 +34,6 @@ export {
   appPackageJson,
   appSrc,
   appModules,
-  appDirectory,
   getReadFilePath,
   getUserConf,
 };

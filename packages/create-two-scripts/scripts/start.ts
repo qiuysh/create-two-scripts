@@ -109,4 +109,4 @@ async function start(opts: OptsProps) {
   }
 }
 
-export default start;
+export = start;
