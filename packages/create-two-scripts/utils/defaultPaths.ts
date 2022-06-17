@@ -20,7 +20,8 @@ function getReadFilePath(path: string): string {
  * @return {*}
  */
 function getUserConf() {
-  const configFilePath: string = getReadFilePath("two.config.js");
+  const configFilePath: string =
+    getReadFilePath("two.config.js");
   if (existsSync(configFilePath)) {
     return require(configFilePath);
   }

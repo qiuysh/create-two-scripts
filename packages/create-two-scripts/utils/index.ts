@@ -12,7 +12,7 @@ async function prompt(type) {
   return inquirer.prompt(type);
 }
 
-function message(key, msg) {
+function message(key: string, msg: unknown) {
   switch (key) {
     case "success":
       log(`${chalk.hex("#27ae60").bold(msg)}\n`);
@@ -29,4 +29,18 @@ function message(key, msg) {
   }
 }
 
-export { program, prompt, message, error, warn, info };
+function parseBoolean(param: string): boolean {
+  return param && typeof param === "string"
+    ? param.toLowerCase() == "true"
+    : false;
+}
+
+export {
+  program,
+  prompt,
+  message,
+  parseBoolean,
+  error,
+  warn,
+  info,
+};

@@ -1,8 +1,8 @@
 export interface OptsProps {
-  esbuild: boolean;
-  hot: boolean;
-  ts: boolean;
-  port?: number;
+  esbuild: false;
+  hot: true;
+  ts: true;
+  port?: 3001;
 }
 
 export interface PackageProps {

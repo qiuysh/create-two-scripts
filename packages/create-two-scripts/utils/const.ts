@@ -1,6 +1,9 @@
-const { env, argv } = process;
+const {
+  env: { USER },
+  argv,
+} = process;
 
-const defaultTempData = [
+export const defaultTempData = [
   {
     type: "list",
     message: "Please, select technology stack template",
@@ -19,24 +22,24 @@ const defaultTempData = [
   },
 ];
 
-const createPackageData = [
+export const createPackageData = [
   {
     type: "input",
     name: "name",
-    message: `package name`,
+    message: "package name",
     default: argv[argv.length - 1],
   },
   {
     type: "input",
     name: "description",
     message: "description",
-    default: "A spa application with react",
+    default: "A web application with react",
   },
   {
     type: "input",
     name: "author",
     message: "author",
-    default: env.USER,
+    default: USER,
   },
   {
     type: "input",
@@ -46,10 +49,10 @@ const createPackageData = [
   },
 ];
 
-const installDepData = [
+export const installDepData = [
   {
     type: "list",
-    message: "Continue install dependencies ？",
+    message: "Continue install other dependencies ？",
     name: "isInstall",
     choices: [
       {
@@ -64,9 +67,3 @@ const installDepData = [
     ],
   },
 ];
-
-export {
-  defaultTempData,
-  createPackageData,
-  installDepData,
-};

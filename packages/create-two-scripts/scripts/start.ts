@@ -2,13 +2,15 @@ import webpack, { Configuration } from "webpack";
 import { merge } from "webpack-merge";
 import webpackDevServer from "webpack-dev-server";
 import detectPort from "detect-port";
-import getBaseWebpackConf from "../webpack/base.js";
+import getBaseWebpackConf, {
+  OptsProps,
+} from "../webpack/base.js";
 import {
   getUserConf,
   appPublic,
 } from "../utils/defaultPaths";
 import { message, prompt } from "../utils";
-import { OptsProps, PackageProps } from "../typings";
+import { PackageProps } from "../typings";
 
 /**
  * check port
@@ -74,7 +76,6 @@ async function start(opts: OptsProps) {
       webpackBaseConfig,
       {
         devtool: "eval-cheap-module-source-map",
-        mode: "development",
         ...appUserConf,
       }
     );

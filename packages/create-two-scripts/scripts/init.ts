@@ -4,34 +4,41 @@ import chalk from "chalk";
 import fs from "fs-extra";
 import { exec } from "shelljs";
 import os from "os";
+import { merge } from "webpack-merge";
 import { prompt } from "../utils";
 import {
   defaultTempData,
   createPackageData,
   installDepData,
-} from "../utils/iMessage";
+} from "../utils/const";
 import { PackageProps } from "../typings";
+
+const { argv } = process;
+
+const isDebug: boolean =
+  argv[argv.length - 2] === "--debug" || false;
+
+function installDeps(
+  sourceDir: string,
+  dependencies: string[]
+): void {
+  if (sourceDir && dependencies.length) {
+    const deps = dependencies.join(" ");
+    exec(`cd ${sourceDir} && yarn add --dev ${deps}`);
+  }
+}
 
 function getTemplateDir(
   template: string,
   projectDir: string
 ): string {
   let templatePath: string | null = null;
-  const type: string[] = ["--debug"];
-  const { argv } = process;
-  const debug: boolean =
-    argv.length === 5
-      ? type.includes(argv[argv.length - 2])
-      : false;
-  if (debug && module) {
+  if (isDebug && module) {
     templatePath = module.path.replace(
-      "create-two-scripts/lib/scripts",
+      path.join("create-two-scripts", "lib", "scripts"),
       template
     );
-    console.log(templatePath, template)
   } else {
-    exec(`cd ${projectDir}`);
-    exec(`yarn add ${template}`);
     templatePath = path.join(
       projectDir,
       "node_modules",
@@ -45,19 +52,27 @@ function chalkStyle(params: string) {
   return chalk.hex("#27ae60").bold(params);
 }
 
+function readJsonSync(targetDir: string) {
+  return targetDir && fs.readJSONSync(targetDir, "utf-8");
+}
+
 /**
  * create project
  * @param {*} args
  */
 async function init(projectName: string) {
   const rootDir: string = process.cwd();
-  const projectDir: string = path.join(rootDir, projectName);
+  const projectDir: string = path.join(
+    rootDir,
+    projectName
+  );
   const spinner: any = ora("Initializing the project...\n");
 
   try {
     if (fs.existsSync(projectName)) {
       throw `Waring, ${projectName} already exists`;
     }
+
     fs.mkdirs(projectName);
     // choose template
     const { template } = await prompt(defaultTempData);
@@ -69,15 +84,33 @@ async function init(projectName: string) {
       license = "MIT",
     } = await prompt(createPackageData);
 
-    const initPackageJson: PackageProps = {
+    const initPackage: PackageProps = {
       name,
       version: "1.0.0",
       private: true,
       description,
       author,
       license,
+      main: "index.js",
+      scripts: {},
+      sideEffects: {},
       dependencies: {},
+      devDependencies: {},
+      husky: {},
+      "lint-staged": {},
+      config: {},
     };
+
+    const projectPackageDir: string = path.join(
+      rootDir,
+      projectName,
+      "package.json"
+    );
+
+    const devDeps: string[] = [
+      template,
+      "create-two-scripts",
+    ].filter(devs => isDebug && devs !== template);
 
     spinner.start();
 
@@ -87,37 +120,41 @@ async function init(projectName: string) {
     }, 1000);
 
     fs.writeFileSync(
-      path.join(projectDir, "package.json"),
-      JSON.stringify(initPackageJson, null, 2) + os.EOL
+      projectPackageDir,
+      JSON.stringify(initPackage, null, 2) + os.EOL
     );
+
+    installDeps(projectDir, devDeps);
 
     const templateDir: string = getTemplateDir(
       template,
       projectDir
     );
 
+    const initPackageJson: PackageProps = readJsonSync(
+      projectPackageDir
+    );
+
     fs.copySync(templateDir, projectDir);
 
-    const templatePackageJson: PackageProps =
-      fs.readJSONSync(
-        projectDir + "/package.json",
-        "utf-8"
-      );
+    const templatePackageJson: PackageProps = readJsonSync(
+      projectPackageDir
+    );
 
-    const projectPackageJson: PackageProps = {
-      ...initPackageJson,
-      ...templatePackageJson,
-    };
+    const projectPackageJson: PackageProps = merge(
+      initPackageJson,
+      templatePackageJson
+    );
 
     fs.writeFileSync(
-      path.join(rootDir, projectName, "package.json"),
+      projectPackageDir,
       JSON.stringify(projectPackageJson, null, 2) + os.EOL
     );
 
     // remove cts template
     if (
-      initPackageJson.dependencies &&
-      initPackageJson.dependencies[template]
+      initPackageJson.devDependencies &&
+      initPackageJson.devDependencies[template]
     ) {
       exec(`cd ${projectName} && yarn remove ${template}`);
     }
@@ -126,9 +163,7 @@ async function init(projectName: string) {
       chalkStyle(`Success, ${projectName} is created! \n`)
     );
 
-    const { isInstall } = await prompt(
-      installDepData
-    );
+    const { isInstall } = await prompt(installDepData);
 
     if (
       isInstall &&

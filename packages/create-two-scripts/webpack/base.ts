@@ -8,16 +8,22 @@ import {
   appDist,
   getReadFilePath,
 } from "../utils/defaultPaths";
-import { OptsProps } from "../typings";
 
-const { NODE_ENV = "development" } = process.env;
+const { NODE_ENV = "development", BABEL_ENV } = process.env;
+
+const defaultOpts = {
+  esbuild: false,
+  ts: true,
+  isDev: (NODE_ENV || BABEL_ENV) === "development" || false,
+  port: 3001,
+};
+
+export type OptsProps = typeof defaultOpts;
 
 function webpackConfig(opts: OptsProps): Configuration {
+  const { ts, isDev } = opts;
 
-  const { ts } = opts;
-
-  const isDev: boolean =
-    NODE_ENV === "development" || false;
+  console.log(opts);
 
   // entry config
   const entry = {
@@ -62,11 +68,13 @@ function webpackConfig(opts: OptsProps): Configuration {
     fs: false,
     path: false,
     os: false,
-    buffer: require.resolve('buffer'),
-    crypto: require.resolve('crypto-browserify'),
-    stream: require.resolve('stream-browserify'),
-    string_decoder: require.resolve('string_decoder'),
+    buffer: require.resolve("buffer"),
+    crypto: require.resolve("crypto-browserify"),
+    stream: require.resolve("stream-browserify"),
+    string_decoder: require.resolve("string_decoder"),
   };
+
+  const mode: string = isDev ? "development" : "production";
 
   // default webpack config
   const webpackBaseConfig = {
@@ -83,6 +91,7 @@ function webpackConfig(opts: OptsProps): Configuration {
     performance: {
       hints: false,
     },
+    mode,
     module: {
       rules: loaders,
     },

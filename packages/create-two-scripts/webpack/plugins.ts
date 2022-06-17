@@ -6,7 +6,7 @@ import CaseSensitivePathsPlugin from "case-sensitive-paths-webpack-plugin";
 import ReactRefreshPlugin from "@pmmmwh/react-refresh-webpack-plugin";
 import { appHtml } from "../utils/defaultPaths";
 
-function createPlugins({ esbuild, hot }) {
+function createPlugins({ esbuild, isDev }) {
   // cache options
   const cacheOptions: any = {
     antd: {
@@ -72,7 +72,7 @@ function createPlugins({ esbuild, hot }) {
 
     esbuild && new ESBuildPlugin(),
 
-    hot && new ReactRefreshPlugin(),
+    isDev && new ReactRefreshPlugin(),
   ].filter(Boolean);
 }
 

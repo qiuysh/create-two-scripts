@@ -2,7 +2,7 @@ import CssMinimizerPlugin from "css-minimizer-webpack-plugin";
 import TerserPlugin from "terser-webpack-plugin";
 import { ESBuildMinifyPlugin } from "esbuild-loader";
 
-function optimization({ esbuild }) {
+function optimization({ esbuild, isDev }) {
   // support esbuild compress
   const terserOptions = {
     parallel: true,
@@ -28,11 +28,11 @@ function optimization({ esbuild }) {
     !esbuild && new TerserPlugin(terserOptions),
 
     !esbuild && new CssMinimizerPlugin(),
-  ].filter(Boolean);
+  ].filter(Boolean) as any;
 
   return {
     runtimeChunk: true,
-    minimize: process.env.NODE_ENV === "production",
+    minimize: !isDev,
     moduleIds: "deterministic",
     minimizer: minimizerOptions,
   };
