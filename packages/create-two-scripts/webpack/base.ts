@@ -1,9 +1,8 @@
 import { Configuration } from "webpack";
 import TsconfigPathsPlugin from "tsconfig-paths-webpack-plugin";
-import { Options } from "tsconfig-paths-webpack-plugin/lib/options";
 import createPlugins from "./plugins";
 import createLoaders from "./loaders";
-import getOptimization from "./optimization";
+import createOptimization from "./optimization";
 import {
   appSrc,
   appDist,
@@ -14,6 +13,7 @@ import { OptsProps } from "../typings";
 const { NODE_ENV = "development" } = process.env;
 
 function webpackConfig(opts: OptsProps): Configuration {
+
   const { ts } = opts;
 
   const isDev: boolean =
@@ -43,7 +43,7 @@ function webpackConfig(opts: OptsProps): Configuration {
   const plugins = createPlugins(opts);
 
   // optimization config
-  const optimization = getOptimization(opts);
+  const optimization = createOptimization(opts);
 
   // extensions config
   const extensions: string[] = [
@@ -108,15 +108,8 @@ function webpackConfig(opts: OptsProps): Configuration {
     // support ts paths link to webpack resolve alias
     const appTsConfig: string =
       getReadFilePath("tsconfig.json");
-    const option: Options = {
+    const option = {
       configFile: appTsConfig,
-      baseUrl: undefined,
-      silent: false,
-      logLevel: "WARN",
-      logInfoToStdOut: false,
-      context: undefined,
-      colors: true,
-      mainFields: ["main"],
       extensions,
     };
 

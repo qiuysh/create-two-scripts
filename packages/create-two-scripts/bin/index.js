@@ -33,7 +33,7 @@ program
   .option("-es, --esbuild", "Support esbuild loader")
   .action(args => {
     process.env.NODE_ENV = "development";
-    args.ts = args.ts === 'true';
+    args.ts = args.ts ? args.ts === 'true' : true;
     execActionStart(args);
   });
 
@@ -47,7 +47,7 @@ program
   )
   .action(args => {
     process.env.NODE_ENV = "production";
-    args.ts = args.ts === 'true';
+    args.ts = args.ts ? args.ts === 'true' : true;
     execActionBuild(args);
   });
 
