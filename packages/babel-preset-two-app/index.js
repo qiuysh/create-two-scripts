@@ -7,7 +7,7 @@ const path = require("path");
  * @returns
  */
 module.exports = function (context, opts = {}) {
-  const { ts } = opts;
+  const { useTypescript } = opts;
 
   const { NODE_ENV, BABEL_ENV } = process.env;
 
@@ -55,7 +55,7 @@ module.exports = function (context, opts = {}) {
     ],
   ];
 
-  ts &&
+  useTypescript &&
     presets.push([
       require("@babel/preset-typescript").default,
     ]);
