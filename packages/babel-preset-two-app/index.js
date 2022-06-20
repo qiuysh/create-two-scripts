@@ -7,11 +7,15 @@ const path = require("path");
  * @returns
  */
 module.exports = function (context, opts = {}) {
-  const { useTypescript } = opts;
-
   const { NODE_ENV, BABEL_ENV } = process.env;
 
   const isDev = (NODE_ENV || BABEL_ENV) === "development";
+
+  const {
+    useTypescript,
+    helpers = true,
+    useESModules = true,
+  } = opts;
 
   const absoluteRuntimePath = path.dirname(
     require.resolve("@babel/runtime/package.json")
@@ -37,6 +41,7 @@ module.exports = function (context, opts = {}) {
 
   const plugins = [
     // support proposal decorators
+    // https://babeljs.io/docs/en/babel-plugin-proposal-decorators
     [
       require("@babel/plugin-proposal-decorators").default,
       {
@@ -44,12 +49,19 @@ module.exports = function (context, opts = {}) {
       },
     ],
     [
+      require("@babel/plugin-proposal-class-properties")
+        .default,
+      { loose: true },
+    ],
+    [
       require("@babel/plugin-transform-runtime").default,
       {
         corejs: false,
+        helpers,
         version: require("@babel/runtime/package.json")
           .version,
         regenerator: true,
+        useESModules,
         absoluteRuntime: absoluteRuntimePath,
       },
     ],
