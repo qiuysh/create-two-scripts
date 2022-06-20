@@ -19,7 +19,7 @@
     "prettier": "prettier './packages/**/*' --write ",
     "publish": "yarn workspaces run publish",
     "unpublish": "yarn workspaces run unpublish",
-    "release": "yarn workspaces run release"
+    "release": "yarn workspaces run release -- --prerelease alpha"
   },
   "author": "wulin",
   "license": "MIT",
