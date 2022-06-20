@@ -66,7 +66,7 @@ module.exports = {
 |:---   |:----  |:----  |:---- |
 | 使用 ts| -t, --ts | 开发/生产|默认支持 typescript|
 | 使用 esbuild| -es, --esbuild | 开发/生产|支持 esbuild 压缩和 loader，不支持基于 ast 的 babel 插件（ex: babel-plugin-import）。|
-| 自定义端口| -p, --port | 开发 |支持端口自定义|
+| 自定义端口| --port | 开发 |支持端口自定义|
 
 使用 esbuild 示例
 
