@@ -1,6 +1,6 @@
 {
   "name": "babel-preset-two-app",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Babel preset used by create two scripts",
   "keywords": [
     "preset",
@@ -10,7 +10,7 @@
   "scripts": {
     "publish": "npm publish",
     "unpublish": "npm unpublish --force babel-preset-two-app",
-    "release": "standard-version -r 1.0.0"
+    "release": "standard-version"
   },
   "author": "wulin",
   "license": "MIT",

@@ -1,6 +1,6 @@
 {
   "name": "cts-template-typescript",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "The base TypeScript template for Create Two Scripts.",
   "keywords": [
     "react",
@@ -9,6 +9,11 @@
     "typescript"
   ],
   "main": "index.js",
+  "scripts": {
+    "publish": "npm publish",
+    "unpublish": "npm unpublish --force cts-template",
+    "release": "standard-version"
+  },
   "author": "wulin",
   "license": "MIT",
   "engines": {
