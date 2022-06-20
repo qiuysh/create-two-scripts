@@ -33,7 +33,7 @@ program
   .option("-es, --esbuild", "Support esbuild loader")
   .action(args => {
     process.env.NODE_ENV = "development";
-    // execActionStart(args);
+    execActionStart(args);
   });
 
 program
@@ -46,7 +46,7 @@ program
   )
   .action(args => {
     process.env.NODE_ENV = "production";
-    // execActionBuild(args);
+    execActionBuild(args);
   });
 
 program.parse(process.argv);

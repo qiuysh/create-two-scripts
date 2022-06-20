@@ -23,8 +23,6 @@ export type OptsProps = typeof defaultOpts;
 function webpackConfig(opts: OptsProps): Configuration {
   const { ts, isDev } = opts;
 
-  console.log(opts);
-
   // entry config
   const entry = {
     app: appSrc + "/index",
@@ -66,8 +64,8 @@ function webpackConfig(opts: OptsProps): Configuration {
   const fallback = {
     events: false,
     fs: false,
-    path: false,
     os: false,
+    path: require.resolve('path-browserify'),
     buffer: require.resolve("buffer"),
     crypto: require.resolve("crypto-browserify"),
     stream: require.resolve("stream-browserify"),
