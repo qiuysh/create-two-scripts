@@ -1,6 +1,7 @@
 import program from "commander";
 import inquirer from "inquirer";
 import chalk from "chalk";
+import fs from "fs-extra";
 
 const { log, error, warn, info } = console;
 
@@ -29,17 +30,16 @@ function message(key: string, msg: unknown) {
   }
 }
 
-function parseBoolean(param: string): boolean {
-  return param && typeof param === "string"
-    ? param.toLowerCase() == "true"
-    : false;
+function readJsonSync(targetDir: string) {
+  return targetDir && fs.readJSONSync(targetDir, "utf-8");
 }
+
 
 export {
   program,
   prompt,
   message,
-  parseBoolean,
+  readJsonSync,
   error,
   warn,
   info,

@@ -1,12 +1,11 @@
 import webpack, { Configuration } from "webpack";
 import { merge } from "webpack-merge";
-import getBaseWebpackConf, {
-  OptsProps,
-} from "../webpack/base";
+import getBaseWebpackConf from "../webpack/base";
 import { getUserConf } from "../utils/paths";
 import { message } from "../utils";
+import { OptProps } from "../typings";
 
-function build(opts: OptsProps) {
+function build(opts: OptProps) {
   try {
     // get base webpack config
     const webpackBaseConfig = getBaseWebpackConf(opts);

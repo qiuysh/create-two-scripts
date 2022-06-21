@@ -4,33 +4,48 @@ import HtmlWebpackPlugin from "html-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import CaseSensitivePathsPlugin from "case-sensitive-paths-webpack-plugin";
 import ReactRefreshPlugin from "@pmmmwh/react-refresh-webpack-plugin";
-import { appHtml } from "../utils/paths";
+import { readJsonSync } from "../utils";
+import { appHtml, appPackageJson } from "../utils/paths";
+import { PackageProps } from "../typings";
+export interface CacheOptionsProps {
+  [index: string]:
+    | string
+    | number
+    | boolean
+    | RegExp
+    | void;
+}
 
 function createPlugins({ esbuild, isDev }) {
+  // app package
+  const appPackage: PackageProps =
+    readJsonSync(appPackageJson);
+
   // cache options
-  const cacheOptions: any = {
-    antd: {
-      name: "antd",
-      test: /[\\/]node_modules[\\/]antd[\\/]/,
-      chunks: "initial",
-    },
-    lodash: {
-      name: "lodash",
-      test: /[\\/]node_modules[\\/]lodash[\\/]/,
-      chunks: "initial",
-      priority: -10,
-    },
-    defaultVendors: {
-      test: /[\\/]node_modules[\\/](react|react-dom|react-router-dom|js-cookie)[\\/]/,
-      name: "default-vendors",
-      chunks: "all",
-    },
-    default: {
-      minChunks: 2,
-      priority: -20,
-      reuseExistingChunk: true,
-    },
-  };
+  const cacheOptions: { [key: string]: CacheOptionsProps } =
+    {
+      antd: {
+        name: "antd",
+        test: /[\\/]node_modules[\\/]antd[\\/]/,
+        chunks: "initial",
+      },
+      lodash: {
+        name: "lodash",
+        test: /[\\/]node_modules[\\/]lodash[\\/]/,
+        chunks: "initial",
+        priority: -10,
+      },
+      defaultVendors: {
+        test: /[\\/]node_modules[\\/](react|react-dom|react-router-dom|js-cookie)[\\/]/,
+        name: "default-vendors",
+        chunks: "all",
+      },
+      default: {
+        minChunks: 2,
+        priority: -20,
+        reuseExistingChunk: true,
+      },
+    };
 
   return [
     new webpack.IgnorePlugin({
@@ -46,7 +61,7 @@ function createPlugins({ esbuild, isDev }) {
     new HtmlWebpackPlugin({
       filename: "index.html",
       template: appHtml,
-      title: "create app",
+      title: appPackage.name,
       templateParameters: {
         configPath: "config.js",
       },

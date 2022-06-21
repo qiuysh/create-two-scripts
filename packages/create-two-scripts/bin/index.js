@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-const { program, parseBoolean } = require("../lib/utils");
+const { program } = require("../lib/utils");
 const packageConf = require("../package.json");
 const execActionInit = require("../lib/scripts/init");
 const execActionStart = require("../lib/scripts/start");
@@ -29,7 +29,7 @@ program
     "Support custom start port inline",
     parseInt
   )
-  .option("-t, --ts <ts>", "Support typescript", parseBoolean)
+  .option("-t, --ts", "Support typescript")
   .option("-es, --esbuild", "Support esbuild loader")
   .action(args => {
     process.env.NODE_ENV = "development";
@@ -39,7 +39,7 @@ program
 program
   .command("build")
   .description("Build the project")
-  .option("-t, --ts <ts>", "Support typescript", parseBoolean)
+  .option("-t, --ts", "Support typescript")
   .option(
     "-es, --esbuild",
     "Support esbuild loader and compress"

@@ -5,7 +5,7 @@ import fs from "fs-extra";
 import { exec } from "shelljs";
 import os from "os";
 import { merge } from "webpack-merge";
-import { prompt } from "../utils";
+import { prompt, readJsonSync } from "../utils";
 import {
   defaultTempData,
   createPackageData,
@@ -52,13 +52,9 @@ function chalkStyle(params: string) {
   return chalk.hex("#27ae60").bold(params);
 }
 
-function readJsonSync(targetDir: string) {
-  return targetDir && fs.readJSONSync(targetDir, "utf-8");
-}
-
 /**
  * create project
- * @param projectName 
+ * @param projectName
  */
 async function init(projectName: string) {
   const rootDir: string = process.cwd();
@@ -83,8 +79,8 @@ async function init(projectName: string) {
       author,
       license = "MIT",
     } = await prompt(createPackageData);
-    // package temp
-    const initPackage: PackageProps = {
+    // package template
+    const templatePackage: PackageProps = {
       name,
       version: "1.0.0",
       private: true,
@@ -121,7 +117,7 @@ async function init(projectName: string) {
 
     fs.writeFileSync(
       projectPackageDir,
-      JSON.stringify(initPackage, null, 2) + os.EOL
+      JSON.stringify(templatePackage, null, 2) + os.EOL
     );
 
     installDeps(projectDir, devDeps);
@@ -137,18 +133,19 @@ async function init(projectName: string) {
 
     fs.copySync(templateDir, projectDir);
 
-    const templatePackageJson: PackageProps = readJsonSync(
+    const packageFromTemplate: PackageProps = readJsonSync(
       projectPackageDir
     );
     // merge init and template package
-    const projectPackageJson: PackageProps = merge(
+    const projectPackageToMergeJson: PackageProps = merge(
       initPackageJson,
-      templatePackageJson
+      packageFromTemplate
     );
 
     fs.writeFileSync(
       projectPackageDir,
-      JSON.stringify(projectPackageJson, null, 2) + os.EOL
+      JSON.stringify(projectPackageToMergeJson, null, 2) +
+        os.EOL
     );
 
     // remove cts template

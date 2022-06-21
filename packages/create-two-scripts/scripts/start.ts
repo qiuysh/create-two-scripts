@@ -1,23 +1,23 @@
 import webpack, { Configuration } from "webpack";
 import { merge } from "webpack-merge";
-import webpackDevServer from "webpack-dev-server";
+import webpackDevServer, {
+  Configuration as DevServerConfiguration,
+  Port,
+} from "webpack-dev-server";
 import detectPort from "detect-port";
-import getBaseWebpackConf, {
-  OptsProps,
-} from "../webpack/base.js";
-import {
-  getUserConf,
-  appPublic,
-} from "../utils/paths";
+import getBaseWebpackConf from "../webpack/base.js";
+import { getUserConf, appPublic } from "../utils/paths";
 import { message, prompt } from "../utils";
-import { PackageProps } from "../typings";
+import { PackageProps, OptProps } from "../typings";
 
 /**
  * check port
  * @param {*} port
  * @returns
  */
-async function checkPort(port: number) {
+async function checkPort(
+  port: Port | undefined
+): Promise<number> {
   const newPort: number = await detectPort(port);
   const option = [
     {
@@ -37,10 +37,11 @@ async function checkPort(port: number) {
   return newPort;
 }
 
-function getDevServer(
-  customServer: PackageProps
-): PackageProps {
-  return {
+function getDevServerConfig(
+  customServer: PackageProps,
+  port?: number
+): DevServerConfiguration {
+  const defaultServerConfig = {
     allowedHosts: "auto",
     client: {
       logging: "info",
@@ -61,10 +62,16 @@ function getDevServer(
     },
     ...customServer,
   };
+
+  if (port) {
+    defaultServerConfig.port = port;
+  }
+
+  return defaultServerConfig as DevServerConfiguration;
 }
 
-async function start(opts: OptsProps) {
-  const { port } = opts;
+async function start(opts: OptProps) {
+  const { port: inlinePort } = opts;
 
   try {
     // user custom webpack config
@@ -82,13 +89,14 @@ async function start(opts: OptsProps) {
     // webpack config instance
     const compiler = webpack(webpackConf);
 
-    const defaultServer = getDevServer(
-      appUserConf.devServer
+    const defaultServer = getDevServerConfig(
+      appUserConf.devServer,
+      inlinePort
     );
 
     // inline port overwrite devServer port
-    const realPort = await checkPort(
-      port || defaultServer.port
+    const realPort: number = await checkPort(
+      defaultServer.port
     );
     // get real server port
     defaultServer.port = realPort;

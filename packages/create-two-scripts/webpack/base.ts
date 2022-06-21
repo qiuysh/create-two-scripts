@@ -8,20 +8,16 @@ import {
   appDist,
   getReadFilePath,
 } from "../utils/paths";
-
-const { NODE_ENV = "development", BABEL_ENV } = process.env;
-
-const defaultOpts = {
-  esbuild: false,
-  ts: true,
-  isDev: (NODE_ENV || BABEL_ENV) === "development" || false,
-  port: 3001,
-};
-
-export type OptProps = typeof defaultOpts;
+import { OptProps } from "../typings";
 
 function webpackConfig(opts: OptProps): Configuration {
-  const { ts, isDev } = opts;
+  const { ts = true, esbuild = false } = opts;
+
+  const { NODE_ENV = "development", BABEL_ENV } =
+    process.env;
+
+  const isDev: boolean =
+    (NODE_ENV || BABEL_ENV) === "development";
 
   // entry config
   const entry = {
@@ -41,13 +37,16 @@ function webpackConfig(opts: OptProps): Configuration {
   };
 
   // loaders config
-  const loaders = createLoaders(opts);
+  const loaders = createLoaders({ ...opts, isDev });
 
   // plugins config
-  const plugins = createPlugins(opts);
+  const plugins = createPlugins({ ...opts, isDev });
 
   // optimization config
-  const optimization = createOptimization(opts);
+  const optimization = createOptimization({
+    ...opts,
+    isDev,
+  });
 
   // extensions config
   const extensions: string[] = [
