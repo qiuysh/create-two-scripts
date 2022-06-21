@@ -33,7 +33,7 @@ function optimization({ esbuild, isDev }) {
   return {
     runtimeChunk: true,
     minimize: !isDev,
-    moduleIds: "deterministic",
+    moduleIds: isDev ? "named" : "deterministic",
     minimizer: minimizerOptions,
   };
 }
