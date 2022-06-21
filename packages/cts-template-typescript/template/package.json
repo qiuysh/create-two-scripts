@@ -1,8 +1,8 @@
 {
   "main": "index.js",
   "scripts": {
-    "start": "two start -es",
-    "build": "rimraf dist && two build -es",
+    "start": "two start -t -es",
+    "build": "rimraf dist && two build -t -es",
     "eslint:test": "eslint src --ext .js,.ts,.tsx",
     "stylelint:test": "stylelint src --fix .less,.css",
     "lint:fix": "eslint src --fix --ext .js,.ts,.tsx",
