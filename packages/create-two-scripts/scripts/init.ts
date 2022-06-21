@@ -58,7 +58,7 @@ function readJsonSync(targetDir: string) {
 
 /**
  * create project
- * @param {*} args
+ * @param projectName 
  */
 async function init(projectName: string) {
   const rootDir: string = process.cwd();
@@ -83,7 +83,7 @@ async function init(projectName: string) {
       author,
       license = "MIT",
     } = await prompt(createPackageData);
-
+    // package temp
     const initPackage: PackageProps = {
       name,
       version: "1.0.0",
@@ -106,7 +106,7 @@ async function init(projectName: string) {
       projectName,
       "package.json"
     );
-
+    // pre install deps
     const devDeps: string[] = [
       template,
       "create-two-scripts",
@@ -140,7 +140,7 @@ async function init(projectName: string) {
     const templatePackageJson: PackageProps = readJsonSync(
       projectPackageDir
     );
-
+    // merge init and template package
     const projectPackageJson: PackageProps = merge(
       initPackageJson,
       templatePackageJson
@@ -163,6 +163,7 @@ async function init(projectName: string) {
       chalkStyle(`Success, ${projectName} is created! \n`)
     );
 
+    // install all deps ?
     const { isInstall } = await prompt(installDepData);
 
     if (

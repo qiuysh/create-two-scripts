@@ -7,7 +7,7 @@ import {
   appSrc,
   appDist,
   getReadFilePath,
-} from "../utils/defaultPaths";
+} from "../utils/paths";
 
 const { NODE_ENV = "development", BABEL_ENV } = process.env;
 
@@ -18,9 +18,9 @@ const defaultOpts = {
   port: 3001,
 };
 
-export type OptsProps = typeof defaultOpts;
+export type OptProps = typeof defaultOpts;
 
-function webpackConfig(opts: OptsProps): Configuration {
+function webpackConfig(opts: OptProps): Configuration {
   const { ts, isDev } = opts;
 
   // entry config
@@ -65,7 +65,7 @@ function webpackConfig(opts: OptsProps): Configuration {
     events: false,
     fs: false,
     os: false,
-    path: require.resolve('path-browserify'),
+    path: require.resolve("path-browserify"),
     buffer: require.resolve("buffer"),
     crypto: require.resolve("crypto-browserify"),
     stream: require.resolve("stream-browserify"),
@@ -104,7 +104,7 @@ function webpackConfig(opts: OptsProps): Configuration {
     stats: {
       errorDetails: true,
     },
-    target: "web",
+    target: <const>"web",
     watch: false,
     watchOptions: {
       ignored: /node_modules/,

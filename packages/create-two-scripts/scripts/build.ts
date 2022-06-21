@@ -3,7 +3,7 @@ import { merge } from "webpack-merge";
 import getBaseWebpackConf, {
   OptsProps,
 } from "../webpack/base";
-import { getUserConf } from "../utils/defaultPaths";
+import { getUserConf } from "../utils/paths";
 import { message } from "../utils";
 
 function build(opts: OptsProps) {

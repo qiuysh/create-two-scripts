@@ -4,7 +4,7 @@ import HtmlWebpackPlugin from "html-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import CaseSensitivePathsPlugin from "case-sensitive-paths-webpack-plugin";
 import ReactRefreshPlugin from "@pmmmwh/react-refresh-webpack-plugin";
-import { appHtml } from "../utils/defaultPaths";
+import { appHtml } from "../utils/paths";
 
 function createPlugins({ esbuild, isDev }) {
   // cache options

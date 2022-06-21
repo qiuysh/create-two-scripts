@@ -8,7 +8,7 @@ import getBaseWebpackConf, {
 import {
   getUserConf,
   appPublic,
-} from "../utils/defaultPaths";
+} from "../utils/paths";
 import { message, prompt } from "../utils";
 import { PackageProps } from "../typings";
 

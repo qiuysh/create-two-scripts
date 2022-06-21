@@ -1,5 +1,5 @@
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
-import { appSrc } from "../utils/defaultPaths";
+import { appSrc } from "../utils/paths";
 
 function createLoaders({ esbuild, ts, isDev }) {
   const CssLoader = require.resolve("css-loader");
