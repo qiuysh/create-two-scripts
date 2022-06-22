@@ -1,11 +1,9 @@
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const paths = require("./defaultPaths");
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import { appSrc } from "../utils/paths";
 
-module.exports = function (opts) {
-  const { esbuild, ts, hot } = opts;
+function createLoaders({ esbuild, ts, isDev }) {
   const CssLoader = require.resolve("css-loader");
   const PostcssLoader = require.resolve("postcss-loader");
-  const isDev = process.env.NODE_ENV === "development";
 
   const esbuildLoader = {
     loader: require.resolve("esbuild-loader"),
@@ -25,12 +23,11 @@ module.exports = function (opts) {
         [
           require.resolve("babel-preset-two-app"),
           {
-            ts,
-            development: isDev,
+            useTypescript: ts,
           },
         ],
       ],
-      plugins: hot
+      plugins: isDev
         ? [require.resolve("react-refresh/babel")]
         : [],
     },
@@ -45,7 +42,7 @@ module.exports = function (opts) {
       oneOf: [
         {
           test: /\.(j|t)s[x]?$/,
-          include: paths.appSrc,
+          include: appSrc,
           use: [
             esbuild ? esbuildLoader : babelLoader,
             {
@@ -109,4 +106,6 @@ module.exports = function (opts) {
       ],
     },
   ];
-};
+}
+
+export default createLoaders;

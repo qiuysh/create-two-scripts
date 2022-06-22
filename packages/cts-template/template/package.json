@@ -1,14 +1,8 @@
 {
-  "name": "demo2",
-  "version": "1.0.0",
-  "private": true,
-  "description": "",
-  "author": "",
-  "license": "",
   "main": "index.js",
   "scripts": {
-    "start": "two start --ts=false -es",
-    "build": "rimraf dist && two build --ts=false -es",
+    "start": "two start -es",
+    "build": "rimraf dist && two build -es",
     "eslint:test": "eslint src --ext .js,.ts,.tsx",
     "stylelint:test": "stylelint src --fix .less,.css",
     "lint:fix": "eslint src --fix --ext .js,.ts,.tsx",
@@ -45,7 +39,6 @@
   "devDependencies": {
     "@commitlint/cli": "^16.2.3",
     "@commitlint/config-conventional": "^16.2.1",
-    "create-two-scripts": "^1.0.9",
     "cross-env": "^6.0.3",
     "cz-conventional-changelog": "^3.3.0",
     "enzyme": "^3.11.0",

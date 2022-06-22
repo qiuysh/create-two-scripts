@@ -5,8 +5,10 @@ node_modules
 .git
 packages/cts-template-typescript
 packages/cts-template
+packages/create-two-scripts/lib
+packages/create-two-scripts/bin
+packages/babel-preset-two-app
 *.md
 yarn.lock
-pnpm-lock.yaml
 package.json
 tsconfig.json

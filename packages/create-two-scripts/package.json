@@ -1,6 +1,6 @@
 {
   "name": "create-two-scripts",
-  "version": "1.0.9",
+  "version": "2.0.0",
   "description": "A simple react application front-end scaffolding tool",
   "keywords": [
     "react",
@@ -8,6 +8,7 @@
     "babel",
     "sass",
     "scss",
+    "less",
     "webpack v5"
   ],
   "bin": {
@@ -15,12 +16,10 @@
   },
   "main": "index.js",
   "scripts": {
+    "build": " rm -rf lib && tsc",
     "publish": "npm publish",
     "unpublish": "npm unpublish --force create-two-scripts",
-    "release": "standard-version -r 1.0.9",
-    "eslint:test": "eslint './**/*' --ext .js,.ts",
-    "lint:fix": "eslint './**/*' --fix --ext .js,.ts",
-    "prettier": "prettier './**/*' --write "
+    "release": "standard-version"
   },
   "author": "wulin",
   "license": "MIT",
@@ -32,9 +31,7 @@
   },
   "files": [
     "bin",
-    "scripts",
-    "utils",
-    "webpack"
+    "lib"
   ],
   "repository": {
     "type": "git",
@@ -44,44 +41,19 @@
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
-  },
-  "lint-staged": {
-    "lib/**/*.{js,ts}": [
-      "eslint --fix",
-      "prettier --write"
-    ],
-    "config/**/*.{js,ts}": [
-      "eslint --fix",
-      "prettier --write"
-    ],
-    "util/**/*.{js,ts}": [
-      "eslint --fix",
-      "prettier --write"
-    ]
-  },
   "dependencies": {
     "@babel/core": "^7.17.2",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.4",
     "babel-loader": "^8.2.3",
-    "babel-preset-two-app": "^1.0.0",
+    "babel-preset-two-app": "^2.0.0",
     "case-sensitive-paths-webpack-plugin": "^2.4.0",
     "chalk": "^4.1.0",
     "commander": "^7.0.0",
+    "crypto-browserify": "^3.12.0",
     "css-loader": "^6.5.1",
     "css-minimizer-webpack-plugin": "^3.4.1",
     "detect-port": "^1.3.0",
     "esbuild-loader": "^2.18.0",
-    "handlebars": "^4.7.7",
     "html-webpack-plugin": "^5.5.0",
     "inquirer": "^7.3.3",
     "less": "^4.1.2",
@@ -94,6 +66,8 @@
     "sass": "^1.49.8",
     "sass-loader": "^12.6.0",
     "shelljs": "^0.8.4",
+    "stream-browserify": "^3.0.0",
+    "string_decoder": "^1.3.0",
     "style-loader": "^3.3.1",
     "terser-webpack-plugin": "^5.3.1",
     "thread-loader": "^3.0.4",
@@ -103,7 +77,6 @@
     "webpack-merge": "^5.8.0"
   },
   "devDependencies": {
-    "os": "^0.1.2",
-    "standard-version": "^9.1.0"
+    "os": "^0.1.2"
   }
 }

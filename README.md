@@ -64,9 +64,9 @@ module.exports = {
 
 |name   |option   | env |desc   |
 |:---   |:----  |:----  |:----  |
-| Use ts| -t, --ts | development / production | Typescript is support by default  |
+| Use ts| -t, --ts | development / production | support typescript  |
 | Use esbuild| -es, --esbuild | development / production | Support esbuild, ast based babel plugins are not supported.(ex: babel-plugin-import)|
-| Custom port| -p, --port | development | Set port inline|
+| Custom port| --port | development | Set port inline|
 
 
 
@@ -77,11 +77,11 @@ two start -es
 two build -es
 ```
 
-use js demo, typescript is support by default
+use js demo, can support typescript
 
 ```js
-two start --ts=false
-two build --ts=false
+two start -t
+two build -t
 ```
 
 ### Reference

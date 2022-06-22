@@ -1,7 +1,9 @@
-const program = require("commander");
-const inquirer = require("inquirer");
-const chalk = require("chalk");
-const { log } = console;
+import program from "commander";
+import inquirer from "inquirer";
+import chalk from "chalk";
+import fs from "fs-extra";
+
+const { log, error, warn, info } = console;
 
 /**
  *
@@ -11,7 +13,7 @@ async function prompt(type) {
   return inquirer.prompt(type);
 }
 
-function message(key, msg) {
+function message(key: string, msg: unknown) {
   switch (key) {
     case "success":
       log(`${chalk.hex("#27ae60").bold(msg)}\n`);
@@ -28,8 +30,17 @@ function message(key, msg) {
   }
 }
 
-module.exports = {
+function readJsonSync(targetDir: string) {
+  return targetDir && fs.readJSONSync(targetDir, "utf-8");
+}
+
+
+export {
   program,
   prompt,
   message,
+  readJsonSync,
+  error,
+  warn,
+  info,
 };

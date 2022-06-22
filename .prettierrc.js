@@ -4,7 +4,6 @@ module.exports = {
   singleQuote: false,
   trailingComma: "es5",
   bracketSpacing: true,
-  jsxBracketSameLine: false,
   jsxSingleQuote: false,
   arrowParens: "avoid",
   requirePragma: false,

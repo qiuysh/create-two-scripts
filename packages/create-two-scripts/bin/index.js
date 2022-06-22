@@ -1,50 +1,52 @@
 #!/usr/bin/env node
-const { program } = require("../utils");
+const { program } = require("../lib/utils");
 const packageConf = require("../package.json");
-const actions = require("../scripts");
+const execActionInit = require("../lib/scripts/init");
+const execActionStart = require("../lib/scripts/start");
+const execActionBuild = require("../lib/scripts/build");
 
 program
   .usage("<command> [options]")
   .version(packageConf.version, "-v, --version")
-  .description("Welcome, use create two scripts");
+  .description("Welcome, use create two scripts !");
 
 program
   .command("init <name>")
-  .description("create a new project")
+  .description("Create a new project")
   .option(
-    "-d, --debug",
-    "support debug init with used yarn link by local dev"
+    "--debug",
+    "Support debug init with used yarn link by local dev"
   )
   .action(args => {
-    actions.init(args);
+    execActionInit(args);
   });
 
 program
   .command("start")
-  .description("start the project")
+  .description("Start the project")
   .option(
-    "-p, --port <port>",
-    "support custom start port",
+    "--port <port>",
+    "Support custom start port inline",
     parseInt
   )
-  .option("-t, --ts <ts>", "support typescript")
-  .option("-es, --esbuild", "support esbuild loader")
+  .option("-t, --ts", "Support typescript")
+  .option("-es, --esbuild", "Support esbuild loader")
   .action(args => {
     process.env.NODE_ENV = "development";
-    actions.start(args);
+    execActionStart(args);
   });
 
 program
   .command("build")
-  .description("build the project")
-  .option("-t, --ts <ts>", "support typescript")
+  .description("Build the project")
+  .option("-t, --ts", "Support typescript")
   .option(
     "-es, --esbuild",
-    "support esbuild loader and compress"
+    "Support esbuild loader and compress"
   )
   .action(args => {
     process.env.NODE_ENV = "production";
-    actions.build(args);
+    execActionBuild(args);
   });
 
 program.parse(process.argv);
