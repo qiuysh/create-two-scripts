@@ -17,7 +17,7 @@ program
     "--debug",
     "Support debug init with used yarn link by local dev"
   )
-  .action(args =>{
+  .action(args => {
     execActionInit(args);
   });
 
