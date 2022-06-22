@@ -26,7 +26,7 @@ module.exports = function (context, opts = {}) {
     (env && !["development", "production"].includes(env))
   ) {
     throw new Error(
-      "please set env variables BABEL_ENV or NODE_ENV：development、production!"
+      "Please set environment variables BABEL_ENV or NODE_ENV: development and production!"
     );
   }
 
