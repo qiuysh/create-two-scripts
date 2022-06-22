@@ -8,8 +8,8 @@ const path = require("path");
  */
 module.exports = function (context, opts = {}) {
   const { NODE_ENV, BABEL_ENV } = process.env;
-
-  const isDev = (NODE_ENV || BABEL_ENV) === "development";
+  const env = BABEL_ENV | NODE_ENV;
+  const isDev = env === "development";
 
   const {
     useTypescript,
@@ -20,6 +20,15 @@ module.exports = function (context, opts = {}) {
   const absoluteRuntimePath = path.dirname(
     require.resolve("@babel/runtime/package.json")
   );
+
+  if (
+    !env ||
+    (env && !["development", "production"].includes(env))
+  ) {
+    throw new Error(
+      "please set env variables BABEL_ENV or NODE_ENV：development、production!"
+    );
+  }
 
   const presets = [
     [
@@ -37,7 +46,10 @@ module.exports = function (context, opts = {}) {
         development: isDev,
       },
     ],
-  ];
+    useTypescript && [
+      require("@babel/preset-typescript").default,
+    ],
+  ].filter(Boolean);
 
   const plugins = [
     // support proposal decorators
@@ -80,11 +92,6 @@ module.exports = function (context, opts = {}) {
       },
     ],
   ];
-
-  useTypescript &&
-    presets.push([
-      require("@babel/preset-typescript").default,
-    ]);
 
   return {
     presets,
