@@ -1,3 +1,3 @@
 ### cts-template
 
-A template used by create-two-scripts.
+A react application template used by create-two-scripts.
