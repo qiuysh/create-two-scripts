@@ -17,9 +17,9 @@
     "eslint:test": "eslint './packages/**/*' --ext .js,.ts",
     "lint:fix": "eslint './packages/**/*' --fix --ext .js,.ts",
     "prettier": "prettier './packages/**/*' --write ",
-    "publish": "yarn workspaces run publish",
-    "unpublish": "yarn workspaces run unpublish",
-    "release": "yarn workspaces run release -- --prerelease alpha"
+    "publish": "lerna run publish",
+    "unpublish": "lerna run unpublish",
+    "release": "lerna run release --prerelease alpha"
   },
   "author": "wulin",
   "license": "MIT",
@@ -77,12 +77,10 @@
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-react": "^7.28.0",
     "husky": "^4.3.8",
+    "lerna": "^4.0.0",
     "lint-staged": "^10.5.3",
     "prettier": "^2.2.1",
     "standard-version": "^9.1.0",
     "typescript": "^4.6.3"
-  },
-  "workspaces": [
-    "packages/*"
-  ]
+  }
 }
