@@ -5,7 +5,7 @@ import fs from "fs-extra";
 import { exec } from "shelljs";
 import os from "os";
 import { merge } from "webpack-merge";
-import { prompt, readJsonSync } from "../utils";
+import { prompt, readJsonSync, message} from "../utils";
 import {
   defaultTempData,
   createPackageData,
@@ -15,8 +15,7 @@ import { PackageProps } from "../typings";
 
 const { argv } = process;
 
-const isDebug: boolean =
-  argv[argv.length - 2] === "--debug" || false;
+const isDebug: boolean = argv.includes("--debug") || false;
 
 function installDeps(
   sourceDir: string,
@@ -52,11 +51,24 @@ function chalkStyle(params: string) {
   return chalk.hex("#27ae60").bold(params);
 }
 
+function checkPorjectName(projectName) {
+  const [,,opt, , name] = argv;
+  try {
+    if (opt === 'init' && name && projectName !== name) {
+      throw 'Please, checked you init options and project name position!'
+    }
+  } catch(err: any) {
+    message('error', err);
+    process.exit(500);
+  }
+}
+
 /**
  * create project
  * @param projectName
  */
 async function init(projectName: string) {
+  checkPorjectName(projectName);
   const rootDir: string = process.cwd();
   const projectDir: string = path.join(
     rootDir,
