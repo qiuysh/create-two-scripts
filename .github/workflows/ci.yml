@@ -38,6 +38,23 @@ jobs:
     runs-on: ubuntu-latest
     needs: ['lint']
     steps:
+
+      # checkout new code
+      - name: checkout
+        uses: actions/checkout@v3
+
+      # install node 
+      - name: choose nodejs version
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16.x'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: use yarn
+        run: npm install -g yarn
+
+      - name: install dependencies
+        run: yarn
       
       - name: yarn build
         run: yarn build
