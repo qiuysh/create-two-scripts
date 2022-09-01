@@ -18,7 +18,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '16.x',
-          registry-url: https://registry.npmjs.org  # 设置发包npm地址仓库
+          registry-url: 'https://registry.npmjs.org'  # 设置发包npm地址仓库
 
       - name: use yarn
         run: npm install -g yarn
