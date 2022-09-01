@@ -19,7 +19,7 @@
     "prettier": "prettier './packages/**/*' --write ",
     "publish": "lerna run publish",
     "unpublish": "lerna run unpublish",
-    "release": "lerna run release -- --prerelease alpha"
+    "release": "lerna run release -- --release-as 2.0.0"
   },
   "author": "wulin",
   "license": "MIT",
