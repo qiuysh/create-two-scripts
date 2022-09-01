@@ -33,7 +33,7 @@ jobs:
         run: yarn run prettier
 
   publish: 
-    if:  startsWith(github.head_ref, 'release-')
+    if:  startsWith(github.head_ref, 'release_')
     name: publish to npm
     runs-on: ubuntu-latest
     needs: ['lint']
