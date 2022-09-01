@@ -34,7 +34,6 @@ function readJsonSync(targetDir: string) {
   return targetDir && fs.readJSONSync(targetDir, "utf-8");
 }
 
-
 export {
   program,
   prompt,

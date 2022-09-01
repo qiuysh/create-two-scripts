@@ -14,8 +14,8 @@
   "private": "true",
   "scripts": {
     "build": "lerna run build",
-    "eslint:test": "eslint './packages/**/*' --ext .js,.ts",
-    "lint:fix": "eslint './packages/**/*' --fix --ext .js,.ts",
+    "eslint": "eslint './packages/**/*' --ext .js,.ts",
+    "lint": "eslint './packages/**/*' --fix --ext .js,.ts",
     "prettier": "prettier './packages/**/*' --write ",
     "publish": "lerna run publish",
     "unpublish": "lerna run unpublish",

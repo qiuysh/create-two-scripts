@@ -5,7 +5,7 @@ import fs from "fs-extra";
 import { exec } from "shelljs";
 import os from "os";
 import { merge } from "webpack-merge";
-import { prompt, readJsonSync, message} from "../utils";
+import { prompt, readJsonSync, message } from "../utils";
 import {
   defaultTempData,
   createPackageData,
@@ -52,13 +52,13 @@ function chalkStyle(params: string) {
 }
 
 function checkPorjectName(projectName) {
-  const [,,opt, , name] = argv;
+  const [, , opt, , name] = argv;
   try {
-    if (opt === 'init' && name && projectName !== name) {
-      throw 'Please, checked you init options and project name position!'
+    if (opt === "init" && name && projectName !== name) {
+      throw "Please, checked you init options and project name position!";
     }
-  } catch(err: any) {
-    message('error', err);
+  } catch (err: any) {
+    message("error", err);
     process.exit(500);
   }
 }
