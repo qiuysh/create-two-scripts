@@ -19,6 +19,7 @@ jobs:
         with:
           node-version: '16.x'
           registry-url: 'https://registry.npmjs.org'
+          cache: 'yarn'
 
       - name: use yarn
         run: npm install -g yarn
@@ -33,7 +34,7 @@ jobs:
         run: yarn run prettier
 
   publish: 
-    if:  startsWith(github.head_ref, 'release_')
+    if:  startsWith(github.ref, 'refs/heads/release_')
     name: publish to npm
     runs-on: ubuntu-latest
     needs: ['lint']
@@ -49,6 +50,7 @@ jobs:
         with:
           node-version: '16.x'
           registry-url: 'https://registry.npmjs.org'
+          cache: 'yarn'
 
       - name: use yarn
         run: npm install -g yarn
