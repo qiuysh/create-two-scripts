@@ -11,7 +11,7 @@
     "less",
     "webpack v5"
   ],
-  "private": "true",
+  "private": "false",
   "scripts": {
     "build": "lerna run build",
     "eslint": "eslint './packages/**/*' --ext .js,.ts",
