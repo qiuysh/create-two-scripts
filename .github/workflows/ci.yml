@@ -33,35 +33,35 @@ jobs:
       - name: prettier
         run: yarn run prettier
 
-  publish: 
-    if:  startsWith(github.ref, 'refs/heads/release_')
-    name: publish to npm
-    runs-on: ubuntu-latest
-    needs: ['lint']
-    steps:
+  # publish: 
+  #   if:  startsWith(github.ref, 'refs/heads/release_')
+  #   name: publish to npm
+  #   runs-on: ubuntu-latest
+  #   needs: ['lint']
+  #   steps:
 
-      # checkout new code
-      - name: checkout
-        uses: actions/checkout@v3
+  #     # checkout new code
+  #     - name: checkout
+  #       uses: actions/checkout@v3
 
-      # install node 
-      - name: choose nodejs version
-        uses: actions/setup-node@v3
-        with:
-          node-version: '16.x'
-          registry-url: 'https://registry.npmjs.org'
-          cache: 'yarn'
+  #     # install node 
+  #     - name: choose nodejs version
+  #       uses: actions/setup-node@v3
+  #       with:
+  #         node-version: '16.x'
+  #         registry-url: 'https://registry.npmjs.org'
+  #         cache: 'yarn'
 
-      - name: use yarn
-        run: npm install -g yarn
+  #     - name: use yarn
+  #       run: npm install -g yarn
 
-      - name: install dependencies
-        run: yarn
+  #     - name: install dependencies
+  #       run: yarn
       
-      - name: yarn build
-        run: yarn build
+  #     - name: yarn build
+  #       run: yarn build
       
-      - name: publish to npm
-        run: yarn run publish
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+  #     - name: publish to npm
+  #       run: yarn run publish
+  #       env:
+  #         NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
