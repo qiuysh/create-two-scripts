@@ -1,0 +1,36 @@
+{
+  "name": "cts-template-typescript",
+  "version": "2.0.0",
+  "description": "The base TypeScript template for Create Two Scripts.",
+  "keywords": [
+    "react",
+    "create-two-scripts",
+    "template",
+    "typescript"
+  ],
+  "main": "index.js",
+  "scripts": {
+    "publish": "npm publish",
+    "unpublish": "npm unpublish --force cts-template",
+    "release": "standard-version"
+  },
+  "author": "wulin",
+  "license": "MIT",
+  "engines": {
+    "node": ">=10.13.0"
+  },
+  "bugs": {
+    "url": "https://github.com/qiuysh/create-two-scripts/issues"
+  },
+  "files": [
+    "template"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/qiuysh/create-two-scripts",
+    "directory": "packages/cts-template-typescript"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  }
+}

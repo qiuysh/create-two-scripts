@@ -17,7 +17,7 @@ create-two-scripts， 一个简易的 react 应用前端脚手架工具
 
 ### 说明
 
-node >= 10.13.0 和 webpack >= 5.x，当前仅支持的模版 react + ts，
+node >= 10.13.0 和 webpack >= 5.x，当前支持的模版 react + ts/js
 
 ### 使用
 
@@ -64,17 +64,25 @@ module.exports = {
 
 |名称    |配置   | 环境  | 描述   |
 |:---   |:----  |:----  |:---- |
-| 使用 ts| -t, --ts | 开发/生产|默认支持 typescript|
+| 使用 ts| -t, --ts | 开发/生产| 支持 typescript|
 | 使用 esbuild| -es, --esbuild | 开发/生产|支持 esbuild 压缩和 loader，不支持基于 ast 的 babel 插件（ex: babel-plugin-import）。|
-| 自定义端口| -p, --port | 开发 |支持端口自定义|
+| 自定义端口| --port | 开发 |支持端口自定义|
 
 
 
-使用示例
+使用 esbuild 示例
 
 ```js
 two start -es
 two build -es
+```
+
+
+使用 js 示例，可以支持 ts
+
+```js
+two start -t
+two build -t
 ```
 
 

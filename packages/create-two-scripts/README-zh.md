@@ -9,43 +9,43 @@
 [node-version]: https://img.shields.io/node/v/create-two-scripts?style=flat
 [node-version-url]: https://img.shields.io/node/v/create-two-scripts
 
-EngLish | [中文文档](./README-zh.md)
+[EngLish](./README.md) | 中文文档
 
-### Introduction
+### 简介
 
-Create-two-scripts， a simple react application front-end scaffolding tool
+create-two-scripts， 一个简易的 react 应用前端脚手架工具
 
-### Description
+### 说明
 
-node >= 10.13.0, webpack >= 5.x and react >= 16.9.x, suppest react + ts/js.
+node >= 10.13.0 和 webpack >= 5.x，当前支持的模版 react + ts/js
 
-### Usage
+### 使用
 
-##### Install
+##### 安装
 
 ```js
 npm install -g create-two-scripts
 
-// or
+// 或者
 yarn global add create-two-scripts
 ```
 
-##### Command
+##### 支持命令
 
 ```js
-// init project
+// 创建新的工程
 two init <name>
 
-// start project
+// 启动
 two start
 
-// build project
+// 构建
 two build
 ```
 
-##### Options
+##### 配置
 
-1、Add config file two.config.js
+1、添加配置文件 two.config.js
 
 ```js
 module.exports = {
@@ -60,30 +60,28 @@ module.exports = {
 };
 ```
 
-2、Support params
+2、支持的参数
 
-|name   |option   | env |desc   |
-|:---   |:----  |:----  |:----  |
-| Use ts| -t, --ts | development / production | support typescript  |
-| Use esbuild| -es, --esbuild | development / production | Support esbuild, ast based babel plugins are not supported.(ex: babel-plugin-import)|
-| Custom port| --port | development | Set port inline|
+|名称    |配置   | 环境  | 描述   |
+|:---   |:----  |:----  |:---- |
+| 使用 ts| -t, --ts | 开发/生产| 支持 typescript|
+| 使用 esbuild| -es, --esbuild | 开发/生产|支持 esbuild 压缩和 loader，不支持基于 ast 的 babel 插件（ex: babel-plugin-import）。|
+| 自定义端口| --port | 开发 |支持端口自定义|
 
-
-
-use esbuild demo
+使用 esbuild 示例
 
 ```js
 two start -es
 two build -es
 ```
 
-use js demo, can support typescript
+使用 js 示例，可以支持 ts
 
 ```js
 two start -t
 two build -t
 ```
 
-### Reference
+### 参考
 
 https://github.com/facebook/create-react-app

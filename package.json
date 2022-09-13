@@ -1,6 +1,6 @@
 {
   "name": "create-two-scripts",
-  "version": "1.0.9",
+  "version": "2.0.0",
   "description": "A simple react application front-end scaffolding tool",
   "keywords": [
     "react",
@@ -8,19 +8,18 @@
     "babel",
     "sass",
     "scss",
+    "less",
     "webpack v5"
   ],
-  "bin": {
-    "two": "bin/index.js"
-  },
-  "main": "index.js",
+  "private": true,
   "scripts": {
-    "publish": "npm publish",
-    "unpublish": "npm unpublish --force create-two-scripts",
-    "release": "standard-version -r 1.0.9",
-    "eslint:test": "eslint './**/*' --ext .js,.ts",
-    "lint:fix": "eslint './**/*' --fix --ext .js,.ts",
-    "prettier": "prettier './**/*' --write "
+    "build": "lerna run build",
+    "eslint": "eslint './packages/**/*' --ext .js,.ts",
+    "lint": "eslint './packages/**/*' --fix --ext .js,.ts",
+    "prettier": "prettier './packages/**/*' --write ",
+    "publish": "lerna run publish",
+    "unpublish": "lerna run unpublish",
+    "release": "lerna run release -- --release-as 2.0.0"
   },
   "author": "wulin",
   "license": "MIT",
@@ -49,62 +48,25 @@
     }
   },
   "lint-staged": {
-    "lib/**/*.{js,ts}": [
+    "packages/babel-preset-two-app/*.{js,ts}": [
       "eslint --fix",
       "prettier --write"
     ],
-    "config/**/*.{js,ts}": [
-      "eslint --fix",
-      "prettier --write"
-    ],
-    "util/**/*.{js,ts}": [
+    "packages/create-two-scripts/*.{js,ts}": [
       "eslint --fix",
       "prettier --write"
     ]
   },
   "dependencies": {
-    "@babel/core": "^7.17.2",
-    "@babel/plugin-proposal-decorators": "^7.17.2",
-    "@babel/plugin-transform-runtime": "^7.17.0",
-    "@babel/preset-env": "^7.16.11",
-    "@babel/preset-react": "^7.16.7",
-    "@babel/preset-typescript": "^7.16.7",
-    "@babel/runtime": "^7.17.2",
-    "@pmmmwh/react-refresh-webpack-plugin": "^0.5.4",
-    "babel-loader": "^8.2.3",
-    "case-sensitive-paths-webpack-plugin": "^2.4.0",
-    "chalk": "^4.1.0",
-    "commander": "^7.0.0",
-    "css-loader": "^6.5.1",
-    "css-minimizer-webpack-plugin": "^3.4.1",
-    "detect-port": "^1.3.0",
-    "esbuild-loader": "^2.18.0",
-    "fs-extra": "^10.0.0",
-    "handlebars": "^4.7.7",
-    "html-webpack-plugin": "^5.5.0",
-    "inquirer": "^7.3.3",
-    "less": "^4.1.2",
-    "less-loader": "^10.2.0",
-    "mini-css-extract-plugin": "^2.5.3",
-    "ora": "^5.3.0",
-    "postcss": "^8.4.8",
-    "postcss-loader": "^6.2.1",
-    "react-refresh": "^0.11.0",
-    "sass": "^1.49.8",
-    "sass-loader": "^12.6.0",
-    "shelljs": "^0.8.4",
-    "style-loader": "^3.3.1",
-    "terser-webpack-plugin": "^5.3.1",
-    "thread-loader": "^3.0.4",
-    "tsconfig-paths-webpack-plugin": "^3.5.2",
-    "webpack": "^5.68.0",
-    "webpack-dev-server": "^4.7.4",
-    "webpack-merge": "^5.8.0"
+    "fs-extra": "^10.0.0"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.17.0",
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",
+    "@types/node": "^17.0.23",
+    "@typescript-eslint/eslint-plugin": "^5.27.1",
+    "@typescript-eslint/parser": "^5.27.1",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^8.9.0",
     "eslint-config-airbnb": "^19.0.4",
@@ -115,8 +77,13 @@
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-react": "^7.28.0",
     "husky": "^4.3.8",
+    "lerna": "^4.0.0",
     "lint-staged": "^10.5.3",
     "prettier": "^2.2.1",
-    "standard-version": "^9.1.0"
-  }
+    "standard-version": "^9.1.0",
+    "typescript": "^4.6.3"
+  },
+  "workspaces": [
+    "packages/*"
+  ]
 }
