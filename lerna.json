@@ -6,13 +6,6 @@
   "useWorkspaces": true,
   "version": "independent",
   "conmmand": {
-    "publish": {
-      "ignoreChanges": [
-        "*.md"
-      ],
-      "message": "chore(release): publish",
-      "registry": "https://registry.npmjs.org/"
-    },
     "version": {
       "allowBranch": [ 
         "release_*",
