@@ -18,8 +18,7 @@
   "scripts": {
     "build": " rm -rf lib && tsc",
     "publish": "npm publish",
-    "unpublish": "npm unpublish --force create-two-scripts",
-    "release": "standard-version"
+    "unpublish": "npm unpublish --force create-two-scripts"
   },
   "author": "wulin",
   "license": "MIT",

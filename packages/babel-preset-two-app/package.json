@@ -9,8 +9,7 @@
   "main": "index.js",
   "scripts": {
     "publish": "npm publish",
-    "unpublish": "npm unpublish --force babel-preset-two-app",
-    "release": "standard-version"
+    "unpublish": "npm unpublish --force babel-preset-two-app"
   },
   "author": "wulin",
   "license": "MIT",
