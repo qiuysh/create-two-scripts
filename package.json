@@ -17,9 +17,9 @@
     "eslint": "eslint './packages/**/*' --ext .js,.ts",
     "lint": "eslint './packages/**/*' --fix --ext .js,.ts",
     "prettier": "prettier './packages/**/*' --write ",
-    "publish": "lerna run publish",
+    "publish": "yarn build && lerna run publish",
     "unpublish": "lerna run unpublish",
-    "release": "lerna version --conventional-commits"
+    "release": "lerna version"
   },
   "author": "wulin",
   "license": "MIT",
