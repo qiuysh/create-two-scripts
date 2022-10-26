@@ -45,7 +45,7 @@
     "enzyme-adapter-react-16": "^1.15.6",
     "eslint": "^8.11.0",
     "eslint-config-prettier": "^8.5.0",
-    "eslint-config-wolin": "git+ssh://git@github.com:qiuysh/eslint-config-wolin.git",
+    "eslint-config-wolin": "^1.0.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-jest": "^24.1.3",
     "eslint-plugin-jsx-a11y": "^6.4.1",
