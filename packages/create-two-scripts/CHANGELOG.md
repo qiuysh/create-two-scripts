@@ -1,6 +1,15 @@
 # 更新历史 | changelog 
 
 
+### [2.0.2](https://github.com/qiuysh/create-two-scripts/compare/v2.0.0...v2.0.2) (2022-10-26)
+
+
+### 🐛 Bug Fixes | Bug 修复
+
+* fix bug issue_16 ([ec578dd](https://github.com/qiuysh/create-two-scripts/commit/ec578ddc8baac54c860b4591b37a2454adff43dd))
+
+### [2.0.1](https://github.com/qiuysh/create-two-scripts/compare/v2.0.0...v2.0.1) (2022-10-26)
+
 ## [2.0.0](https://github.com/qiuysh/create-two-scripts/compare/v1.0.9...v2.0.0) (2022-09-01)
 
 

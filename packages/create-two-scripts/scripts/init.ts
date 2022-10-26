@@ -23,6 +23,7 @@ function installDeps(
 ): void {
   if (sourceDir && dependencies.length) {
     const deps = dependencies.join(" ");
+    message('success', 'install pre dev dependencies' )
     exec(`cd ${sourceDir} && yarn add --dev ${deps}`);
   }
 }
@@ -115,10 +116,10 @@ async function init(projectName: string) {
       "package.json"
     );
     // pre install deps
-    const devDeps: string[] = [
+    const preDevDeps: string[] = [
       template,
       "create-two-scripts",
-    ].filter(devs => isDebug && devs !== template);
+    ].filter(devs => (isDebug && devs !== template) || (!isDebug && devs));
 
     spinner.start();
 
@@ -132,7 +133,7 @@ async function init(projectName: string) {
       JSON.stringify(templatePackage, null, 2) + os.EOL
     );
 
-    installDeps(projectDir, devDeps);
+    installDeps(projectDir, preDevDeps);
 
     const templateDir: string = getTemplateDir(
       template,
