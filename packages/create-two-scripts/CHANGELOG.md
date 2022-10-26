@@ -1,6 +1,8 @@
 # 更新历史 | changelog 
 
 
+### [2.0.1](https://github.com/qiuysh/create-two-scripts/compare/v2.0.0...v2.0.1) (2022-10-26)
+
 ## [2.0.0](https://github.com/qiuysh/create-two-scripts/compare/v1.0.9...v2.0.0) (2022-09-01)
 
 
