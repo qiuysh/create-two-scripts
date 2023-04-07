@@ -1,6 +1,6 @@
 [![github-ci][github-ci-img]][github-ci-url] [![NPM downloads][download-img]][download-url] [![NPM version][npm-version]][npm-version-url] [![NODE version][node-version]][node-version-url]
 
-[github-ci-img]:https://img.shields.io/github/workflow/status/qiuysh/create-two-scripts/GitHub%20Actions%20CI%20workflow?logo=github&style=flat
+[github-ci-img]:https://img.shields.io/github/actions/workflow/status/qiuysh/create-two-scripts/ci.yml
 [github-ci-url]:https://img.shields.io/github/workflow/status/qiuysh/create-two-scripts/GitHub%20Actions%20CI%20workflow
 [download-img]: https://img.shields.io/npm/dm/create-two-scripts?style=flat
 [download-url]: https://img.shields.io/npm/dm/create-two-scripts
