@@ -3003,10 +3003,8 @@ create-hmac@^1.1.0, create-hmac@^1.1.4, create-hmac@^1.1.7:
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
 
-"create-two-scripts@workspace:./packages/create-two-scripts":
+"create-two-scripts@file:../../packages/create-two-scripts":
   version "2.0.3"
-  resolved "https://registry.npmmirror.com/create-two-scripts/-/create-two-scripts-2.0.3.tgz#1604d919b390dfc1925b285142082109ac9601e1"
-  integrity sha512-Bh/XmDj9kKImy+H4Ph+dBXDGSnPIfCNg5lehF5tDWY40+TmfGI15Ve7EDZoWIKOeBF1swPZWqbK0ySgryDtcSQ==
   dependencies:
     "@babel/core" "^7.17.2"
     "@pmmmwh/react-refresh-webpack-plugin" "^0.5.4"

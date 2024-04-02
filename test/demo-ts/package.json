@@ -18,7 +18,7 @@
   "devDependencies": {
     "@types/react": "^16.14.2",
     "@types/react-dom": "^16.9.10",
-    "create-two-scripts": "workspace:./packages/create-two-scripts",
+    "create-two-scripts": "file:../../packages/create-two-scripts",
     "cross-env": "6.0.3",
     "jest": "26.6.3",
     "jest-canvas-mock": "2.3.1",
