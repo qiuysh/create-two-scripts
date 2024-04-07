@@ -1,0 +1,37 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true, 
+    "allowUnreachableCode": true,
+    "allowJs": true,
+    "module": "esNext", 
+    "target": "ES5", 
+    "baseUrl": ".", 
+    "jsx": "react", 
+    "strict": true,
+    "moduleResolution": "node",
+    "noImplicitAny": true,
+    "experimentalDecorators": true, 
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ],
+      "public/*": [
+        "./public/*"
+      ]
+    },
+    "lib": [
+      "ESNext",
+      "dom"
+    ]
+  },
+  "exclude": [
+    "node_modules",
+    "dist",
+    "public",
+    "tsconfig.json"
+  ],
+  "include": [
+    "./src/**/*"
+  ]
+  
+}
