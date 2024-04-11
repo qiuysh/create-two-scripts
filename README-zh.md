@@ -81,8 +81,8 @@ two build -es
 使用 js 示例，可以支持 ts
 
 ```js
-two start -t
-two build -t
+two start
+two build
 ```
 
 

@@ -78,8 +78,8 @@ two build -es
 use js demo, can support typescript
 
 ```js
-two start -t
-two build -t
+two start
+two build
 ```
 
 ### Reference
