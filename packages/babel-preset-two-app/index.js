@@ -8,7 +8,7 @@ const path = require("path");
  */
 module.exports = function (context, opts = {}) {
   const { NODE_ENV, BABEL_ENV } = process.env;
-  const env = BABEL_ENV | NODE_ENV;
+  const env = BABEL_ENV || NODE_ENV;
   const isDev = env === "development";
 
   const {
@@ -73,7 +73,7 @@ module.exports = function (context, opts = {}) {
       },
     ],
     [
-      require("@babel/plugin-proposal-private-property-in-object")
+      require("@babel/plugin-transform-private-property-in-object")
         .default,
       {
         loose: true,

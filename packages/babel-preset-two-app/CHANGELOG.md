@@ -1,6 +1,13 @@
 # 更新历史 | changelog 
 
 
+### [2.0.1](https://github.com/qiuysh/create-two-scripts/compare/v2.0.0...v2.0.1) (2024-04-11)
+
+
+### 🐛 Bug Fixes | Bug 修复
+
+* update babel preset two app ([9e94f92](https://github.com/qiuysh/create-two-scripts/commit/9e94f92cee0bf9a711ea755ada94cf501c704694))
+
 ## [2.0.0](https://github.com/qiuysh/create-two-scripts/compare/v1.0.9...v2.0.0) (2022-09-01)
 
 
