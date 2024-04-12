@@ -57,9 +57,6 @@
       "prettier --write"
     ]
   },
-  "dependencies": {
-    "fs-extra": "^10.0.0"
-  },
   "devDependencies": {
     "@babel/eslint-parser": "^7.17.0",
     "@commitlint/cli": "^11.0.0",
