@@ -1,6 +1,20 @@
 # 更新历史 | changelog 
 
 
+### [2.0.6](https://github.com/qiuysh/create-two-scripts/compare/v2.0.4...v2.0.6) (2024-04-12)
+
+
+### 🐛 Bug Fixes | Bug 修复
+
+* update package ([fd5d5a6](https://github.com/qiuysh/create-two-scripts/commit/fd5d5a66e601bf508bde218e4069bc6993706338))
+
+### [2.0.5](https://github.com/qiuysh/create-two-scripts/compare/v2.0.4...v2.0.5) (2024-04-12)
+
+
+### 🐛 Bug Fixes | Bug 修复
+
+* update package ([fd5d5a6](https://github.com/qiuysh/create-two-scripts/commit/fd5d5a66e601bf508bde218e4069bc6993706338))
+
 ### [2.0.4](https://github.com/qiuysh/create-two-scripts/compare/v2.0.3...v2.0.4) (2024-04-11)
 
 
